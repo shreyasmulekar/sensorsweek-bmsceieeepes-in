@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ScheduleRouteImport } from './routes/schedule'
+import { Route as EventSlugRouteImport } from './routes/event.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const ScheduleRoute = ScheduleRouteImport.update({
   path: '/schedule',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventSlugRoute = EventSlugRouteImport.update({
+  id: '/event/$slug',
+  path: '/event/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/schedule': typeof ScheduleRoute
+  '/event/$slug': typeof EventSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/schedule': typeof ScheduleRoute
+  '/event/$slug': typeof EventSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/schedule': typeof ScheduleRoute
+  '/event/$slug': typeof EventSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/events' | '/faq' | '/schedule'
+  fullPaths: '/' | '/events' | '/faq' | '/schedule' | '/event/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/events' | '/faq' | '/schedule'
-  id: '__root__' | '/' | '/events' | '/faq' | '/schedule'
+  to: '/' | '/events' | '/faq' | '/schedule' | '/event/$slug'
+  id: '__root__' | '/' | '/events' | '/faq' | '/schedule' | '/event/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +76,7 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   FaqRoute: typeof FaqRoute
   ScheduleRoute: typeof ScheduleRoute
+  EventSlugRoute: typeof EventSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScheduleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/event/$slug': {
+      id: '/event/$slug'
+      path: '/event/$slug'
+      fullPath: '/event/$slug'
+      preLoaderRoute: typeof EventSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   FaqRoute: FaqRoute,
   ScheduleRoute: ScheduleRoute,
+  EventSlugRoute: EventSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
