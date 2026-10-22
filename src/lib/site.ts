@@ -5,6 +5,7 @@ export const DATES_LABEL = "30 Oct – 4 Nov 2026";
 export const NEXT_EVENT_LABEL = "SENSORS FUSION · Mon 2 Nov, 2:00 PM";
 export const INSTAGRAM = "https://instagram.com/bmsce_ieeepes";
 export const EMAIL = "ieeepes@bmsce.ac.in";
+export const SPONSORS = ["Mystic Grace"];
 
 export type Contact = { name: string; phone: string };
 

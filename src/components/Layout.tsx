@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Instagram, Mail, MapPin, Volume2, VolumeX } from "lucide-react";
-import { REGISTER_URL, INSTAGRAM, EMAIL } from "@/lib/site";
+import { REGISTER_URL, INSTAGRAM, EMAIL, SPONSORS } from "@/lib/site";
 import logoAsset from "@/assets/logo.png.asset.json";
 import { isMuted, onMuteChange, setMuted, sfx } from "@/lib/sound";
 
@@ -150,6 +150,12 @@ export function Footer() {
           <span className="flex min-w-0 items-center gap-2"><MapPin className="size-4 shrink-0" /><span className="min-w-0">BMS College of Engineering, Bengaluru</span></span>
         </div>
       </div>
+      {SPONSORS.length > 0 && (
+        <div className="mx-auto max-w-6xl px-4 pb-6 text-center">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">With thanks to our sponsor</p>
+          <p className="mt-2 font-display text-lg font-bold text-primary sm:text-xl">{SPONSORS.join("  ·  ")}</p>
+        </div>
+      )}
       <p className="px-4 pb-6 text-center text-[11px] text-muted-foreground">© 2026 BMSCE IEEE PES & Sensors Council</p>
     </footer>
   );
