@@ -94,7 +94,7 @@ function Index() {
           A week-long tech fest by the BMSCE IEEE Power & Energy Society and Sensors Council, celebrating the tiny devices that make machines aware of the world.
         </p>
         <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground sm:text-base">
-          The week centres on our flagship <span className="font-semibold text-foreground">Hardware Hackathon</span>, where teams design, build and demo sensor-powered hardware. Alongside it come workshops like SENSORS FUSION.
+          The week centres on our flagship <span className="font-semibold text-foreground">Hardware Hackathon</span> — <span className="font-semibold text-foreground">SENSORS ENCLAVE 4.0</span> — where teams design, build and demo sensor-powered hardware. Alongside it come workshops like SENSORS FUSION.
         </p>
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           {[[Radio, "Sensors"], [Cpu, "Embedded"], [Wifi, "IoT"], [Zap, "Energy"]].map(([Icon, l], i) => {
