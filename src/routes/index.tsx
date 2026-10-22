@@ -54,7 +54,7 @@ function Index() {
             <motion.span initial={{ opacity: 0, scale: 2 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1.1 }} className="mt-2 block text-2xl sm:text-4xl md:text-5xl">2026</motion.span>
           </h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3 }} className="mx-auto mt-5 max-w-xl px-2 text-sm text-muted-foreground sm:text-base">
-            A week of hardware building, drones and smart sensing. Build it, fly it, demo it.
+            A week of drones, robots and smart sensing, led by our flagship Hardware Hackathon. Build it, fly it, demo it.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.45 }} className="mt-4 flex justify-center px-2">
             <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary sm:text-sm">
