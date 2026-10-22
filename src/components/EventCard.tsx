@@ -62,6 +62,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
           <p className={`text-primary ${wide ? "mt-1 text-base sm:text-lg" : "text-sm"}`}>{e.tagline}</p>
           <p className={`mt-3 text-muted-foreground ${wide ? "max-w-xl" : "text-sm"}`}>{e.description}</p>
           {wide && e.hook ? <p className="mt-3 max-w-xl text-sm italic text-muted-foreground">"{e.hook}"</p> : null}
+          {e.note ? <p className="mt-3 rounded-xl bg-primary/10 px-3 py-2 text-xs font-medium text-primary sm:text-sm">{e.note}</p> : null}
         </div>
         <div className={`min-w-0 ${wide ? "md:w-72 md:shrink-0" : ""}`}>
           <Meta e={e} />
@@ -109,6 +110,9 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
           aria-label={`Share ${e.name}`}
           className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:bg-secondary"
         ><Share2 className="size-4" />Share</button>
+        {e.brochure ? (
+          <a href={e.brochure} target="_blank" rel="noreferrer" className="rounded-full border border-border px-4 py-2 text-sm transition-colors hover:bg-secondary">Brochure</a>
+        ) : null}
         {canRegister ? (
           <RegisterButton href={e.registerUrl ?? REGISTER_URL} className="px-4 py-2 text-sm">Register</RegisterButton>
         ) : e.flagship ? (
