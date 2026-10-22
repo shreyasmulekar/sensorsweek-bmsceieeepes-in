@@ -41,11 +41,11 @@ export function TechBackground() {
         if (dm < 120) { p.x += (p.x - mouse.x) / dm; p.y += (p.y - mouse.y) / dm; }
       }
       for (let i = 0; i < n; i++) {
-        for (let j = i + 1; j < n; j++) {
-          const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
-          if (d < 130) { ctx.strokeStyle = color(0.35 * (1 - d / 130)); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke(); }
+        for (let j = i + 1; j < n; j++) { const a = pts[i]!, b = pts[j]!;
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 130) { ctx.strokeStyle = color(0.35 * (1 - d / 130)); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
         }
-        ctx.fillStyle = color(0.8); ctx.beginPath(); ctx.arc(pts[i].x, pts[i].y, 1.6, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = color(0.8); ctx.beginPath(); ctx.arc(pts[i]!.x, pts[i]!.y, 1.6, 0, Math.PI * 2); ctx.fill();
       }
       for (const d of drones) {
         d.t += 0.01; d.x += d.s; if (d.x > w + 40) d.x = -40;
