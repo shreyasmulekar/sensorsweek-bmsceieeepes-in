@@ -4,6 +4,7 @@ const MUTE_KEY = "sw-sound";
 
 let ctx: AudioContext | null = null;
 let muted = false;
+let listeners: Array<(m: boolean) => void> = [];
 try {
   muted = localStorage.getItem(MUTE_KEY) === "off";
 } catch {
@@ -14,8 +15,16 @@ export function isMuted() {
   return muted;
 }
 
+export function onMuteChange(fn: (m: boolean) => void) {
+  listeners.push(fn);
+  return () => {
+    listeners = listeners.filter((f) => f !== fn);
+  };
+}
+
 export function setMuted(v: boolean) {
   muted = v;
+  listeners.forEach((f) => f(v));
   try {
     localStorage.setItem(MUTE_KEY, v ? "off" : "on");
   } catch {

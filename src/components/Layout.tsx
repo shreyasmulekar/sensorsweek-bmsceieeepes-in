@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Instagram, Mail, MapPin, Volume2, VolumeX } from "lucide-react";
 import { REGISTER_URL, INSTAGRAM, EMAIL } from "@/lib/site";
 import logoAsset from "@/assets/logo.png.asset.json";
-import { isMuted, setMuted, sfx } from "@/lib/sound";
+import { isMuted, onMuteChange, setMuted, sfx } from "@/lib/sound";
 
 const logo = logoAsset.url;
 
@@ -35,7 +35,12 @@ export function RegisterButton({ className = "", children = "Register Now", href
 }
 
 export function SoundToggle({ className = "" }: { className?: string }) {
-  const [off, setOff] = useState(isMuted());
+  const [off, setOff] = useState(false);
+
+  useEffect(() => {
+    setOff(isMuted());
+    return onMuteChange(setOff);
+  }, []);
   return (
     <button
       type="button"
