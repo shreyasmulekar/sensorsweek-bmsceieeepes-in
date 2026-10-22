@@ -21,7 +21,7 @@ export function TechBackground() {
       ctx.save(); ctx.translate(x, y);
       ctx.strokeStyle = color(0.55); ctx.lineWidth = 1.2;
       ctx.beginPath(); ctx.moveTo(-16, -8); ctx.lineTo(16, 8); ctx.moveTo(16, -8); ctx.lineTo(-16, 8); ctx.stroke();
-      for (const [dx, dy] of [[-16, -8], [16, -8], [-16, 8], [16, 8]]) {
+      for (const [dx, dy] of [[-16, -8], [16, -8], [-16, 8], [16, 8]] as const) {
         ctx.beginPath(); ctx.ellipse(dx, dy, 8 * Math.abs(Math.sin(t * 20)) + 2, 2, 0, 0, Math.PI * 2); ctx.stroke();
       }
       ctx.fillStyle = color(0.8); ctx.fillRect(-4, -3, 8, 6);
