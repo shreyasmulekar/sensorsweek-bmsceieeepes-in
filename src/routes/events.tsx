@@ -1,11 +1,18 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { SectionTitle } from "@/components/Layout";
 import { EventCard } from "@/components/EventCard";
 import { EVENTS, INSTAGRAM, dayLabel, type EventItem } from "@/lib/site";
 
 export const Route = createFileRoute("/events")({
+  // Filters live in the URL, so a filtered listing can be shared or revisited.
+  validateSearch: (search: Record<string, unknown>) => ({
+    type: typeof search.type === "string" && search.type ? search.type : "All",
+    day: typeof search.day === "string" && search.day ? search.day : "All",
+  }),
+  search: {
+    middlewares: [{ type: "All", day: "All" }],
+  },
   head: () => ({
     meta: [
       { title: "Events | Sensors Week 2026" },
@@ -17,16 +24,15 @@ export const Route = createFileRoute("/events")({
   component: Events,
 });
 
-type Cat = "All" | EventItem["category"];
-const CATS: Cat[] = ["All", ...Array.from(new Set(EVENTS.map((e) => e.category)))];
+const CATS: string[] = ["All", ...Array.from(new Set(EVENTS.map((e) => e.category)))];
 const DAYS: string[] = ["All", ...Array.from(new Set(EVENTS.map((e) => e.day || "tba")))];
 const dayText = (v: string) => (v === "All" ? "All days" : v === "tba" ? "Dates TBA" : dayLabel(v));
 
-function Pills({ label, options, value, onChange, text, id }: { label: string; options: string[]; value: string; onChange: (v: string) => void; text: (v: string) => string; id: string }) {
+function Pills({ label, options, value, onPick, text, id }: { label: string; options: string[]; value: string; onPick: (v: string) => void; text: (v: string) => string; id: string }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-2" role="group" aria-label={label}>
       {options.map((o) => (
-        <button key={o} onClick={() => onChange(o)} aria-pressed={value === o} className="relative rounded-full px-4 py-2 text-sm">
+        <button key={o} onClick={() => onPick(o)} aria-pressed={value === o} className="relative rounded-full px-4 py-2 text-sm">
           {value === o && <motion.span layoutId={id} className="absolute inset-0 rounded-full bg-gradient-primary" />}
           <span className={`relative ${value === o ? "text-primary-foreground" : "text-muted-foreground"}`}>{text(o)}</span>
         </button>
@@ -36,33 +42,48 @@ function Pills({ label, options, value, onChange, text, id }: { label: string; o
 }
 
 function Events() {
-  const [cat, setCat] = useState<Cat>("All");
-  const [day, setDay] = useState<string>("All");
-  const list = EVENTS.filter((e) => (cat === "All" || e.category === cat) && (day === "All" || (e.day || "tba") === day));
+  const { type, day } = Route.useSearch();
+  const navigate = useNavigate({ from: "/events" });
+  const set = (patch: { type?: string; day?: string }) =>
+    navigate({ search: (prev) => ({ ...prev, ...patch }), replace: true });
+
+  const list = EVENTS.filter((e) => (type === "All" || e.category === type) && (day === "All" || (e.day || "tba") === day));
   const flagship = list.find((e) => e.flagship);
   const rest = list.filter((e) => !e.flagship);
-  const filtered = cat !== "All" || day !== "All";
+  const filtered = type !== "All" || day !== "All";
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
       <SectionTitle kicker="Events" title="Pick your challenge" />
 
       <div className="mb-4 flex flex-col items-center gap-3">
-        <Pills label="Filter by type" options={CATS} value={cat} onChange={(v) => setCat(v as Cat)} text={(v) => (v === "All" ? "All types" : v)} id="pill-cat" />
-        <Pills label="Filter by day" options={DAYS} value={day} onChange={setDay} text={dayText} id="pill-day" />
+        <Pills label="Filter by type" options={CATS} value={type} onPick={(v) => set({ type: v })} text={(v) => (v === "All" ? "All types" : v)} id="pill-cat" />
+        <Pills label="Filter by day" options={DAYS} value={day} onPick={(v) => set({ day: v })} text={dayText} id="pill-day" />
       </div>
 
       <div className="mb-8 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground">
-        <span>Showing {list.length} of {EVENTS.length} events</span>
+        <p aria-live="polite" aria-atomic="true">
+          Showing {list.length} of {EVENTS.length} events{filtered ? ` · type ${type === "All" ? "any" : type}, day ${day === "All" ? "any" : dayText(day)}` : ""}
+        </p>
         {filtered && (
-          <button onClick={() => { setCat("All"); setDay("All"); }} className="rounded-full border border-border px-3 py-1 transition-colors hover:bg-secondary">Clear filters</button>
+          <button onClick={() => navigate({ search: { type: "All", day: "All" }, replace: true })} className="rounded-full border border-border px-3 py-1 transition-colors hover:bg-secondary">
+            Clear all filters
+          </button>
         )}
       </div>
 
       {list.length === 0 ? (
-        <p className="glass mx-auto max-w-md rounded-xl p-6 text-center text-sm text-muted-foreground">
-          Nothing matches those filters yet. Try another day or type — new events are added every week.
-        </p>
+        <div className="glass mx-auto max-w-md rounded-2xl p-6 text-center">
+          <p className="text-3xl">🔍</p>
+          <p className="mt-3 font-semibold">No events match those filters yet</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Nothing is scheduled for {type === "All" ? "that" : type} on {day === "All" ? "that" : dayText(day)}. Try another day or type — new events are added every week.
+          </p>
+          <button
+            onClick={() => navigate({ search: { type: "All", day: "All" }, replace: true })}
+            className="mt-4 rounded-full bg-gradient-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-glow"
+          >Show all events</button>
+        </div>
       ) : (
         <>
           {flagship ? (
