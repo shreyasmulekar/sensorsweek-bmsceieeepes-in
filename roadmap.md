@@ -9,11 +9,14 @@
 - [x] Keep event cards and the top menu easy to read on phones (no sideways scroll, buttons clear of the chat button)
 - [x] Improve the mobile navigation further (full-screen menu panel, current page highlighted, bigger tap targets)
 - [x] Re-check that the hardware hackathon is still the most prominent event after the mobile menu work
-- [ ] Add subtle sound effects to clicks, hovers and the chatbot, with a mute switch
-- [ ] Check every link and button works and nothing gets stuck in a loop
-- [ ] Add a share button on event details so visitors can send an event link
-- [ ] Add category and date filters to the event listings so visitors can quickly find relevant events
-- [ ] Add clear keyboard focus states and accessible navigation for the menu and event cards
+- [x] Add subtle sound effects to clicks, hovers and the chatbot, with a mute switch
+- [x] Check every link and button works and nothing gets stuck in a loop
+- [x] Add a share button on event details so visitors can send an event link
+- [x] Add category and date filters to the event listings so visitors can quickly find relevant events
+- [x] Add clear keyboard focus states and accessible navigation for the menu and event cards
+- [ ] Fix whatever problem users are reporting in the uploaded screenshot (checking the image now)
+- [ ] Keep the selected category and day filters in the URL so a filtered listing can be shared or revisited
+- [ ] Announce filter changes and the new result count to screen readers
 - [ ] Add real dates, fee, prize and registration form for the Hardware Hackathon (waiting on Anil for details)
 - [ ] Confirm the Sensors Week dates (currently shown as 30 Oct – 4 Nov 2026) and the sponsor names (waiting on Anil)
 - [ ] Publish the site and connect sensorsweek.bmsceieeepes.in (needs Anil to publish, then add the domain in Project Settings)
