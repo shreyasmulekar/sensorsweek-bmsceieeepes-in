@@ -86,9 +86,12 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 
 // Same wording on the server and in the browser, so the page never re-renders differently.
 export function dayLabel(day: string) {
-  if (!day) return "Dates TBA";
-  const [y, m, d] = day.split("-").map(Number);
-  return `${DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]}, ${d} ${MONTHS[m - 1]}`;
+  const parts = day.split("-");
+  const y = Number(parts[0]);
+  const m = Number(parts[1]);
+  const d = Number(parts[2]);
+  if (!day || !y || !m || !d || m < 1 || m > 12 || d < 1 || d > 31) return "Dates TBA";
+  return `${DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()] ?? ""}, ${d} ${MONTHS[m - 1] ?? ""}`;
 }
 
 export const isTba = (v: string) => /tba|to be announced/i.test(v);
