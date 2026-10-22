@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Cpu, Radio, Zap, Wifi, Sparkles } from "lucide-react";
+import { Cpu, Radio, Zap, Wifi, Sparkles, CalendarDays } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { RegisterButton, SectionTitle } from "@/components/Layout";
 import { EventCard } from "@/components/EventCard";
@@ -54,8 +54,14 @@ function Index() {
             <motion.span initial={{ opacity: 0, scale: 2 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1.1 }} className="mt-2 block text-2xl sm:text-4xl md:text-5xl">2026</motion.span>
           </h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3 }} className="mx-auto mt-5 max-w-xl px-2 text-sm text-muted-foreground sm:text-base">
-            A week of hardware building, drones and smart sensing. Build it, fly it, demo it — {DATES_LABEL}.
+            A week of drones, robots and smart sensing, led by our flagship Hardware Hackathon. Build it, fly it, demo it.
           </motion.p>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.45 }} className="mt-4 flex justify-center px-2">
+            <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary sm:text-sm">
+              <CalendarDays className="size-3.5" />
+              {DATES_LABEL}
+            </span>
+          </motion.div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="mt-7 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <RegisterButton className="px-5 py-3 text-sm sm:px-6" />
             <Link to="/events" className="rounded-full border border-primary/50 px-5 py-3 text-sm font-semibold transition hover:bg-primary/10 sm:px-6 sm:text-base">Explore Events</Link>
@@ -86,6 +92,9 @@ function Index() {
         <SectionTitle kicker="About" title="What is Sensors Week?" />
         <p className="mx-auto max-w-2xl text-center text-sm text-muted-foreground sm:text-base">
           A week-long tech fest by the BMSCE IEEE Power & Energy Society and Sensors Council, celebrating the tiny devices that make machines aware of the world.
+        </p>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground sm:text-base">
+          The week centres on our flagship <span className="font-semibold text-foreground">Hardware Hackathon</span>, where teams design, build and demo sensor-powered hardware. Alongside it come workshops like SENSORS FUSION.
         </p>
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           {[[Radio, "Sensors"], [Cpu, "Embedded"], [Wifi, "IoT"], [Zap, "Energy"]].map(([Icon, l], i) => {
