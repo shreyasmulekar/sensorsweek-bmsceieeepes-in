@@ -161,6 +161,17 @@
 @utility text-gradient { background: var(--gradient-primary); -webkit-background-clip: text; background-clip: text; color: transparent; }
 @utility bg-gradient-primary { background-image: var(--gradient-primary); }
 @utility shadow-glow { box-shadow: var(--glow); }
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
 @utility glass { background: var(--card); backdrop-filter: blur(14px); border: 1px solid var(--border); }
 @utility glass-header { background: color-mix(in oklab, var(--card) 40%, var(--background)); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
 @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(100vh); } }

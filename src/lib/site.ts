@@ -22,6 +22,7 @@ export type EventItem = {
   description: string;
   learn?: string[];
   date: string;
+  day: string;
   time: string;
   venue: string;
   fee: string;
@@ -44,6 +45,7 @@ export const EVENTS: EventItem[] = [
     description:
       "The flagship of Sensors Week. Teams design and build a working hardware prototype around sensors and microcontrollers, then demo it live to the judges.",
     date: "TBA",
+    day: "",
     time: "TBA",
     venue: "TBA",
     fee: "TBA",
@@ -66,6 +68,7 @@ export const EVENTS: EventItem[] = [
       "AI integration, object detection and path planning",
     ],
     date: "Mon, 2 Nov 2026",
+    day: "2026-11-02",
     time: "2:00 PM – 6:00 PM",
     venue: "TBA",
     fee: "IEEE Members ₹150 · Non-IEEE ₹200",
@@ -77,6 +80,16 @@ export const EVENTS: EventItem[] = [
     icon: "🚁",
   },
 ];
+
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+// Same wording on the server and in the browser, so the page never re-renders differently.
+export function dayLabel(day: string) {
+  if (!day) return "Dates TBA";
+  const [y, m, d] = day.split("-").map(Number);
+  return `${DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]}, ${d} ${MONTHS[m - 1]}`;
+}
 
 export const SCHEDULE = [
   {

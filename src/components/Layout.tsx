@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Instagram, Mail, MapPin, Volume2, VolumeX } from "lucide-react";
 import { REGISTER_URL, INSTAGRAM, EMAIL } from "@/lib/site";
@@ -62,6 +62,11 @@ export function SoundToggle({ className = "" }: { className?: string }) {
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const panel = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (open) panel.current?.querySelector("a")?.focus();
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -81,9 +86,9 @@ export function Header() {
           <Logo />
           <span className="min-w-0 truncate font-display text-sm font-bold sm:text-lg"><span className="text-gradient">SENSORS</span> WEEK</span>
         </Link>
-        <nav className="hidden items-center gap-5 sm:flex md:gap-6">
+        <nav aria-label="Main" className="hidden items-center gap-5 sm:flex md:gap-6">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} activeOptions={{ exact: true }} activeProps={{ className: "text-primary" }} className="text-sm text-muted-foreground transition-colors hover:text-primary">{n.label}</Link>
+            <Link key={n.to} to={n.to} activeOptions={{ exact: true }} activeProps={{ className: "text-primary", "aria-current": "page" }} className="text-sm text-muted-foreground transition-colors hover:text-primary">{n.label}</Link>
           ))}
           <SoundToggle />
           <RegisterButton className="px-4 py-2 text-xs sm:px-5 sm:py-2 sm:text-sm" />
@@ -102,12 +107,14 @@ export function Header() {
             <motion.nav
               initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.2 }}
+              ref={panel}
+              aria-label="Main"
               className="glass-header absolute inset-x-0 top-full z-40 flex flex-col gap-1 border-b border-border px-4 pb-6 pt-3 sm:hidden"
             >
               {NAV.map((n) => (
                 <Link
                   key={n.to} to={n.to} activeOptions={{ exact: true }}
-                  activeProps={{ className: "bg-primary/15 text-primary" }}
+                  activeProps={{ className: "bg-primary/15 text-primary", "aria-current": "page" }}
                   className="rounded-xl px-4 py-3 text-base font-medium transition-colors hover:bg-secondary"
                   onClick={() => setOpen(false)}
                 >{n.label}</Link>
