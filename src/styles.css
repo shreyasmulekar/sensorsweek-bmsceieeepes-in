@@ -162,3 +162,4 @@
 @utility animate-scan { animation: scan 7s linear infinite; }
 @utility animate-floaty { animation: floaty 5s ease-in-out infinite; }
 @utility animate-kenburns { animation: kenburns 30s ease-in-out infinite alternate; }
+@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
