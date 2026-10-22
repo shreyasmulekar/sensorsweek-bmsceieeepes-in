@@ -60,6 +60,7 @@ function EventPage() {
         <p className="mt-2 text-base text-primary sm:text-lg">{e.tagline}</p>
         {e.hook ? <p className="mt-3 text-sm italic text-muted-foreground">"{e.hook}"</p> : null}
         <p className="mt-4 text-sm text-muted-foreground sm:text-base">{e.description}</p>
+        {e.note ? <p className="mt-4 rounded-xl bg-primary/10 px-4 py-3 text-sm font-medium text-primary">{e.note}</p> : null}
 
         <ul className="mt-6 grid gap-3 sm:grid-cols-2">
           <Fact icon={Calendar} label="Date" value={e.date} tba={isTba(e.date)} />
@@ -96,6 +97,9 @@ function EventPage() {
           ) : (
             <span className="glass rounded-full px-4 py-3 text-sm text-muted-foreground">Registrations opening soon — we'll post updates on Instagram</span>
           )}
+          {e.brochure ? (
+            <a href={e.brochure} target="_blank" rel="noreferrer" className="rounded-full border border-primary/50 px-5 py-3 text-sm font-semibold transition-colors hover:bg-primary/10">Brochure</a>
+          ) : null}
           <motion.button
             whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
             onClick={() => shareEvent(e as EventItem)}

@@ -20,7 +20,7 @@ function Schedule() {
     <section className="mx-auto max-w-3xl px-4 py-16">
       <SectionTitle kicker="Timeline" title="Schedule" />
       <p className="glass mb-10 rounded-xl p-4 text-center text-sm text-muted-foreground">
-        Confirmed sessions are listed below. The flagship Hardware Hackathon and the rest of the week will be added as soon as they are finalised.
+        Confirmed sessions are listed below. The rest of the week will be added as soon as it is finalised.
       </p>
       <div className="relative border-l-2 border-primary/30 pl-8">
         {SCHEDULE.map((d, i) => (
@@ -37,9 +37,6 @@ function Schedule() {
             </div>
           </motion.div>
         ))}
-        <div className="glass rounded-xl px-4 py-3 text-sm text-muted-foreground">
-          Hardware Hackathon — date and timings to be announced.
-        </div>
       </div>
     </section>
   );
