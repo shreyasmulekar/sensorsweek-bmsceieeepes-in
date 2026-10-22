@@ -15,6 +15,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { TechBackground } from "@/components/TechBackground";
 import { Header, Footer } from "@/components/Layout";
 import { ChatBot } from "@/components/ChatBot";
+import { Toaster } from "@/components/ui/sonner";
+import { attachSfx } from "@/lib/sound";
 
 function NotFoundComponent() {
   return (
@@ -93,6 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Sora:wght@300;400;600&display=swap" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
@@ -119,14 +122,18 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => attachSfx(), []);
+
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <TechBackground />
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:font-semibold focus:text-primary-foreground">Skip to content</a>
       <Header />
-      <main><Outlet /></main>
+      <main id="main"><Outlet /></main>
       <Footer />
       <ChatBot />
+      <Toaster position="bottom-center" />
     </QueryClientProvider>
   );
 }

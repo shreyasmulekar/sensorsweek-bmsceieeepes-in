@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { useServerFn } from "@tanstack/react-start";
 import { Bot, Send, X } from "lucide-react";
 import { askBot } from "@/lib/chat.functions";
+import { sfx } from "@/lib/sound";
 
 type Msg = { role: "user" | "assistant"; content: string };
 const SUGGEST = ["Which events are there?", "How do I register?", "Is there a fee?"];
@@ -20,12 +21,12 @@ export function ChatBot() {
   const send = async (text: string) => {
     if (!text.trim() || busy) return;
     const next = [...msgs, { role: "user" as const, content: text.trim() }];
-    setMsgs(next); setInput(""); setBusy(true);
+    setMsgs(next); setInput(""); setBusy(true); sfx.sent();
     try {
       const { reply } = await ask({ data: { messages: next.slice(1) } });
-      setMsgs([...next, { role: "assistant", content: reply }]);
+      setMsgs([...next, { role: "assistant", content: reply }]); sfx.reply();
     } catch {
-      setMsgs([...next, { role: "assistant", content: "Oops, connection hiccup. Try again?" }]);
+      setMsgs([...next, { role: "assistant", content: "Oops, connection hiccup. Try again?" }]); sfx.close();
     } finally { setBusy(false); }
   };
 
@@ -33,7 +34,7 @@ export function ChatBot() {
     <>
       <motion.button
         aria-label={open ? "Close chat" : "Open chat"}
-        onClick={() => setOpen(!open)}
+        onClick={() => { setOpen(!open); (!open ? sfx.open : sfx.close)(); }}
         whileHover={{ scale: 1.1, rotate: 8 }} whileTap={{ scale: 0.9 }}
         className="fixed bottom-5 right-5 z-50 grid size-14 place-items-center rounded-full bg-gradient-primary text-primary-foreground shadow-glow"
       >

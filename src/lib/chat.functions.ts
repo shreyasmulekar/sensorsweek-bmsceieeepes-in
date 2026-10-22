@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { EVENTS, SCHEDULE, FAQS, DATES_LABEL, EMAIL } from "./site";
+import { EVENTS, SCHEDULE, FAQS, DATES_LABEL, EMAIL, REGISTER_URL } from "./site";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -15,7 +15,8 @@ export const askBot = createServerFn({ method: "POST" })
   })
   .handler(async ({ data }) => {
     const { generateResponse } = await import("@lovable.dev/ai-gateway");
-    const instructions = `You are "Sensei", the friendly helper bot for Sensors Week 2026 by BMSCE IEEE Power & Energy Society and Sensors Council, held ${DATES_LABEL} at BMS College of Engineering, Bengaluru. Answer student questions briefly (max ~80 words), cheerfully, using markdown. Only use the facts below; if unsure, suggest emailing ${EMAIL} or DMing @bmsce_ieeepes on Instagram. To register, students click the Register button on the website.
+    const instructions = `You are "Sensei", the friendly helper bot for Sensors Week 2026 by BMSCE IEEE Power & Energy Society and Sensors Council, held ${DATES_LABEL} at BMS College of Engineering, Bengaluru. Answer student questions briefly (max ~80 words), cheerfully, using markdown. Only use the facts below; never invent a date, fee, venue or prize — if a detail is not listed, say it will be announced soon. Registration happens through the Register button on the website, which opens the Google Form: ${REGISTER_URL}. For help, point students to the chatbot, the Instagram page @bmsce_ieeepes, or the event contacts shown under "View Details" on the SENSORS FUSION card.
+FLAGSHIP EVENT: The Hardware Hackathon is the headline event of Sensors Week 2026 — teams design and build a working hardware prototype and demo it to judges. Its date, fee, prize and registration form are not announced yet.
 EVENTS: ${JSON.stringify(EVENTS)}
 SCHEDULE: ${JSON.stringify(SCHEDULE)}
 FAQ: ${JSON.stringify(FAQS)}`;
