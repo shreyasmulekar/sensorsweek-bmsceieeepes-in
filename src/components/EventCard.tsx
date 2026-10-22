@@ -1,7 +1,10 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { Calendar, Clock, MapPin, Users, Trophy, Ticket, Phone, Sparkles } from "lucide-react";
-import { INSTAGRAM, REGISTER_URL, type EventItem } from "@/lib/site";
+import { motion } from "motion/react";
+import { Calendar, Clock, MapPin, Users, Trophy, Ticket, Phone, Sparkles, Share2 } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { REGISTER_URL, isTba, type EventItem } from "@/lib/site";
+import { shareEvent } from "@/lib/share";
 import { RegisterButton } from "./Layout";
 
 const STATUS: Record<EventItem["status"], string> = {
@@ -12,11 +15,9 @@ const STATUS: Record<EventItem["status"], string> = {
   "COMING SOON": "bg-secondary text-muted-foreground",
 };
 
-const isTba = (v: string) => /tba|to be announced/i.test(v);
-
-function Meta({ e, compact = false }: { e: EventItem; compact?: boolean }) {
+function Meta({ e }: { e: EventItem }) {
   return (
-    <ul className={`space-y-2 text-sm ${compact ? "" : "mt-5"}`}>
+    <ul className="mt-5 space-y-2 text-sm">
       <li className="flex items-start gap-2">
         <Calendar className="mt-0.5 size-4 shrink-0 text-primary" />
         <span className="min-w-0"><span className="text-muted-foreground">Date: </span><span className={isTba(e.date) ? "font-semibold text-warn" : "font-semibold"}>{e.date}</span></span>
@@ -55,7 +56,9 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
               <span className={`rounded-full px-3 py-1 text-[10px] font-semibold tracking-wider ${STATUS[e.status]}`}>{e.status}</span>
             </div>
           </div>
-          <h3 className={`mt-4 break-words font-bold ${wide ? "text-2xl sm:text-3xl md:text-4xl" : "text-xl"}`}>{e.name}</h3>
+          <h3 className={`mt-4 break-words font-bold ${wide ? "text-2xl sm:text-3xl md:text-4xl" : "text-xl"}`}>
+            <Link to="/event/$slug" params={{ slug: e.slug }} className="transition-colors hover:text-primary">{e.name}</Link>
+          </h3>
           <p className={`text-primary ${wide ? "mt-1 text-base sm:text-lg" : "text-sm"}`}>{e.tagline}</p>
           <p className={`mt-3 text-muted-foreground ${wide ? "max-w-xl" : "text-sm"}`}>{e.description}</p>
           {wide && e.hook ? <p className="mt-3 max-w-xl text-sm italic text-muted-foreground">"{e.hook}"</p> : null}
@@ -65,44 +68,52 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
         </div>
       </div>
 
-      <AnimatePresence>
-        {more && (
-          <motion.ul initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="mt-4 space-y-2 overflow-hidden text-sm">
-            <li className="flex gap-2"><Users className="size-4 shrink-0 text-primary" /><span className="min-w-0">{e.team}</span></li>
-            <li className="flex gap-2"><Ticket className="size-4 shrink-0 text-primary" /><span className="min-w-0">{e.fee}</span></li>
-            <li className="flex gap-2"><MapPin className="size-4 shrink-0 text-primary" /><span className="min-w-0">Venue: <span className={isTba(e.venue) ? "font-semibold text-warn" : "font-semibold"}>{isTba(e.venue) ? "TBA" : e.venue}</span></span></li>
-            {e.prize && <li className="flex gap-2"><Trophy className="size-4 shrink-0 text-primary" /><span>Prize pool {e.prize}</span></li>}
-            {e.learn?.length ? (
-              <li className="pt-2">
-                <p className="flex items-center gap-2 font-semibold text-primary"><Sparkles className="size-4" />What you'll learn</p>
-                <ul className="mt-2 space-y-1 border-l-2 border-primary/30 pl-4 text-muted-foreground">
-                  {e.learn.map((l) => <li key={l} className="list-disc">{l}</li>)}
-                </ul>
-              </li>
-            ) : null}
-            {e.contacts?.length ? (
-              <li className="pt-2">
-                <p className="flex items-center gap-2 font-semibold text-primary"><Phone className="size-4" />Event contacts</p>
-                <ul className="mt-2 space-y-1 pl-6">
-                  {e.contacts.map((c) => (
-                    <li key={c.phone}>
-                      <a href={`tel:+91${c.phone}`} className="text-muted-foreground transition-colors hover:text-primary">{c.name} · {c.phone}</a>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ) : null}
-          </motion.ul>
-        )}
-      </AnimatePresence>
+      {more && (
+        <ul id={`details-${e.slug}`} className="mt-4 space-y-2 text-sm">
+          <li className="flex gap-2"><Users className="size-4 shrink-0 text-primary" /><span className="min-w-0">{e.team}</span></li>
+          <li className="flex gap-2"><Ticket className="size-4 shrink-0 text-primary" /><span className="min-w-0">{e.fee}</span></li>
+          <li className="flex gap-2"><MapPin className="size-4 shrink-0 text-primary" /><span className="min-w-0">Venue: <span className={isTba(e.venue) ? "font-semibold text-warn" : "font-semibold"}>{isTba(e.venue) ? "TBA" : e.venue}</span></span></li>
+          {e.prize && <li className="flex gap-2"><Trophy className="size-4 shrink-0 text-primary" /><span>Prize pool {e.prize}</span></li>}
+          {e.learn?.length ? (
+            <li className="pt-2">
+              <p className="flex items-center gap-2 font-semibold text-primary"><Sparkles className="size-4" />What you'll learn</p>
+              <ul className="mt-2 space-y-1 border-l-2 border-primary/30 pl-4 text-muted-foreground">
+                {e.learn.map((l) => <li key={l} className="list-disc">{l}</li>)}
+              </ul>
+            </li>
+          ) : null}
+          {e.contacts?.length ? (
+            <li className="pt-2">
+              <p className="flex items-center gap-2 font-semibold text-primary"><Phone className="size-4" />Event contacts</p>
+              <ul className="mt-2 space-y-1 pl-6">
+                {e.contacts.map((c) => (
+                  <li key={c.phone}>
+                    <a href={`tel:+91${c.phone}`} className="text-muted-foreground transition-colors hover:text-primary">{c.name} · {c.phone}</a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ) : null}
+        </ul>
+      )}
 
       <div className="mt-auto flex flex-wrap items-center gap-2 pr-20 pt-6 sm:gap-3 sm:pr-0">
-        <button onClick={() => setMore(!more)} className="rounded-full border border-border px-4 py-2 text-sm transition-colors hover:bg-secondary">{more ? "Less" : "View Details"}</button>
+        <button
+          onClick={() => setMore(!more)}
+          aria-expanded={more}
+          aria-controls={`details-${e.slug}`}
+          className="rounded-full border border-border px-4 py-2 text-sm transition-colors hover:bg-secondary"
+        >{more ? "Less" : "View Details"}</button>
+        <button
+          onClick={() => shareEvent(e)}
+          aria-label={`Share ${e.name}`}
+          className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:bg-secondary"
+        ><Share2 className="size-4" />Share</button>
         {canRegister ? (
           <RegisterButton href={e.registerUrl ?? REGISTER_URL} className="px-4 py-2 text-sm">Register</RegisterButton>
         ) : e.flagship ? (
           <motion.a
-            href={INSTAGRAM} target="_blank" rel="noreferrer"
+            href="https://instagram.com/bmsce_ieeepes" target="_blank" rel="noreferrer"
             whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-glow"
           >Get updates</motion.a>

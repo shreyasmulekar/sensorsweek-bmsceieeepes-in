@@ -91,6 +91,8 @@ export function dayLabel(day: string) {
   return `${DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]}, ${d} ${MONTHS[m - 1]}`;
 }
 
+export const isTba = (v: string) => /tba|to be announced/i.test(v);
+
 export const SCHEDULE = [
   {
     day: "Mon, 2 Nov",
