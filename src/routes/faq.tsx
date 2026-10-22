@@ -7,7 +7,7 @@ export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
       { title: "FAQ | Sensors Week 2026" },
-      { name: "description", content: "Answers about eligibility, registration, fees and teams for Sensors Week 2026." },
+      { name: "description", content: "Answers about eligibility, fees, venues and help for Sensors Week 2026 at BMSCE." },
       { property: "og:title", content: "FAQ | Sensors Week 2026" },
       { property: "og:description", content: "Common questions about Sensors Week 2026." },
     ],

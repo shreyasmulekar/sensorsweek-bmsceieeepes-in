@@ -7,7 +7,7 @@ export const Route = createFileRoute("/schedule")({
   head: () => ({
     meta: [
       { title: "Schedule | Sensors Week 2026" },
-      { name: "description", content: "Day-wise schedule for Sensors Week 2026, 30 October to 4 November." },
+      { name: "description", content: "Timings and venues for Sensors Week 2026 events at BMSCE, Bengaluru." },
       { property: "og:title", content: "Schedule | Sensors Week 2026" },
       { property: "og:description", content: "Day-wise timings and venues for Sensors Week 2026." },
     ],
@@ -19,7 +19,9 @@ function Schedule() {
   return (
     <section className="mx-auto max-w-3xl px-4 py-16">
       <SectionTitle kicker="Timeline" title="Schedule" />
-      <p className="glass mb-10 rounded-xl p-4 text-center text-sm text-muted-foreground">⚠️ Check for timing clashes before registering for multiple events.</p>
+      <p className="glass mb-10 rounded-xl p-4 text-center text-sm text-muted-foreground">
+        Confirmed sessions are listed below. The flagship Hardware Hackathon and the rest of the week will be added as soon as they are finalised.
+      </p>
       <div className="relative border-l-2 border-primary/30 pl-8">
         {SCHEDULE.map((d, i) => (
           <motion.div key={d.day} initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="relative mb-10">
@@ -35,6 +37,9 @@ function Schedule() {
             </div>
           </motion.div>
         ))}
+        <div className="glass rounded-xl px-4 py-3 text-sm text-muted-foreground">
+          Hardware Hackathon — date and timings to be announced.
+        </div>
       </div>
     </section>
   );

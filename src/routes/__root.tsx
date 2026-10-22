@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { TechBackground } from "@/components/TechBackground";
 import { Header, Footer } from "@/components/Layout";
 import { ChatBot } from "@/components/ChatBot";
+import { attachSfx } from "@/lib/sound";
 
 function NotFoundComponent() {
   return (
@@ -93,6 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Sora:wght@300;400;600&display=swap" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
@@ -118,6 +120,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => attachSfx(), []);
 
   return (
     <QueryClientProvider client={queryClient}>
