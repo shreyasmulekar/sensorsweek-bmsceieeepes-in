@@ -1,4 +1,8 @@
 // Central place to update links, dates and events.
+import enclavePoster from "@/assets/sensors-enclave.jpg.asset.json";
+import fusionPoster from "@/assets/sensors-fusion.jpg.asset.json";
+import kernelxPoster from "@/assets/kernelx.jpg.asset.json";
+
 export const REGISTER_URL = "https://forms.gle/5bzWaxnJ652Bnoas7";
 export const HACKATHON_BROCHURE = "https://drive.google.com/drive/folders/1iYDZCwXgomc_AAmCVFhDCLiz8kAbS0gc?usp=sharing";
 export const KERNELX_REGISTER_URL = "https://forms.gle/iL7aNqfXrGQATvJc8";
