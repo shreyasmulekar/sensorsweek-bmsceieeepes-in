@@ -11,6 +11,7 @@ const logo = logoAsset.url;
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/events", label: "Events" },
+  { to: "/calendar", label: "Calendar" },
   { to: "/schedule", label: "Schedule" },
   { to: "/faq", label: "FAQ" },
 ] as const;

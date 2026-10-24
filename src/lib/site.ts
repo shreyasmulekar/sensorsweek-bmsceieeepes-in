@@ -54,6 +54,7 @@ export type EventItem = {
   learn?: string[];
   date: string;
   day: string;
+  endDay?: string;
   time: string;
   venue: string;
   fee: string;
@@ -81,6 +82,7 @@ export const EVENTS: EventItem[] = [
     note: "Round 1 is FREE ENTRY — submit your idea online by 11:59 PM, 26 Oct 2026. Shortlisted teams advance to the next round.",
     date: "Sat 31 Oct – Sun 1 Nov 2026",
     day: "2026-10-31",
+    endDay: "2026-11-01",
     time: "10 AM onwards (24 hours)",
     venue: "BMS College of Engineering, Basavanagudi",
     fee: "IEEE Members ₹650 · Non-IEEE ₹900 (per team)",
@@ -134,6 +136,7 @@ export const EVENTS: EventItem[] = [
     ],
     date: "Tue, 3 Nov – Wed, 4 Nov 2026",
     day: "2026-11-03",
+    endDay: "2026-11-04",
     time: "2:00 PM – 5:30 PM",
     venue: "BMS College of Engineering, Basavanagudi",
     fee: "IEEE Members ₹130 · Non-IEEE ₹180",
