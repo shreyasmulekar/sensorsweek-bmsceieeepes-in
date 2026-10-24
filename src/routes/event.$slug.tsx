@@ -111,9 +111,11 @@ function EventPage() {
         </div>
       </motion.div>
 
-      <p className="mt-6 text-center text-xs text-muted-foreground">
-        Sharing this page? The link is <span className="break-all text-primary">{url}</span>
-      </p>
+      {url ? (
+        <p className="mt-6 text-center text-xs text-muted-foreground">
+          Sharing this page? The link is <span className="break-all text-primary">{url}</span>
+        </p>
+      ) : null}
     </section>
   );
 }
