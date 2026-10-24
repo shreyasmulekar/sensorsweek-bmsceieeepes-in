@@ -86,3 +86,10 @@ describe("Site-wide Register Now destination", () => {
     expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.registerUrl).toBe(HACKATHON_REGISTER_URL);
   });
 });
+
+describe("Main contact address", () => {
+  it("uses eee.pes@bmsce.ac.in as the site-wide contact email", () => {
+    expect(EMAIL).toBe("eee.pes@bmsce.ac.in");
+    expect(EMAIL).not.toBe("ieeepes@bmsce.ac.in");
+  });
+});
