@@ -1,6 +1,7 @@
 # Sensors Week 2026 — task list
 
 - [ ] Check poster QR codes and match each event's registration button to the decoded Google Form
+- [ ] Align all event posters and ensure the complete images fit on cards and event pages
 
 - [x] Replace current TBA venues with BMSCE and set the pictured homepage registration button to SENSORS FUSION
 - [x] Point the Events page registration buttons at the SENSORS FUSION form too (hackathon card included); KERNELX and GESTURE AI keep their own forms
