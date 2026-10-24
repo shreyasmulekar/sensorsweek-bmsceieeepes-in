@@ -32,4 +32,5 @@
 - [x] Add GESTURE AI — TinyML workshop on ESP32 & MPU6050 (5 Nov, 2:00–5:00 PM, ₹90/₹130, own form and contacts)
 - [x] Attach the GESTURE AI poster to its event (card and detail page)
 - [x] Correct dates, timings and venues to match the printed posters (KERNELX now 2:00 PM – 5:30 PM per its poster — Anil to confirm)
+- [x] Remove the OLED mention from GESTURE AI (learn list, FAQ, chatbot)
 - [ ] Publish the site and connect sensorsweek.bmsceieeepes.in (needs Anil to publish, then add the domain in Project Settings)
