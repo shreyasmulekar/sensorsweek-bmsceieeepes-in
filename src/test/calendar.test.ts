@@ -60,7 +60,7 @@ describe("Month grid", () => {
   it("starts the November 2026 grid on Sunday 1 November and covers the month", () => {
     const weeks = monthWeeks(2026, 11);
     expect(weeks.every((w) => w.length === 7)).toBe(true);
-    expect(weeks[0][0]).toBe("2026-11-01");
+    expect(weeks[0]?.[0]).toBe("2026-11-01");
     expect(weeks.flat()).toContain("2026-11-30");
     expect(weeks.flat().at(-1)).toBe("2026-12-05");
     expect(monthLabel(2026, 11)).toBe("November 2026");
@@ -68,7 +68,7 @@ describe("Month grid", () => {
 
   it("pads the October 2026 grid back to the Sunday before the 1st", () => {
     const weeks = monthWeeks(2026, 10);
-    expect(weeks[0][0]).toBe("2026-09-27");
+    expect(weeks[0]?.[0]).toBe("2026-09-27");
     expect(weeks.flat()).toContain("2026-10-31");
   });
 });
