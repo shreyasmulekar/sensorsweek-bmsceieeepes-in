@@ -8,6 +8,16 @@ describe("Confirmed venues and registration destinations", () => {
     expect(EVENTS.filter((e) => /tba/i.test(e.venue))).toHaveLength(0);
   });
 
+  it("uses the SENSORS FUSION form for general registration", () => {
+    expect(REGISTER_URL).toBe("https://forms.gle/5bzWaxnJ652Bnoas7");
+    expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.registerUrl).toBe(REGISTER_URL);
+  });
+
+  it("sends SENSORS ENCLAVE registration to the SENSORS FUSION form", () => {
+    expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.registerUrl).toBe(REGISTER_URL);
+    expect(EVENTS.some((e) => e.registerUrl === "https://forms.gle/ZU6mkHBzoMkC7P3w8")).toBe(false);
+  });
+
   it("sends KERNELX and GESTURE AI to their own forms", () => {
     expect(EVENTS.find((e) => e.slug === "kernelx")?.registerUrl).toBe("https://forms.gle/iL7aNqfXrGQATvJc8");
     expect(EVENTS.find((e) => e.slug === "gesture-ai")?.registerUrl).toBe("https://forms.gle/gVpKF9EeQjTUkb2Z9");
