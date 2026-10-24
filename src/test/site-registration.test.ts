@@ -13,7 +13,8 @@ describe("Confirmed venues and registration destinations", () => {
     expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.registerUrl).toBe(REGISTER_URL);
   });
 
-  it("keeps SENSORS ENCLAVE registration on its own form", () => {
-    expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.registerUrl).toBe("https://forms.gle/ZU6mkHBzoMkC7P3w8");
+  it("sends SENSORS ENCLAVE registration to the SENSORS FUSION form", () => {
+    expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.registerUrl).toBe(REGISTER_URL);
+    expect(EVENTS.some((e) => e.registerUrl === "https://forms.gle/ZU6mkHBzoMkC7P3w8")).toBe(false);
   });
 });

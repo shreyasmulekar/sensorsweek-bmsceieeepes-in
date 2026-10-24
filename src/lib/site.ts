@@ -78,7 +78,7 @@ export const EVENTS: EventItem[] = [
     prize: "₹30,000",
     team: "2–4 members",
     contacts: HACKATHON_CONTACTS,
-    registerUrl: HACKATHON_REGISTER_URL,
+    registerUrl: REGISTER_URL,
     brochure: HACKATHON_BROCHURE,
     category: "Competition",
     status: "REGISTRATIONS OPEN",
