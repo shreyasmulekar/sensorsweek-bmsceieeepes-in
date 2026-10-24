@@ -6,6 +6,7 @@ import { Link } from "@tanstack/react-router";
 import { REGISTER_URL, isTba, type EventItem } from "@/lib/site";
 import { shareEvent } from "@/lib/share";
 import { RegisterButton } from "./Layout";
+import { EventPoster } from "./EventPoster";
 
 const STATUS: Record<EventItem["status"], string> = {
   "REGISTRATIONS OPEN": "bg-primary/15 text-primary",
@@ -48,12 +49,9 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
       className={`glass group flex h-full flex-col rounded-2xl p-5 transition-shadow hover:shadow-glow sm:p-6 ${e.flagship ? "ring-1 ring-primary/50" : ""}`}
     >
       {e.poster ? (
-        <img
-          src={e.poster}
-          alt={`${e.name} poster`}
-          loading="lazy"
-          className="-mx-5 -mt-5 mb-5 rounded-t-2xl sm:-mx-6 sm:-mt-6 sm:mb-6"
-        />
+        <div className="-mx-5 -mt-5 mb-5 shrink-0 sm:-mx-6 sm:-mt-6 sm:mb-6">
+          <EventPoster src={e.poster} name={e.name} />
+        </div>
       ) : null}
       <div className={`min-w-0 ${wide ? "md:flex md:items-start md:justify-between md:gap-10" : ""}`}>
         <div className="min-w-0 md:flex-1">

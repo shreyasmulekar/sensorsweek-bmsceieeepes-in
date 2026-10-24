@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep venue facts and registration destinations in the shared site data; the homepage passes its registration destination explicitly, while event buttons use their own event links, so changing one cannot redirect another event.
+- Use the shared EventPoster renderer on event cards and detail pages to keep image sizing, centering and full-image visibility consistent.
