@@ -22,4 +22,5 @@
 - [ ] Confirm the Sensors Week dates (currently shown as 30 Oct – 4 Nov 2026) — waiting on Anil
 - [x] Add Mystic Grace as a sponsor (shown in the footer credit strip)
 - [ ] Add any further sponsor names Anil sends
+- [x] Add KERNELX — Real-Time Systems & FreeRTOS workshop (3–4 Nov, 2:30–5:00 PM, ₹130/₹180, own form and contacts)
 - [ ] Publish the site and connect sensorsweek.bmsceieeepes.in (needs Anil to publish, then add the domain in Project Settings)
