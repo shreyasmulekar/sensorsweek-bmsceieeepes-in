@@ -21,9 +21,6 @@ function Schedule() {
   return (
     <section className="mx-auto max-w-3xl px-4 py-16">
       <SectionTitle kicker="Timeline" title="Schedule" />
-      <p className="glass mb-10 rounded-xl p-4 text-center text-sm text-muted-foreground">
-        Confirmed sessions are listed below. The rest of the week will be added as soon as it is finalised.
-      </p>
       <div className="relative border-l-2 border-primary/30 pl-8">
         {SCHEDULE.map((d, i) => (
           <motion.div key={d.day} initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="relative mb-10">
