@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_REGISTER_URL, EVENTS, FAQS, HACKATHON_REGISTER_URL, REGISTER_URL, SCHEDULE } from "@/lib/site";
+import { DEFAULT_REGISTER_URL, EMAIL, EVENTS, FAQS, HACKATHON_REGISTER_URL, REGISTER_URL, SCHEDULE } from "@/lib/site";
 
 describe("Confirmed venues and registration destinations", () => {
   it("uses BMSCE for the previously unconfirmed SENSORS FUSION venue", () => {
@@ -84,5 +84,12 @@ describe("Site-wide Register Now destination", () => {
   it("still sends each event's own Register button to its own form", () => {
     expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.registerUrl).toBe(REGISTER_URL);
     expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.registerUrl).toBe(HACKATHON_REGISTER_URL);
+  });
+});
+
+describe("Main contact address", () => {
+  it("uses eee.pes@bmsce.ac.in as the site-wide contact email", () => {
+    expect(EMAIL).toBe("eee.pes@bmsce.ac.in");
+    expect(EMAIL).not.toBe("ieeepes@bmsce.ac.in");
   });
 });
