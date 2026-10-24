@@ -151,8 +151,6 @@ export const EVENTS: EventItem[] = [
     learn: [
       "Basics of TinyML and sensors",
       "Real-time hands-on experience with motion sensing",
-      "Labelled time-series data collection and model training workflows",
-      "Visual and physical actuation via RGB LEDs and servo motors",
     ],
     date: "Thu, 5 Nov 2026",
     day: "2026-11-05",
