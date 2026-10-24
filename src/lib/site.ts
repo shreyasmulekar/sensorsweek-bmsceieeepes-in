@@ -1,4 +1,8 @@
 // Central place to update links, dates and events.
+import enclavePoster from "@/assets/sensors-enclave.jpg.asset.json";
+import fusionPoster from "@/assets/sensors-fusion.jpg.asset.json";
+import kernelxPoster from "@/assets/kernelx.jpg.asset.json";
+
 export const REGISTER_URL = "https://forms.gle/5bzWaxnJ652Bnoas7";
 export const HACKATHON_BROCHURE = "https://drive.google.com/drive/folders/1iYDZCwXgomc_AAmCVFhDCLiz8kAbS0gc?usp=sharing";
 export const KERNELX_REGISTER_URL = "https://forms.gle/iL7aNqfXrGQATvJc8";
@@ -55,6 +59,7 @@ export type EventItem = {
   team: string;
   contacts?: Contact[];
   registerUrl?: string;
+  poster?: string;
   flagship?: boolean;
   category: "Workshop" | "Competition" | "Talk" | "Exhibition";
   status: "REGISTRATIONS OPEN" | "CLOSING SOON" | "EVENT FULL" | "REGISTRATIONS CLOSED" | "COMING SOON";
@@ -79,6 +84,7 @@ export const EVENTS: EventItem[] = [
     team: "2–4 members",
     contacts: HACKATHON_CONTACTS,
     registerUrl: REGISTER_URL,
+    poster: enclavePoster.url,
     brochure: HACKATHON_BROCHURE,
     category: "Competition",
     status: "REGISTRATIONS OPEN",
@@ -105,6 +111,7 @@ export const EVENTS: EventItem[] = [
     team: "Individual seats",
     contacts: SENSORS_FUSION_CONTACTS,
     registerUrl: REGISTER_URL,
+    poster: fusionPoster.url,
     category: "Workshop",
     status: "REGISTRATIONS OPEN",
     icon: "🚁",
@@ -129,6 +136,7 @@ export const EVENTS: EventItem[] = [
     team: "Individual seats",
     contacts: KERNELX_CONTACTS,
     registerUrl: KERNELX_REGISTER_URL,
+    poster: kernelxPoster.url,
     category: "Workshop",
     status: "REGISTRATIONS OPEN",
     icon: "⚙️",
