@@ -5,6 +5,7 @@ import { ArrowLeft, Calendar, Clock, MapPin, Phone, Share2, Sparkles, Ticket, Tr
 import { RegisterButton } from "@/components/Layout";
 import { EVENTS, isTba, type EventItem } from "@/lib/site";
 import { shareEvent } from "@/lib/share";
+import { EventPoster } from "@/components/EventPoster";
 
 export const Route = createFileRoute("/event/$slug")({
   head: ({ params }) => {
@@ -19,6 +20,10 @@ export const Route = createFileRoute("/event/$slug")({
         { property: "og:description", content: desc },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
+        ...(e?.poster?.startsWith("https://") ? [
+          { property: "og:image", content: e.poster },
+          { name: "twitter:image", content: e.poster },
+        ] : []),
       ],
     };
   },
@@ -54,7 +59,9 @@ function EventPage() {
 
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="glass mt-6 overflow-hidden rounded-2xl p-5 sm:p-8">
         {e.poster ? (
-          <img src={e.poster} alt={`${e.name} poster`} className="-mx-5 -mt-5 mb-6 rounded-t-2xl sm:-mx-8 sm:-mt-8 sm:mb-8" />
+          <div className="-mx-5 -mt-5 mb-6 sm:-mx-8 sm:-mt-8 sm:mb-8">
+            <EventPoster src={e.poster} name={e.name} eager />
+          </div>
         ) : null}
         <div className="flex flex-wrap items-center gap-3">
           <span className="text-5xl">{e.icon}</span>
