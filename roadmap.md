@@ -19,8 +19,9 @@
 - [ ] Keep the selected category and day filters in the URL so a filtered listing can be shared or revisited (first attempt broke every Events link — needs a typed search schema)
 - [x] Draft a concise hero description that highlights the hackathon while keeping the Sensors Week dates clear
 - [x] Add real dates, fee, prize pool, brochure and registration form for SENSORS ENCLAVE 4.0 (the 24-hour Hardware Hackathon)
-- [ ] Confirm the Sensors Week dates (currently shown as 30 Oct – 4 Nov 2026) — waiting on Anil
+- [ ] Confirm the Sensors Week dates (currently shown as 30 Oct – 4 Nov 2026) — waiting on Anil; GESTURE AI is listed on 5 Nov, one day later
 - [x] Add Mystic Grace as a sponsor (shown in the footer credit strip)
 - [ ] Add any further sponsor names Anil sends
 - [x] Add KERNELX — Real-Time Systems & FreeRTOS workshop (3–4 Nov, 2:30–5:00 PM, ₹130/₹180, own form and contacts)
+- [x] Add GESTURE AI — TinyML workshop on ESP32 & MPU6050 (5 Nov, 2:00–5:00 PM, ₹90/₹130, own form and contacts)
 - [ ] Publish the site and connect sensorsweek.bmsceieeepes.in (needs Anil to publish, then add the domain in Project Settings)

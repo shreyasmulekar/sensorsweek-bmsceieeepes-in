@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowLeft, Calendar, Clock, MapPin, Phone, Share2, Sparkles, Ticket, Trophy, Users } from "lucide-react";
 import { RegisterButton } from "@/components/Layout";
@@ -41,7 +42,9 @@ function EventPage() {
   const e = EVENTS.find((x) => x.slug === slug);
   if (!e) throw notFound();
   const open = e.status === "REGISTRATIONS OPEN" || e.status === "CLOSING SOON";
-  const url = typeof window === "undefined" ? `/event/${e.slug}` : window.location.href;
+  // Full link is only known in the browser, so fill it in after the page loads.
+  const [url, setUrl] = useState("");
+  useEffect(() => { setUrl(window.location.href); }, []);
 
   return (
     <section className="mx-auto max-w-4xl px-4 py-10 sm:py-14">
@@ -108,9 +111,11 @@ function EventPage() {
         </div>
       </motion.div>
 
-      <p className="mt-6 text-center text-xs text-muted-foreground">
-        Sharing this page? The link is <span className="break-all text-primary">{url}</span>
-      </p>
+      {url ? (
+        <p className="mt-6 text-center text-xs text-muted-foreground">
+          Sharing this page? The link is <span className="break-all text-primary">{url}</span>
+        </p>
+      ) : null}
     </section>
   );
 }

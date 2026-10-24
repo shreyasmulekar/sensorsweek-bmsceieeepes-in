@@ -3,6 +3,7 @@ export const REGISTER_URL = "https://forms.gle/5bzWaxnJ652Bnoas7";
 export const HACKATHON_REGISTER_URL = "https://forms.gle/ZU6mkHBzoMkC7P3w8";
 export const HACKATHON_BROCHURE = "https://drive.google.com/drive/folders/1iYDZCwXgomc_AAmCVFhDCLiz8kAbS0gc?usp=sharing";
 export const KERNELX_REGISTER_URL = "https://forms.gle/iL7aNqfXrGQATvJc8";
+export const GESTURE_AI_REGISTER_URL = "https://forms.gle/gVpKF9EeQjTUkb2Z9";
 export const EVENT_START = new Date("2026-10-26T23:59:00+05:30");
 export const DATES_LABEL = "30 Oct – 4 Nov 2026";
 export const NEXT_EVENT_LABEL = "ROUND 1 DEADLINE · Mon 26 Oct, 11:59 PM";
@@ -29,6 +30,12 @@ export const HACKATHON_CONTACTS: Contact[] = [
 export const KERNELX_CONTACTS: Contact[] = [
   { name: "Harshith", phone: "8310919267" },
   { name: "Tanish", phone: "8879534570" },
+];
+
+// Only the GESTURE AI card shows these query contacts.
+export const GESTURE_AI_CONTACTS: Contact[] = [
+  { name: "Madhav", phone: "9958050419" },
+  { name: "Pragati", phone: "9008723866" },
 ];
 
 export type EventItem = {
@@ -127,6 +134,30 @@ export const EVENTS: EventItem[] = [
     status: "REGISTRATIONS OPEN",
     icon: "⚙️",
   },
+  {
+    slug: "gesture-ai",
+    name: "GESTURE AI",
+    tagline: "Hands-on TinyML Workshop on ESP32 & MPU6050",
+    description:
+      "A hands-on technical workshop on motion sensing, edge AI and embedded machine learning using the ESP32 and MPU6050. See how motion data collection, model training and on-device inference work together so a microcontroller can classify gestures and trigger physical responses in real time.",
+    learn: [
+      "Basics of TinyML and sensors",
+      "Real-time hands-on experience with motion sensing",
+      "Labelled time-series data collection and model training workflows",
+      "Visual and physical actuation via 0.96-inch OLED displays, RGB LEDs and servo motors",
+    ],
+    date: "Thu, 5 Nov 2026",
+    day: "2026-11-05",
+    time: "2:00 PM – 5:00 PM",
+    venue: "BMS College of Engineering, Basavanagudi",
+    fee: "IEEE Members ₹90 · Non-IEEE ₹130",
+    team: "Individual seats",
+    contacts: GESTURE_AI_CONTACTS,
+    registerUrl: GESTURE_AI_REGISTER_URL,
+    category: "Workshop",
+    status: "REGISTRATIONS OPEN",
+    icon: "👋",
+  },
 ];
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -161,6 +192,10 @@ export const SCHEDULE = [
     day: "Tue, 3 Nov",
     items: [{ t: "2:30 PM – 5:00 PM", n: "KERNELX – Real-Time Systems & FreeRTOS Workshop (runs to Wed, 4 Nov)", v: "BMS College of Engineering, Basavanagudi" }],
   },
+  {
+    day: "Thu, 5 Nov",
+    items: [{ t: "2:00 PM – 5:00 PM", n: "GESTURE AI – TinyML workshop on ESP32 & MPU6050", v: "BMS College of Engineering, Basavanagudi" }],
+  },
 ];
 
 export const FAQS = [
@@ -172,6 +207,8 @@ export const FAQS = [
   { q: "Where is SENSORS FUSION happening?", a: "BMS College of Engineering, Bengaluru. The exact venue is still TBA — it is shown on the event card and will be updated there as soon as it is fixed." },
   { q: "What is KERNELX?", a: "KERNELX is a workshop on Real-Time Systems & FreeRTOS on Tuesday 3 and Wednesday 4 November 2026, 2:30 PM to 5:00 PM, at BMS College of Engineering, Basavanagudi. It covers RTOS fundamentals, FreeRTOS, task scheduling and hands-on embedded development." },
   { q: "What does KERNELX cost?", a: "₹130 for IEEE members and ₹180 for non-IEEE members. Use the Register button on the KERNELX card to fill its Google Form." },
+  { q: "What is GESTURE AI?", a: "GESTURE AI is a hands-on TinyML workshop on Thursday 5 November 2026, 2:00 PM to 5:00 PM, at BMS College of Engineering, Basavanagudi. You collect motion data with an MPU6050, train a compact model, run it on an ESP32, and drive an OLED, RGB LED and servo from the predictions." },
+  { q: "What does GESTURE AI cost?", a: "₹90 for IEEE members and ₹130 for non-IEEE members. Use the Register button on the GESTURE AI card to fill its Google Form." },
   { q: "Do I need any experience?", a: "No. It is a hands-on workshop — the sensors, the Pico and the code are walked through on the spot." },
   { q: "Who do I contact for help?", a: "Ask our chatbot (bottom-right), DM @bmsce_ieeepes on Instagram, or open any event card and tap View Details for the event contact numbers." },
 ];
