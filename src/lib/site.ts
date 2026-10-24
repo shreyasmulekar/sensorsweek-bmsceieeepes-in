@@ -1,6 +1,5 @@
 // Central place to update links, dates and events.
 export const REGISTER_URL = "https://forms.gle/5bzWaxnJ652Bnoas7";
-export const HACKATHON_REGISTER_URL = "https://forms.gle/ZU6mkHBzoMkC7P3w8";
 export const HACKATHON_BROCHURE = "https://drive.google.com/drive/folders/1iYDZCwXgomc_AAmCVFhDCLiz8kAbS0gc?usp=sharing";
 export const KERNELX_REGISTER_URL = "https://forms.gle/iL7aNqfXrGQATvJc8";
 export const GESTURE_AI_REGISTER_URL = "https://forms.gle/gVpKF9EeQjTUkb2Z9";
@@ -79,7 +78,7 @@ export const EVENTS: EventItem[] = [
     prize: "₹30,000",
     team: "2–4 members",
     contacts: HACKATHON_CONTACTS,
-    registerUrl: HACKATHON_REGISTER_URL,
+    registerUrl: REGISTER_URL,
     brochure: HACKATHON_BROCHURE,
     category: "Competition",
     status: "REGISTRATIONS OPEN",
