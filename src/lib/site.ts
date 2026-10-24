@@ -54,6 +54,7 @@ export type EventItem = {
   learn?: string[];
   date: string;
   day: string;
+  endDay?: string;
   time: string;
   venue: string;
   fee: string;
