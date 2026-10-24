@@ -52,7 +52,10 @@ function EventPage() {
         <ArrowLeft className="size-4" />All events
       </Link>
 
-      <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="glass mt-6 rounded-2xl p-5 sm:p-8">
+      <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="glass mt-6 overflow-hidden rounded-2xl p-5 sm:p-8">
+        {e.poster ? (
+          <img src={e.poster} alt={`${e.name} poster`} className="-mx-5 -mt-5 mb-6 rounded-t-2xl sm:-mx-8 sm:-mt-8 sm:mb-8" />
+        ) : null}
         <div className="flex flex-wrap items-center gap-3">
           <span className="text-5xl">{e.icon}</span>
           {e.flagship && <span className="rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-semibold tracking-wider text-primary-foreground">FLAGSHIP</span>}
