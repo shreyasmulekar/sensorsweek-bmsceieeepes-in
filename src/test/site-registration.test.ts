@@ -18,3 +18,11 @@ describe("Confirmed venues and registration destinations", () => {
     expect(EVENTS.some((e) => e.registerUrl === "https://forms.gle/ZU6mkHBzoMkC7P3w8")).toBe(false);
   });
 });
+
+describe("Event posters", () => {
+  it("attaches each uploaded poster to its own event", () => {
+    expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.poster).toContain("sensors-enclave.jpg");
+    expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.poster).toContain("sensors-fusion.jpg");
+    expect(EVENTS.find((e) => e.slug === "kernelx")?.poster).toContain("kernelx.jpg");
+  });
+});
