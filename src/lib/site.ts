@@ -2,6 +2,7 @@
 export const REGISTER_URL = "https://forms.gle/5bzWaxnJ652Bnoas7";
 export const HACKATHON_REGISTER_URL = "https://forms.gle/ZU6mkHBzoMkC7P3w8";
 export const HACKATHON_BROCHURE = "https://drive.google.com/drive/folders/1iYDZCwXgomc_AAmCVFhDCLiz8kAbS0gc?usp=sharing";
+export const KERNELX_REGISTER_URL = "https://forms.gle/iL7aNqfXrGQATvJc8";
 export const EVENT_START = new Date("2026-10-26T23:59:00+05:30");
 export const DATES_LABEL = "30 Oct – 4 Nov 2026";
 export const NEXT_EVENT_LABEL = "ROUND 1 DEADLINE · Mon 26 Oct, 11:59 PM";
@@ -22,6 +23,12 @@ export const HACKATHON_CONTACTS: Contact[] = [
   { name: "Sakshi", phone: "8660572813" },
   { name: "Sadhan", phone: "6361174069" },
   { name: "Pratishtha", phone: "7298144562" },
+];
+
+// Only the KERNELX card shows these query contacts.
+export const KERNELX_CONTACTS: Contact[] = [
+  { name: "Harshith", phone: "8310919267" },
+  { name: "Tanish", phone: "8879534570" },
 ];
 
 export type EventItem = {
@@ -96,6 +103,30 @@ export const EVENTS: EventItem[] = [
     status: "REGISTRATIONS OPEN",
     icon: "🚁",
   },
+  {
+    slug: "kernelx",
+    name: "KERNELX",
+    tagline: "Workshop on Real-Time Systems & FreeRTOS",
+    description:
+      "An intensive workshop that introduces the principles of real-time operating systems and their applications in embedded engineering. Explore FreeRTOS, see how tasks are scheduled and executed, and get hands-on with embedded systems.",
+    learn: [
+      "Fundamentals of real-time operating systems",
+      "Introduction to FreeRTOS and its applications",
+      "Task scheduling and task management",
+      "Hands-on embedded systems development",
+    ],
+    date: "Tue, 3 Nov – Wed, 4 Nov 2026",
+    day: "2026-11-03",
+    time: "2:30 PM – 5:00 PM",
+    venue: "BMS College of Engineering, Basavanagudi",
+    fee: "IEEE Members ₹130 · Non-IEEE ₹180",
+    team: "Individual seats",
+    contacts: KERNELX_CONTACTS,
+    registerUrl: KERNELX_REGISTER_URL,
+    category: "Workshop",
+    status: "REGISTRATIONS OPEN",
+    icon: "⚙️",
+  },
 ];
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -126,15 +157,21 @@ export const SCHEDULE = [
     day: "Mon, 2 Nov",
     items: [{ t: "2:00 PM – 6:00 PM", n: "SENSORS FUSION – Drone & Raspberry Pi Pico Workshop", v: "Venue: TBA" }],
   },
+  {
+    day: "Tue, 3 Nov",
+    items: [{ t: "2:30 PM – 5:00 PM", n: "KERNELX – Real-Time Systems & FreeRTOS Workshop (runs to Wed, 4 Nov)", v: "BMS College of Engineering, Basavanagudi" }],
+  },
 ];
 
 export const FAQS = [
   { q: "What is the headline event?", a: "SENSORS ENCLAVE 4.0, a 24-hour Hardware Hackathon on 31 Oct & 1 Nov at BMSCE, with a ₹30,000 prize pool. Round 1 is free — submit your idea online by 11:59 PM on 26 Oct and shortlisted teams advance." },
-  { q: "What can I register for right now?", a: "SENSORS ENCLAVE 4.0 (the Hardware Hackathon) and SENSORS FUSION, the hands-on drone and Raspberry Pi Pico workshop on Monday 2 November. Each Register button opens that event's own Google Form." },
+  { q: "What can I register for right now?", a: "SENSORS ENCLAVE 4.0 (the Hardware Hackathon), SENSORS FUSION (drone and Raspberry Pi Pico workshop on Monday 2 November) and KERNELX (Real-Time Systems & FreeRTOS workshop on 3–4 November). Each Register button opens that event's own Google Form." },
   { q: "What does the Hardware Hackathon cost?", a: "Round 1 is free. For the later rounds the fee is ₹650 per team for IEEE members and ₹900 per team for non-IEEE members. Certificates, attendance, food and snacks are provided." },
   { q: "Who can participate?", a: "Any student. IEEE membership is not required — members just pay a lower fee." },
   { q: "What does SENSORS FUSION cost?", a: "₹150 for IEEE members and ₹200 for non-IEEE participants." },
   { q: "Where is SENSORS FUSION happening?", a: "BMS College of Engineering, Bengaluru. The exact venue is still TBA — it is shown on the event card and will be updated there as soon as it is fixed." },
+  { q: "What is KERNELX?", a: "KERNELX is a workshop on Real-Time Systems & FreeRTOS on Tuesday 3 and Wednesday 4 November 2026, 2:30 PM to 5:00 PM, at BMS College of Engineering, Basavanagudi. It covers RTOS fundamentals, FreeRTOS, task scheduling and hands-on embedded development." },
+  { q: "What does KERNELX cost?", a: "₹130 for IEEE members and ₹180 for non-IEEE members. Use the Register button on the KERNELX card to fill its Google Form." },
   { q: "Do I need any experience?", a: "No. It is a hands-on workshop — the sensors, the Pico and the code are walked through on the spot." },
   { q: "Who do I contact for help?", a: "Ask our chatbot (bottom-right), DM @bmsce_ieeepes on Instagram, or open any event card and tap View Details for the event contact numbers." },
 ];
