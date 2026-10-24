@@ -10,6 +10,8 @@ export const Route = createFileRoute("/schedule")({
       { name: "description", content: "Timings and venues for Sensors Week 2026 events at BMSCE, Bengaluru." },
       { property: "og:title", content: "Schedule | Sensors Week 2026" },
       { property: "og:description", content: "Day-wise timings and venues for Sensors Week 2026." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Schedule,

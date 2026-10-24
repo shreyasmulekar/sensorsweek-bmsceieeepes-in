@@ -12,6 +12,8 @@ export const Route = createFileRoute("/events")({
       { name: "description", content: "Filter the flagship Hardware Hackathon, the SENSORS FUSION drone workshop and more by type or day at Sensors Week 2026, BMSCE." },
       { property: "og:title", content: "Events | Sensors Week 2026" },
       { property: "og:description", content: "Pick your events and register for Sensors Week 2026." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Events,

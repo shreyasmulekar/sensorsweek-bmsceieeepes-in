@@ -10,6 +10,8 @@ export const Route = createFileRoute("/faq")({
       { name: "description", content: "Answers about eligibility, fees, venues and help for Sensors Week 2026 at BMSCE." },
       { property: "og:title", content: "FAQ | Sensors Week 2026" },
       { property: "og:description", content: "Common questions about Sensors Week 2026." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Faq,

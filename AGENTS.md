@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep venue facts and registration destinations in the shared site data; the homepage passes its registration destination explicitly, while event buttons use their own event links, so changing one cannot redirect another event.

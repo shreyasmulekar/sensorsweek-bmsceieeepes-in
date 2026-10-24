@@ -101,7 +101,7 @@ export const EVENTS: EventItem[] = [
     date: "Mon, 2 Nov 2026",
     day: "2026-11-02",
     time: "2:00 PM – 6:00 PM",
-    venue: "TBA",
+    venue: "BMSCE",
     fee: "IEEE Members ₹150 · Non-IEEE ₹200",
     team: "Individual seats",
     contacts: SENSORS_FUSION_CONTACTS,
@@ -186,7 +186,7 @@ export const SCHEDULE = [
   },
   {
     day: "Mon, 2 Nov",
-    items: [{ t: "2:00 PM – 6:00 PM", n: "SENSORS FUSION – Drone & Raspberry Pi Pico Workshop", v: "Venue: TBA" }],
+    items: [{ t: "2:00 PM – 6:00 PM", n: "SENSORS FUSION – Drone & Raspberry Pi Pico Workshop", v: "Venue: BMSCE" }],
   },
   {
     day: "Tue, 3 Nov",
@@ -204,7 +204,7 @@ export const FAQS = [
   { q: "What does the Hardware Hackathon cost?", a: "Round 1 is free. For the later rounds the fee is ₹650 per team for IEEE members and ₹900 per team for non-IEEE members. Certificates, attendance, food and snacks are provided." },
   { q: "Who can participate?", a: "Any student. IEEE membership is not required — members just pay a lower fee." },
   { q: "What does SENSORS FUSION cost?", a: "₹150 for IEEE members and ₹200 for non-IEEE participants." },
-  { q: "Where is SENSORS FUSION happening?", a: "BMS College of Engineering, Bengaluru. The exact venue is still TBA — it is shown on the event card and will be updated there as soon as it is fixed." },
+  { q: "Where is SENSORS FUSION happening?", a: "BMSCE — BMS College of Engineering, Bengaluru." },
   { q: "What is KERNELX?", a: "KERNELX is a workshop on Real-Time Systems & FreeRTOS on Tuesday 3 and Wednesday 4 November 2026, 2:30 PM to 5:00 PM, at BMS College of Engineering, Basavanagudi. It covers RTOS fundamentals, FreeRTOS, task scheduling and hands-on embedded development." },
   { q: "What does KERNELX cost?", a: "₹130 for IEEE members and ₹180 for non-IEEE members. Use the Register button on the KERNELX card to fill its Google Form." },
   { q: "What is GESTURE AI?", a: "GESTURE AI is a hands-on TinyML workshop on Thursday 5 November 2026, 2:00 PM to 5:00 PM, at BMS College of Engineering, Basavanagudi. You collect motion data with an MPU6050, train a compact model, run it on an ESP32, and drive an OLED, RGB LED and servo from the predictions." },
