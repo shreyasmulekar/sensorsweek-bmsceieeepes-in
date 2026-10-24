@@ -9,7 +9,7 @@ export type CalEntry = {
   time: string;
   venue: string;
   fee: string;
-  registerUrl?: string;
+  registerUrl?: string | undefined;
   custom: boolean;
 };
 
@@ -34,10 +34,13 @@ function shortTime(t: string) {
 
 export function eachDate(from: string, to: string): string[] {
   if (!ISO.test(from)) return [];
-  const [y, m, d] = from.split("-").map(Number);
+  const fp = from.split("-");
+  const y = Number(fp[0]);
+  const m = Number(fp[1]);
+  const d = Number(fp[2]);
   const end = ISO.test(to) && to > from ? to : from;
-  const [ey, em, ed] = end.split("-").map(Number);
-  const stop = Date.UTC(ey, em - 1, ed);
+  const ep = end.split("-");
+  const stop = Date.UTC(Number(ep[0]), Number(ep[1]) - 1, Number(ep[2]));
   const out: string[] = [];
   for (let t = Date.UTC(y, m - 1, d); t <= stop; t += 864e5) out.push(isoFromTime(t));
   return out;
@@ -90,7 +93,7 @@ export function entriesFromCustom(rows: CustomEventRow[]): CalEntry[] {
 export function monthWeeks(year: number, month: number): string[][] {
   const first = Date.UTC(year, month - 1, 1);
   const lead = new Date(first).getUTCDay(); // 0 = Sunday
-  const daysInMonth = (Date.UTC(year, month, 0) as number) / 864e5 - (Date.UTC(1970, 0, 0) as number) / 864e5 + 1;
+  const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
   const total = Math.ceil((lead + daysInMonth) / 7) * 7;
   const days: string[] = [];
   for (let i = 0; i < total; i++) days.push(isoFromTime(first - lead * 864e5 + i * 864e5));
@@ -117,6 +120,7 @@ export function firstEventMonth(entries: CalEntry[]): { year: number; month: num
   const days = entries.map((e) => e.day).filter((d) => ISO.test(d)).sort();
   if (!days.length) return null;
   const today = isoFromTime(Date.now());
-  const next = days.find((d) => d >= today) ?? days[0];
+  const next = days.find((d) => d >= today) ?? days[0] ?? "";
+  if (!ISO.test(next)) return null;
   return { year: Number(next.slice(0, 4)), month: Number(next.slice(5, 7)) };
 }
