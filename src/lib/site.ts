@@ -78,8 +78,8 @@ export const EVENTS: EventItem[] = [
     note: "Round 1 is FREE ENTRY — submit your idea online by 11:59 PM, 26 Oct 2026. Shortlisted teams advance to the next round.",
     date: "Sat 31 Oct – Sun 1 Nov 2026",
     day: "2026-10-31",
-    time: "24 hours",
-    venue: "BMS College of Engineering",
+    time: "10 AM onwards (24 hours)",
+    venue: "BMS College of Engineering, Basavanagudi",
     fee: "IEEE Members ₹650 · Non-IEEE ₹900 (per team)",
     prize: "₹30,000",
     team: "2–4 members",
@@ -131,7 +131,7 @@ export const EVENTS: EventItem[] = [
     ],
     date: "Tue, 3 Nov – Wed, 4 Nov 2026",
     day: "2026-11-03",
-    time: "2:30 PM – 5:00 PM",
+    time: "2:00 PM – 5:30 PM",
     venue: "BMS College of Engineering, Basavanagudi",
     fee: "IEEE Members ₹130 · Non-IEEE ₹180",
     team: "Individual seats",
@@ -191,7 +191,7 @@ export const SCHEDULE = [
   },
   {
     day: "Sat, 31 Oct",
-    items: [{ t: "24 hours", n: "SENSORS ENCLAVE 4.0 – 24-Hour Hardware Hackathon (runs to Sun, 1 Nov)", v: "BMS College of Engineering" }],
+    items: [{ t: "10 AM onwards", n: "SENSORS ENCLAVE 4.0 – 24-Hour Hardware Hackathon (runs to Sun, 1 Nov)", v: "BMS College of Engineering, Basavanagudi" }],
   },
   {
     day: "Mon, 2 Nov",
@@ -199,7 +199,7 @@ export const SCHEDULE = [
   },
   {
     day: "Tue, 3 Nov",
-    items: [{ t: "2:30 PM – 5:00 PM", n: "KERNELX – Real-Time Systems & FreeRTOS Workshop (runs to Wed, 4 Nov)", v: "BMS College of Engineering, Basavanagudi" }],
+    items: [{ t: "2:00 PM – 5:30 PM", n: "KERNELX – Real-Time Systems & FreeRTOS Workshop (runs to Wed, 4 Nov)", v: "BMS College of Engineering, Basavanagudi" }],
   },
   {
     day: "Thu, 5 Nov",
@@ -214,7 +214,7 @@ export const FAQS = [
   { q: "Who can participate?", a: "Any student. IEEE membership is not required — members just pay a lower fee." },
   { q: "What does SENSORS FUSION cost?", a: "₹150 for IEEE members and ₹200 for non-IEEE participants." },
   { q: "Where is SENSORS FUSION happening?", a: "BMSCE — BMS College of Engineering, Bengaluru." },
-  { q: "What is KERNELX?", a: "KERNELX is a workshop on Real-Time Systems & FreeRTOS on Tuesday 3 and Wednesday 4 November 2026, 2:30 PM to 5:00 PM, at BMS College of Engineering, Basavanagudi. It covers RTOS fundamentals, FreeRTOS, task scheduling and hands-on embedded development." },
+  { q: "What is KERNELX?", a: "KERNELX is a workshop on Real-Time Systems & FreeRTOS on Tuesday 3 and Wednesday 4 November 2026, 2:00 PM to 5:30 PM, at BMS College of Engineering, Basavanagudi. It covers RTOS fundamentals, FreeRTOS, task scheduling and hands-on embedded development." },
   { q: "What does KERNELX cost?", a: "₹130 for IEEE members and ₹180 for non-IEEE members. Use the Register button on the KERNELX card to fill its Google Form." },
   { q: "What is GESTURE AI?", a: "GESTURE AI is a hands-on TinyML workshop on Thursday 5 November 2026, 2:00 PM to 5:00 PM, at BMS College of Engineering, Basavanagudi. You collect motion data with an MPU6050, train a compact model, run it on an ESP32, and drive an OLED, RGB LED and servo from the predictions." },
   { q: "What does GESTURE AI cost?", a: "₹90 for IEEE members and ₹130 for non-IEEE members. Use the Register button on the GESTURE AI card to fill its Google Form." },
