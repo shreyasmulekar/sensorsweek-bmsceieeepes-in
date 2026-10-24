@@ -2,6 +2,7 @@
 import enclavePoster from "@/assets/sensors-enclave.jpg.asset.json";
 import fusionPoster from "@/assets/sensors-fusion.jpg.asset.json";
 import kernelxPoster from "@/assets/kernelx.jpg.asset.json";
+import gestureAiPoster from "@/assets/gesture-ai.jpg.asset.json";
 
 export const REGISTER_URL = "https://forms.gle/5bzWaxnJ652Bnoas7";
 export const HACKATHON_BROCHURE = "https://drive.google.com/drive/folders/1iYDZCwXgomc_AAmCVFhDCLiz8kAbS0gc?usp=sharing";
@@ -161,6 +162,7 @@ export const EVENTS: EventItem[] = [
     team: "Individual seats",
     contacts: GESTURE_AI_CONTACTS,
     registerUrl: GESTURE_AI_REGISTER_URL,
+    poster: gestureAiPoster.url,
     category: "Workshop",
     status: "REGISTRATIONS OPEN",
     icon: "👋",

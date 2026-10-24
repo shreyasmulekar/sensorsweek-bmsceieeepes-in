@@ -24,5 +24,6 @@ describe("Event posters", () => {
     expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.poster).toContain("sensors-enclave.jpg");
     expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.poster).toContain("sensors-fusion.jpg");
     expect(EVENTS.find((e) => e.slug === "kernelx")?.poster).toContain("kernelx.jpg");
+    expect(EVENTS.find((e) => e.slug === "gesture-ai")?.poster).toContain("gesture-ai.jpg");
   });
 });
