@@ -131,7 +131,11 @@ function CalendarPage() {
               <ChevronLeft className="size-4" />
             </button>
             <button
-              onClick={() => setToday(isoFromTime(Date.now())) || setCursor({ year: new Date().getFullYear(), month: new Date().getMonth() + 1 })}
+              onClick={() => {
+                const now = new Date();
+                setToday(isoFromTime(now.getTime()));
+                setCursor({ year: now.getFullYear(), month: now.getMonth() + 1 });
+              }}
               className="rounded-full border border-primary/40 px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-primary/10"
             >
               This month
