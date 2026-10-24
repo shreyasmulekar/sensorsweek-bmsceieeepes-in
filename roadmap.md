@@ -1,6 +1,6 @@
 # Sensors Week 2026 — task list
 
-- [ ] Replace current TBA venues with BMSCE and set the pictured homepage registration button to SENSORS FUSION
+- [x] Replace current TBA venues with BMSCE and set the pictured homepage registration button to SENSORS FUSION
 
 - [x] Put the real SENSORS FUSION drone workshop details on the site (date, time, fee, Google Form link, contacts)
 - [x] Highlight the hardware hackathon as the flagship event on the home page and events page
