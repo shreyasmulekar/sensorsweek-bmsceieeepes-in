@@ -15,7 +15,7 @@ export const EVENT_START = new Date("2026-10-26T23:59:00+05:30");
 export const DATES_LABEL = "30 Oct – 5 Nov 2026";
 export const NEXT_EVENT_LABEL = "ROUND 1 DEADLINE · Mon 26 Oct, 11:59 PM";
 export const INSTAGRAM = "https://instagram.com/bmsce_ieeepes";
-export const EMAIL = "eee.pes@bmsce.ac.in";
+export const EMAIL = "ieee.pes@bmsce.ac.in";
 export const SPONSORS = ["Mystic Grace"];
 
 export type Contact = { name: string; phone: string };

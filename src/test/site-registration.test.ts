@@ -88,8 +88,8 @@ describe("Site-wide Register Now destination", () => {
 });
 
 describe("Main contact address", () => {
-  it("uses eee.pes@bmsce.ac.in as the site-wide contact email", () => {
-    expect(EMAIL).toBe("eee.pes@bmsce.ac.in");
+  it("uses ieee.pes@bmsce.ac.in as the site-wide contact email", () => {
+    expect(EMAIL).toBe("ieee.pes@bmsce.ac.in");
     expect(EMAIL).not.toBe("ieeepes@bmsce.ac.in");
   });
 });
