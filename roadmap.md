@@ -34,6 +34,8 @@
 - [x] Correct dates, timings and venues to match the printed posters (KERNELX now 2:00 PM – 5:30 PM per its poster — Anil to confirm)
 - [x] Remove the OLED mention from GESTURE AI (learn list, FAQ, chatbot)
 - [ ] Email Anil automatically on every workshop registration submission (needs a decision: Google Forms can't notify us, so either the app collects sign-ups itself or he uses Forms' own add-on)
-- [ ] Build a monthly calendar page of all upcoming events with dates, times, fees and registration links, plus a private way for Anil to add new events
+- [ ] Build a monthly calendar page wired to the real workshop dates, times, fees and registration links so it updates automatically
+- [ ] Give Anil a private add-event option on the calendar so he can list future workshops himself without editing code (needs sign-in and stored events)
 - [ ] Add a private sign-ups page showing how many registrations each workshop form has received, visible to Anil only (not linked anywhere, not visible to visitors)
 - [ ] Publish the site and connect sensorsweek.bmsceieeepes.in (needs Anil to publish, then add the domain in Project Settings)
+- [ ] Confirm the published site matches the preview (event pages, dates, registration links)
