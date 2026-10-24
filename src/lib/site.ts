@@ -5,7 +5,7 @@ export const HACKATHON_BROCHURE = "https://drive.google.com/drive/folders/1iYDZC
 export const KERNELX_REGISTER_URL = "https://forms.gle/iL7aNqfXrGQATvJc8";
 export const GESTURE_AI_REGISTER_URL = "https://forms.gle/gVpKF9EeQjTUkb2Z9";
 export const EVENT_START = new Date("2026-10-26T23:59:00+05:30");
-export const DATES_LABEL = "30 Oct – 4 Nov 2026";
+export const DATES_LABEL = "30 Oct – 5 Nov 2026";
 export const NEXT_EVENT_LABEL = "ROUND 1 DEADLINE · Mon 26 Oct, 11:59 PM";
 export const INSTAGRAM = "https://instagram.com/bmsce_ieeepes";
 export const EMAIL = "ieeepes@bmsce.ac.in";
@@ -200,7 +200,7 @@ export const SCHEDULE = [
 
 export const FAQS = [
   { q: "What is the headline event?", a: "SENSORS ENCLAVE 4.0, a 24-hour Hardware Hackathon on 31 Oct & 1 Nov at BMSCE, with a ₹30,000 prize pool. Round 1 is free — submit your idea online by 11:59 PM on 26 Oct and shortlisted teams advance." },
-  { q: "What can I register for right now?", a: "SENSORS ENCLAVE 4.0 (the Hardware Hackathon), SENSORS FUSION (drone and Raspberry Pi Pico workshop on Monday 2 November) and KERNELX (Real-Time Systems & FreeRTOS workshop on 3–4 November). Each Register button opens that event's own Google Form." },
+  { q: "What can I register for right now?", a: "SENSORS ENCLAVE 4.0 (the Hardware Hackathon), SENSORS FUSION (drone and Raspberry Pi Pico workshop on Monday 2 November), KERNELX (Real-Time Systems & FreeRTOS workshop on 3–4 November) and GESTURE AI (TinyML workshop on Thursday 5 November). Each Register button opens that event's own Google Form." },
   { q: "What does the Hardware Hackathon cost?", a: "Round 1 is free. For the later rounds the fee is ₹650 per team for IEEE members and ₹900 per team for non-IEEE members. Certificates, attendance, food and snacks are provided." },
   { q: "Who can participate?", a: "Any student. IEEE membership is not required — members just pay a lower fee." },
   { q: "What does SENSORS FUSION cost?", a: "₹150 for IEEE members and ₹200 for non-IEEE participants." },
