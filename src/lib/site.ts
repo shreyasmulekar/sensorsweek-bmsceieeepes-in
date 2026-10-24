@@ -5,6 +5,7 @@ import kernelxPoster from "@/assets/kernelx.jpg.asset.json";
 import gestureAiPoster from "@/assets/gesture-ai.jpg.asset.json";
 
 export const REGISTER_URL = "https://forms.gle/5bzWaxnJ652Bnoas7";
+export const HACKATHON_REGISTER_URL = "https://forms.gle/ZU6mkHBzoMkC7P3w8";
 export const HACKATHON_BROCHURE = "https://drive.google.com/drive/folders/1iYDZCwXgomc_AAmCVFhDCLiz8kAbS0gc?usp=sharing";
 export const KERNELX_REGISTER_URL = "https://forms.gle/iL7aNqfXrGQATvJc8";
 export const GESTURE_AI_REGISTER_URL = "https://forms.gle/gVpKF9EeQjTUkb2Z9";
@@ -84,7 +85,7 @@ export const EVENTS: EventItem[] = [
     prize: "₹30,000",
     team: "2–4 members",
     contacts: HACKATHON_CONTACTS,
-    registerUrl: REGISTER_URL,
+    registerUrl: HACKATHON_REGISTER_URL,
     poster: enclavePoster.url,
     brochure: HACKATHON_BROCHURE,
     category: "Competition",

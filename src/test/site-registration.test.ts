@@ -13,9 +13,9 @@ describe("Confirmed venues and registration destinations", () => {
     expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.registerUrl).toBe(REGISTER_URL);
   });
 
-  it("sends SENSORS ENCLAVE registration to the SENSORS FUSION form", () => {
-    expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.registerUrl).toBe(REGISTER_URL);
-    expect(EVENTS.some((e) => e.registerUrl === "https://forms.gle/ZU6mkHBzoMkC7P3w8")).toBe(false);
+  it("sends SENSORS ENCLAVE registration to the SENSORS ENCLAVE form", () => {
+    expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.registerUrl).toBe("https://forms.gle/ZU6mkHBzoMkC7P3w8");
+    expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.registerUrl).toBe(REGISTER_URL);
   });
 
   it("sends KERNELX and GESTURE AI to their own forms", () => {
@@ -66,7 +66,10 @@ describe("GESTURE AI content", () => {
     expect(FAQS.filter((f) => /gesture ai/i.test(f.q)).some((f) => /oled/i.test(f.a))).toBe(false);
   });
 
-  it("still lists RGB LED and servo actuation", () => {
-    expect(gesture?.learn).toContain("Visual and physical actuation via RGB LEDs and servo motors");
+  it("drops both circled lines from the learn list", () => {
+    expect(gesture?.learn).toEqual([
+      "Basics of TinyML and sensors",
+      "Real-time hands-on experience with motion sensing",
+    ]);
   });
 });
