@@ -80,7 +80,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
           <li className="flex gap-2"><Users className="size-4 shrink-0 text-primary" /><span className="min-w-0">{e.team}</span></li>
           <li className="flex gap-2"><Ticket className="size-4 shrink-0 text-primary" /><span className="min-w-0">{e.fee}</span></li>
           <li className="flex gap-2"><MapPin className="size-4 shrink-0 text-primary" /><span className="min-w-0">Venue: <span className={isTba(e.venue) ? "font-semibold text-warn" : "font-semibold"}>{isTba(e.venue) ? "TBA" : e.venue}</span></span></li>
-          {e.prize && <li className="flex gap-2"><Trophy className="size-4 shrink-0 text-primary" /><span>Prize pool {e.prize}</span></li>}
+          {e.prize && <li className="flex gap-2"><Trophy className="size-4 shrink-0 text-primary" /><span>Prize pool: {e.prize}</span></li>}
           {e.learn?.length ? (
             <li className="pt-2">
               <p className="flex items-center gap-2 font-semibold text-primary"><Sparkles className="size-4" />What you'll learn</p>
