@@ -17,6 +17,11 @@ describe("Confirmed venues and registration destinations", () => {
     expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.registerUrl).toBe(REGISTER_URL);
     expect(EVENTS.some((e) => e.registerUrl === "https://forms.gle/ZU6mkHBzoMkC7P3w8")).toBe(false);
   });
+
+  it("sends KERNELX and GESTURE AI to their own forms", () => {
+    expect(EVENTS.find((e) => e.slug === "kernelx")?.registerUrl).toBe("https://forms.gle/iL7aNqfXrGQATvJc8");
+    expect(EVENTS.find((e) => e.slug === "gesture-ai")?.registerUrl).toBe("https://forms.gle/gVpKF9EeQjTUkb2Z9");
+  });
 });
 
 describe("Event posters", () => {
