@@ -5,7 +5,7 @@ import { Cpu, Radio, Zap, Wifi, Sparkles, CalendarDays } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { RegisterButton, SectionTitle } from "@/components/Layout";
 import { EventCard } from "@/components/EventCard";
-import { DATES_LABEL, EVENTS, EVENT_START, NEXT_EVENT_LABEL, REGISTER_URL, type EventItem } from "@/lib/site";
+import { DATES_LABEL, DEFAULT_REGISTER_URL, EVENTS, EVENT_START, NEXT_EVENT_LABEL, type EventItem } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,7 +65,7 @@ function Index() {
             </span>
           </motion.div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="mt-7 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            <RegisterButton href={REGISTER_URL} className="px-5 py-3 text-sm sm:px-6" />
+            <RegisterButton href={DEFAULT_REGISTER_URL} className="px-5 py-3 text-sm sm:px-6" />
             <Link to="/events" className="rounded-full border border-primary/50 px-5 py-3 text-sm font-semibold transition hover:bg-primary/10 sm:px-6 sm:text-base">Explore Events</Link>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.7 }} className="mx-auto mt-10 w-full max-w-md">

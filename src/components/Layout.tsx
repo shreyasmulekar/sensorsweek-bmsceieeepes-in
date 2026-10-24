@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Instagram, Mail, MapPin, Volume2, VolumeX } from "lucide-react";
-import { REGISTER_URL, INSTAGRAM, EMAIL, SPONSORS } from "@/lib/site";
+import { DEFAULT_REGISTER_URL, INSTAGRAM, EMAIL, SPONSORS } from "@/lib/site";
 import logoAsset from "@/assets/logo.png.asset.json";
 import { isMuted, onMuteChange, setMuted, sfx } from "@/lib/sound";
 
@@ -23,7 +23,7 @@ function Logo({ size = "size-9", rounded = "rounded-lg" }: { size?: string; roun
   );
 }
 
-export function RegisterButton({ className = "", children = "Register Now", href = REGISTER_URL }: { className?: string; children?: ReactNode; href?: string }) {
+export function RegisterButton({ className = "", children = "Register Now", href = DEFAULT_REGISTER_URL }: { className?: string; children?: ReactNode; href?: string }) {
   return (
     <motion.a
       href={href} target="_blank" rel="noreferrer"

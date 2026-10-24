@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { EVENTS, FAQS, REGISTER_URL, SCHEDULE } from "@/lib/site";
+import { DEFAULT_REGISTER_URL, EVENTS, FAQS, HACKATHON_REGISTER_URL, REGISTER_URL, SCHEDULE } from "@/lib/site";
 
 describe("Confirmed venues and registration destinations", () => {
   it("uses BMSCE for the previously unconfirmed SENSORS FUSION venue", () => {
@@ -71,5 +71,18 @@ describe("GESTURE AI content", () => {
       "Basics of TinyML and sensors",
       "Real-time hands-on experience with motion sensing",
     ]);
+  });
+});
+
+describe("Site-wide Register Now destination", () => {
+  it("opens the SENSORS ENCLAVE hackathon form from the header, menu, FAQ and homepage hero", () => {
+    expect(DEFAULT_REGISTER_URL).toBe("https://forms.gle/ZU6mkHBzoMkC7P3w8");
+    expect(DEFAULT_REGISTER_URL).toBe(HACKATHON_REGISTER_URL);
+    expect(DEFAULT_REGISTER_URL).not.toBe(REGISTER_URL);
+  });
+
+  it("still sends each event's own Register button to its own form", () => {
+    expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.registerUrl).toBe(REGISTER_URL);
+    expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.registerUrl).toBe(HACKATHON_REGISTER_URL);
   });
 });

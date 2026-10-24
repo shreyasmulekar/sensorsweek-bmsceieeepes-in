@@ -6,6 +6,8 @@ import gestureAiPoster from "@/assets/gesture-ai.jpg.asset.json";
 
 export const REGISTER_URL = "https://forms.gle/5bzWaxnJ652Bnoas7";
 export const HACKATHON_REGISTER_URL = "https://forms.gle/ZU6mkHBzoMkC7P3w8";
+// The site-wide "Register Now" button (header, menu, FAQ, homepage hero) opens the flagship hackathon form.
+export const DEFAULT_REGISTER_URL = HACKATHON_REGISTER_URL;
 export const HACKATHON_BROCHURE = "https://drive.google.com/drive/folders/1iYDZCwXgomc_AAmCVFhDCLiz8kAbS0gc?usp=sharing";
 export const KERNELX_REGISTER_URL = "https://forms.gle/iL7aNqfXrGQATvJc8";
 export const GESTURE_AI_REGISTER_URL = "https://forms.gle/gVpKF9EeQjTUkb2Z9";
