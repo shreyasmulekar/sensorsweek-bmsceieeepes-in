@@ -124,3 +124,14 @@ export function firstEventMonth(entries: CalEntry[]): { year: number; month: num
   if (!ISO.test(next)) return null;
   return { year: Number(next.slice(0, 4)), month: Number(next.slice(5, 7)) };
 }
+
+const WD = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const MO = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+// "2026-11-01" -> "Sun 1 Nov" for the list under the grid.
+export function prettyDate(iso: string): string {
+  const s = String(iso).slice(0, 10);
+  if (!ISO.test(s)) return s;
+  const dt = new Date(Date.UTC(Number(s.slice(0, 4)), Number(s.slice(5, 7)) - 1, Number(s.slice(8, 10))));
+  return `${WD[dt.getUTCDay()] ?? ""} ${dt.getUTCDate()} ${MO[dt.getUTCMonth()] ?? ""}`;
+}

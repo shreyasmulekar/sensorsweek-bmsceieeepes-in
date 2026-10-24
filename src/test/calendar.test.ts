@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { EVENTS } from "@/lib/site";
-import { entriesFromCustom, entriesFromEvents, monthLabel, monthWeeks, type CustomEventRow } from "@/lib/calendar";
+import { entriesFromCustom, entriesFromEvents, monthLabel, monthWeeks, prettyDate, type CustomEventRow } from "@/lib/calendar";
 
 describe("Calendar is wired to the real event data", () => {
   const entries = entriesFromEvents(EVENTS);
@@ -70,5 +70,10 @@ describe("Month grid", () => {
     const weeks = monthWeeks(2026, 10);
     expect(weeks[0]?.[0]).toBe("2026-09-27");
     expect(weeks.flat()).toContain("2026-10-31");
+  });
+
+  it("prints a session's day the way the site writes dates", () => {
+    expect(prettyDate("2026-11-01")).toBe("Sun 1 Nov");
+    expect(prettyDate("2026-10-31")).toBe("Sat 31 Oct");
   });
 });

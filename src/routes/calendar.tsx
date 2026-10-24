@@ -14,6 +14,7 @@ import {
   isoFromTime,
   monthLabel,
   monthWeeks,
+  prettyDate,
   type CalEntry,
 } from "@/lib/calendar";
 import { supabase } from "@/integrations/supabase/client";
@@ -200,7 +201,7 @@ function CalendarPage() {
               <span className="min-w-0">
                 <span className="block font-semibold">{e.name}</span>
                 <span className="block text-sm text-muted-foreground">
-                  {e.day} · {e.time || "Time TBA"} · {e.venue || "Venue TBA"}{e.fee ? ` · ${e.fee}` : ""}
+                  {prettyDate(e.day)} · {e.time || "Time TBA"} · {e.venue || "Venue TBA"}{e.fee ? ` · ${e.fee}` : ""}
                 </span>
               </span>
               {e.registerUrl ? (
