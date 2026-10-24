@@ -32,4 +32,8 @@
 - [x] Add GESTURE AI — TinyML workshop on ESP32 & MPU6050 (5 Nov, 2:00–5:00 PM, ₹90/₹130, own form and contacts)
 - [x] Attach the GESTURE AI poster to its event (card and detail page)
 - [x] Correct dates, timings and venues to match the printed posters (KERNELX now 2:00 PM – 5:30 PM per its poster — Anil to confirm)
+- [x] Remove the OLED mention from GESTURE AI (learn list, FAQ, chatbot)
+- [ ] Email Anil automatically on every workshop registration submission (needs a decision: Google Forms can't notify us, so either the app collects sign-ups itself or he uses Forms' own add-on)
+- [ ] Build a monthly calendar page of all upcoming events with dates, times, fees and registration links, plus a private way for Anil to add new events
+- [ ] Add a private sign-ups page showing how many registrations each workshop form has received, visible to Anil only (not linked anywhere, not visible to visitors)
 - [ ] Publish the site and connect sensorsweek.bmsceieeepes.in (needs Anil to publish, then add the domain in Project Settings)

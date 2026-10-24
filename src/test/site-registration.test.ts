@@ -55,3 +55,18 @@ describe("Poster-confirmed times and venues", () => {
     expect(item("gesture-ai")?.date).toBe("Thu, 5 Nov 2026");
   });
 });
+
+describe("GESTURE AI content", () => {
+  const gesture = EVENTS.find((e) => e.slug === "gesture-ai");
+
+  it("never mentions OLED in the event details", () => {
+    expect(gesture?.learn).not.toContain("Visual and physical actuation via 0.96-inch OLED displays, RGB LEDs and servo motors");
+    expect(gesture?.learn?.some((l) => /oled/i.test(l))).toBe(false);
+    expect(/oled/i.test(gesture?.description ?? "")).toBe(false);
+    expect(FAQS.filter((f) => /gesture ai/i.test(f.q)).some((f) => /oled/i.test(f.a))).toBe(false);
+  });
+
+  it("still lists RGB LED and servo actuation", () => {
+    expect(gesture?.learn).toContain("Visual and physical actuation via RGB LEDs and servo motors");
+  });
+});
