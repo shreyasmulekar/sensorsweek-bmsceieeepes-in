@@ -53,6 +53,7 @@ describe("Poster-confirmed times and venues", () => {
     expect(item("sensors-fusion")?.time).toBe("2:00 PM – 6:00 PM");
     expect(item("gesture-ai")?.time).toBe("2:00 PM – 5:00 PM");
     expect(item("gesture-ai")?.date).toBe("Thu, 5 Nov 2026");
+  });
 });
 
 describe("GESTURE AI content", () => {
