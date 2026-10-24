@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { EVENTS, REGISTER_URL, SCHEDULE } from "@/lib/site";
+import { EVENTS, FAQS, REGISTER_URL, SCHEDULE } from "@/lib/site";
 
 describe("Confirmed venues and registration destinations", () => {
   it("uses BMSCE for the previously unconfirmed SENSORS FUSION venue", () => {
