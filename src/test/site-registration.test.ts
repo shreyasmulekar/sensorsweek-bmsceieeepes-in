@@ -27,3 +27,26 @@ describe("Event posters", () => {
     expect(EVENTS.find((e) => e.slug === "gesture-ai")?.poster).toContain("gesture-ai.jpg");
   });
 });
+
+describe("Poster-confirmed times and venues", () => {
+  const item = (slug: string) => EVENTS.find((e) => e.slug === slug);
+
+  it("starts the hackathon at 10 AM at BMS College of Engineering, Basavanagudi", () => {
+    expect(item("hardware-hackathon")?.time).toBe("10 AM onwards (24 hours)");
+    expect(item("hardware-hackathon")?.venue).toBe("BMS College of Engineering, Basavanagudi");
+    expect(SCHEDULE.flatMap((d) => d.items).find((e) => e.n.startsWith("SENSORS ENCLAVE 4.0 – 24-Hour"))?.t).toBe("10 AM onwards");
+  });
+
+  it("runs KERNELX from 2:00 PM to 5:30 PM, as printed on its poster", () => {
+    expect(item("kernelx")?.time).toBe("2:00 PM – 5:30 PM");
+    expect(EVENTS.some((e) => /2:30/.test(e.time))).toBe(false);
+    expect(SCHEDULE.flatMap((d) => d.items).some((e) => /2:30/.test(e.t))).toBe(false);
+    expect(FAQS.some((f) => /2:30/.test(f.a))).toBe(false);
+  });
+
+  it("keeps SENSORS FUSION and GESTURE AI at their printed afternoon times", () => {
+    expect(item("sensors-fusion")?.time).toBe("2:00 PM – 6:00 PM");
+    expect(item("gesture-ai")?.time).toBe("2:00 PM – 5:00 PM");
+    expect(item("gesture-ai")?.date).toBe("Thu, 5 Nov 2026");
+  });
+});
