@@ -33,4 +33,5 @@
 - [x] Attach the GESTURE AI poster to its event (card and detail page)
 - [x] Correct dates, timings and venues to match the printed posters (KERNELX now 2:00 PM – 5:30 PM per its poster — Anil to confirm)
 - [x] Remove the OLED mention from GESTURE AI (learn list, FAQ, chatbot)
+- [ ] Add a private sign-ups page showing how many registrations each workshop form has received, visible to Anil only (not linked anywhere, not visible to visitors)
 - [ ] Publish the site and connect sensorsweek.bmsceieeepes.in (needs Anil to publish, then add the domain in Project Settings)
