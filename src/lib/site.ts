@@ -59,6 +59,7 @@ export type EventItem = {
   team: string;
   contacts?: Contact[];
   registerUrl?: string;
+  poster?: string;
   flagship?: boolean;
   category: "Workshop" | "Competition" | "Talk" | "Exhibition";
   status: "REGISTRATIONS OPEN" | "CLOSING SOON" | "EVENT FULL" | "REGISTRATIONS CLOSED" | "COMING SOON";
