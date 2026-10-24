@@ -27,4 +27,6 @@
 - [ ] Add any further sponsor names Anil sends
 - [x] Add KERNELX — Real-Time Systems & FreeRTOS workshop (3–4 Nov, 2:30–5:00 PM, ₹130/₹180, own form and contacts)
 - [x] Add GESTURE AI — TinyML workshop on ESP32 & MPU6050 (5 Nov, 2:00–5:00 PM, ₹90/₹130, own form and contacts)
+- [x] Attach the GESTURE AI poster to its event (card and detail page)
+- [ ] Correct dates, timings and venues to match the printed posters (KERNELX poster time differs from Anil's typed message — flagged for confirmation)
 - [ ] Publish the site and connect sensorsweek.bmsceieeepes.in (needs Anil to publish, then add the domain in Project Settings)
