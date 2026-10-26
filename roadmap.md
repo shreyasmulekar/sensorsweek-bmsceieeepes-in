@@ -56,3 +56,4 @@
 - [ ] Make every event card glow with colour, animations and effects so the events catch the eye.
 - [ ] Sponsor strip: thank-you note on top, "Sponsors Network" heading, all sponsors lined up in one even symmetric row.
 - [ ] Sponsor note reads exactly "Special thanks to our sponsors".
+- [ ] Add a live countdown for every event.
