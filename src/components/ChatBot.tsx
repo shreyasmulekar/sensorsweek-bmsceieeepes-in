@@ -97,10 +97,10 @@ function ChatWindow() {
 }
 
 export class ChatBot extends Component<Record<string, never>, { failed: boolean }> {
-  state = { failed: false };
+  override state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
-  componentDidCatch(_error: Error, _info: ErrorInfo) { console.error("Sensei panel failed to render"); }
-  render(): ReactNode {
+  override componentDidCatch(_error: Error, _info: ErrorInfo) { console.error("Sensei panel failed to render"); }
+  override render(): ReactNode {
     if (this.state.failed) return <Button aria-label="Restart Sensei chat" onClick={() => this.setState({ failed: false })} className="fixed bottom-5 right-5 z-50 shadow-glow"><RotateCcw />Restart Sensei</Button>;
     return <ChatWindow />;
   }
