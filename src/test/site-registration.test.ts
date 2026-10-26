@@ -104,18 +104,18 @@ describe("Week dates", () => {
 describe("Hackathon Round 1 idea deadline", () => {
   const ideaItem = SCHEDULE.flatMap((d) => d.items).find((e) => /Round 1 idea submission/i.test(e.n));
 
-  it("closes idea submissions at 1:00 PM on Tue 27 Oct 2026", () => {
-    expect(EVENT_START.getTime()).toBe(new Date("2026-10-27T13:00:00+05:30").getTime());
-    expect(NEXT_EVENT_LABEL).toBe("ROUND 1 DEADLINE · Tue 27 Oct, 1:00 PM");
-    expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.note).toContain("1:00 PM, 27 Oct 2026");
-    expect(ideaItem?.t).toBe("By 1:00 PM");
+  it("closes idea submissions at 11:59 PM on Tue 27 Oct 2026", () => {
+    expect(EVENT_START.getTime()).toBe(new Date("2026-10-27T23:59:00+05:30").getTime());
+    expect(NEXT_EVENT_LABEL).toBe("ROUND 1 DEADLINE · Tue 27 Oct, 11:59 PM");
+    expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.note).toContain("11:59 PM, 27 Oct 2026");
+    expect(ideaItem?.t).toBe("By 11:59 PM");
     expect(SCHEDULE.find((d) => d.items.includes(ideaItem!))?.day).toBe("Tue, 27 Oct");
   });
 
-  it("keeps no trace of the old 26 Oct 11:59 PM deadline", () => {
-    expect(/11:59|26 Oct|Mon, 26/i.test(NEXT_EVENT_LABEL)).toBe(false);
-    expect(EVENTS.some((e) => /11:59|26 Oct/i.test(e.note ?? ""))).toBe(false);
-    expect(FAQS.some((f) => /11:59|26 Oct/i.test(f.a))).toBe(false);
-    expect(SCHEDULE.some((d) => /11:59|Mon, 26 Oct/i.test(d.day + d.items.map((i) => i.t + i.n).join(" ")))).toBe(false);
+  it("keeps no trace of the earlier 26 Oct and 1:00 PM deadlines", () => {
+    expect(/26 Oct|Mon, 26|1:00 PM/i.test(NEXT_EVENT_LABEL)).toBe(false);
+    expect(EVENTS.some((e) => /26 Oct|1:00 PM/i.test(e.note ?? ""))).toBe(false);
+    expect(FAQS.some((f) => /26 Oct|1:00 PM/i.test(f.a))).toBe(false);
+    expect(SCHEDULE.some((d) => /26 Oct|Mon, 26|1:00 PM/i.test(d.day + d.items.map((i) => i.t + i.n).join(" ")))).toBe(false);
   });
 });
