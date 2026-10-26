@@ -175,7 +175,7 @@
 }
 
 @utility glass { background: var(--card); backdrop-filter: blur(14px); border: 1px solid var(--border); }
-@utility glass-header { background: color-mix(in oklab, var(--card) 92%, var(--background)); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
+@utility glass-header { background: color-mix(in oklab, oklch(0.21 0.045 255) 55%, var(--background)); border-bottom: 1px solid var(--border); }
 @keyframes floaty { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-14px) } }
 @keyframes kenburns { 0% { transform: scale(1.05) } 100% { transform: scale(1.18) translate(-2%, -1%) } }
 @utility animate-floaty { animation: floaty 5s ease-in-out infinite; }
