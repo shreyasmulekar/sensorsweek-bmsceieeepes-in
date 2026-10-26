@@ -10,7 +10,7 @@ export type CalEntry = {
   venue: string;
   fee: string;
   registerUrl?: string | undefined;
-  endMs?: number;
+  endMs?: number | null;
   custom: boolean;
 };
 
