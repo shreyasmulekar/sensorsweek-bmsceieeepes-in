@@ -156,7 +156,7 @@ export function Footer() {
           <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">With thanks to our sponsors</p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
             {SPONSORS.map((name) => <div key={name} className="flex min-w-0 flex-wrap items-center justify-center gap-3">
-              {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="h-12 w-44 rounded-sm bg-brand-surface object-contain p-1" loading="lazy" />}
+              {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="h-12 w-auto max-w-[180px] rounded-lg object-contain" loading="lazy" />}
               {!SPONSOR_LOGOS[name] && <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>}
             </div>)}
           </div>
