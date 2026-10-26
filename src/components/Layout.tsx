@@ -168,7 +168,7 @@ export function Footer() {
                 <span aria-hidden className="h-px w-8 bg-primary/50" />
               </p>
               <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
-                Thank you to our sponsors for backing Sensors Week 2026 and helping students build, fly and demo.
+                Special thanks to our sponsors.
               </p>
             </div>
             <div className="relative mt-6 grid gap-4 sm:grid-cols-3">
