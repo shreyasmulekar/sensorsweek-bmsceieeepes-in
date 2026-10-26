@@ -1,6 +1,6 @@
 // Central place to update links, dates and events.
 import enclavePoster from "@/assets/sensors-enclave.jpg.asset.json";
-import fusionPoster from "@/assets/sensors-fusion.jpg.asset.json";
+import fusionPoster from "@/assets/sensors-fusion-v2.png.asset.json";
 import kernelxPoster from "@/assets/kernelx.jpg.asset.json";
 import gestureAiPoster from "@/assets/gesture-ai.jpg.asset.json";
 
@@ -112,7 +112,7 @@ export const EVENTS: EventItem[] = [
     date: "Mon, 2 Nov 2026",
     day: "2026-11-02",
     time: "2:00 PM – 6:00 PM",
-    venue: "BMSCE",
+    venue: "AI-ML Seminar Hall, BMSCE",
     fee: "IEEE Members ₹150 · Non-IEEE ₹200",
     team: "Individual seats",
     contacts: SENSORS_FUSION_CONTACTS,
@@ -199,7 +199,7 @@ export const SCHEDULE = [
   },
   {
     day: "Mon, 2 Nov",
-    items: [{ t: "2:00 PM – 6:00 PM", n: "SENSORS FUSION – Drone & Raspberry Pi Pico Workshop", v: "Venue: BMSCE" }],
+    items: [{ t: "2:00 PM – 6:00 PM", n: "SENSORS FUSION – Drone & Raspberry Pi Pico Workshop", v: "AI-ML Seminar Hall, BMSCE" }],
   },
   {
     day: "Tue, 3 Nov",
@@ -217,7 +217,7 @@ export const FAQS = [
   { q: "What does the Hardware Hackathon cost?", a: "Round 1 is free. For the later rounds the fee is ₹650 per team for IEEE members and ₹900 per team for non-IEEE members. Certificates, attendance, food and snacks are provided." },
   { q: "Who can participate?", a: "Any student. IEEE membership is not required — members just pay a lower fee." },
   { q: "What does SENSORS FUSION cost?", a: "₹150 for IEEE members and ₹200 for non-IEEE participants." },
-  { q: "Where is SENSORS FUSION happening?", a: "BMSCE — BMS College of Engineering, Bengaluru." },
+  { q: "Where is SENSORS FUSION happening?", a: "AI-ML Seminar Hall, BMSCE — BMS College of Engineering, Bengaluru." },
   { q: "What is KERNELX?", a: "KERNELX is a workshop on Real-Time Systems & FreeRTOS on Tuesday 3 and Wednesday 4 November 2026, 2:00 PM to 5:30 PM, at BMS College of Engineering, Basavanagudi. It covers RTOS fundamentals, FreeRTOS, task scheduling and hands-on embedded development." },
   { q: "What does KERNELX cost?", a: "₹130 for IEEE members and ₹180 for non-IEEE members. Use the Register button on the KERNELX card to fill its Google Form." },
   { q: "What is GESTURE AI?", a: "GESTURE AI is a hands-on TinyML workshop on Thursday 5 November 2026, 2:00 PM to 5:00 PM, at BMS College of Engineering, Basavanagudi. You collect motion data with an MPU6050, train a compact model, run it on an ESP32, and drive an RGB LED and servo from the predictions." },
