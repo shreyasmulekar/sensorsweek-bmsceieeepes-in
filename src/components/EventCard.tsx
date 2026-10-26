@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { motion, type MotionStyle } from "motion/react";
+import { useState, type CSSProperties } from "react";
+import { motion } from "motion/react";
 import { Calendar, Clock, MapPin, Users, Trophy, Ticket, Phone, Sparkles, Share2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { EVENT_ACCENT, REGISTER_URL, eventStatus, isTba, type EventItem } from "@/lib/site";
@@ -47,7 +47,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
   const open = status === "REGISTRATIONS OPEN" || status === "CLOSING SOON";
   const canRegister = open && !!e.registerUrl;
   return (
-    <div className="relative h-full rounded-2xl" style={{ "--ev": EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)" } as React.CSSProperties}>
+    <div className="relative h-full rounded-2xl" style={{ "--ev": EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)" } as CSSProperties}>
       <span aria-hidden className="ev-aura" />
       <motion.article
         initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
