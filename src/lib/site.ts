@@ -11,9 +11,9 @@ export const DEFAULT_REGISTER_URL = HACKATHON_REGISTER_URL;
 export const HACKATHON_BROCHURE = "https://drive.google.com/drive/folders/1iYDZCwXgomc_AAmCVFhDCLiz8kAbS0gc?usp=sharing";
 export const KERNELX_REGISTER_URL = "https://forms.gle/iL7aNqfXrGQATvJc8";
 export const GESTURE_AI_REGISTER_URL = "https://forms.gle/gVpKF9EeQjTUkb2Z9";
-export const EVENT_START = new Date("2026-10-27T13:00:00+05:30");
+export const EVENT_START = new Date("2026-10-27T23:59:00+05:30");
 export const DATES_LABEL = "30 Oct – 6 Nov 2026";
-export const NEXT_EVENT_LABEL = "ROUND 1 DEADLINE · Tue 27 Oct, 1:00 PM";
+export const NEXT_EVENT_LABEL = "ROUND 1 DEADLINE · Tue 27 Oct, 11:59 PM";
 export const INSTAGRAM = "https://instagram.com/bmsce_ieeepes";
 export const EMAIL = "ieee.pes@bmsce.ac.in";
 export const SPONSORS = ["Mystic Grace"];
@@ -79,7 +79,7 @@ export const EVENTS: EventItem[] = [
     hook: "Think beyond the obvious. Build beyond the expected.",
     description:
       "Decode hidden signals, uncover anomalies, tackle real-world challenges, and turn bold ideas into working hardware prototypes in just 24 hours. Certificates, attendance, food and snacks will be provided.",
-    note: "Round 1 is FREE ENTRY — submit your idea online by 1:00 PM, 27 Oct 2026. Shortlisted teams advance to the next round.",
+    note: "Round 1 is FREE ENTRY — submit your idea online by 11:59 PM, 27 Oct 2026. Shortlisted teams advance to the next round.",
     date: "Sat 31 Oct – Sun 1 Nov 2026",
     day: "2026-10-31",
     endDay: "2026-11-01",
@@ -191,7 +191,7 @@ export const isTba = (v: string) => /tba|to be announced/i.test(v);
 export const SCHEDULE = [
   {
     day: "Tue, 27 Oct",
-    items: [{ t: "By 1:00 PM", n: "SENSORS ENCLAVE 4.0 – Round 1 idea submission (free entry)", v: "Online" }],
+    items: [{ t: "By 11:59 PM", n: "SENSORS ENCLAVE 4.0 – Round 1 idea submission (free entry)", v: "Online" }],
   },
   {
     day: "Sat, 31 Oct",
@@ -212,7 +212,7 @@ export const SCHEDULE = [
 ];
 
 export const FAQS = [
-  { q: "What is the headline event?", a: "SENSORS ENCLAVE 4.0, a 24-hour Hardware Hackathon on 31 Oct & 1 Nov at BMSCE, with a ₹30,000 prize pool. Round 1 is free — submit your idea online by 1:00 PM on 27 Oct and shortlisted teams advance." },
+  { q: "What is the headline event?", a: "SENSORS ENCLAVE 4.0, a 24-hour Hardware Hackathon on 31 Oct & 1 Nov at BMSCE, with a ₹30,000 prize pool. Round 1 is free — submit your idea online by 11:59 PM on 27 Oct and shortlisted teams advance." },
   { q: "What can I register for right now?", a: "SENSORS ENCLAVE 4.0 (the Hardware Hackathon), SENSORS FUSION (drone and Raspberry Pi Pico workshop on Monday 2 November), KERNELX (Real-Time Systems & FreeRTOS workshop on 3–4 November) and GESTURE AI (TinyML workshop on Thursday 5 November). Each Register button opens that event's own Google Form." },
   { q: "What does the Hardware Hackathon cost?", a: "Round 1 is free. For the later rounds the fee is ₹650 per team for IEEE members and ₹900 per team for non-IEEE members. Certificates, attendance, food and snacks are provided." },
   { q: "Who can participate?", a: "Any student. IEEE membership is not required — members just pay a lower fee." },
