@@ -196,6 +196,28 @@ export function dayLabel(day: string) {
 
 export const isTba = (v: string) => /tba|to be announced/i.test(v);
 
+// Neon accent token per event — shared by cards, countdowns and detail pages.
+export const EVENT_ACCENT: Record<string, string> = {
+  "hardware-hackathon": "var(--ev-cyan)",
+  "sensors-fusion": "var(--ev-violet)",
+  kernelx: "var(--ev-amber)",
+  "gesture-ai": "var(--ev-lime)",
+};
+
+const START_TIME = /\b(1[0-2]|[1-9])(?::([0-5]\d))?\s*(AM|PM)\b/i;
+
+/** Start instant of an event in Bengaluru time, or null when the details don't say. */
+export function eventStartMs(e: EventItem) {
+  const day = e.day?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  const time = e.time?.match(START_TIME);
+  if (!day || !time) return null;
+  let hour = Number(time[1]) % 12;
+  if (time[3].toUpperCase() === "PM") hour += 12;
+  const minute = time[2] ? Number(time[2]) : 0;
+  // Bengaluru is UTC+5:30, so the countdown reads the same for every visitor.
+  return Date.UTC(Number(day[1]), Number(day[2]) - 1, Number(day[3]), hour, minute) - (5 * 60 + 30) * 60000;
+}
+
 export const SCHEDULE = [
   {
     day: "Tue, 27 Oct",

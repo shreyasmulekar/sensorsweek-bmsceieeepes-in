@@ -3,7 +3,8 @@ import { useState } from "react";
 import { motion, type MotionStyle } from "motion/react";
 import { Calendar, Clock, MapPin, Users, Trophy, Ticket, Phone, Sparkles, Share2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { REGISTER_URL, isTba, type EventItem } from "@/lib/site";
+import { EVENT_ACCENT, REGISTER_URL, isTba, type EventItem } from "@/lib/site";
+import { EventCountdown } from "./EventCountdown";
 import { shareEvent } from "@/lib/share";
 import { RegisterButton } from "./Layout";
 import { EventPoster } from "./EventPoster";
@@ -14,14 +15,6 @@ const STATUS: Record<EventItem["status"], string> = {
   "EVENT FULL": "bg-destructive/20 text-destructive",
   "REGISTRATIONS CLOSED": "bg-muted text-muted-foreground",
   "COMING SOON": "bg-secondary text-muted-foreground",
-};
-
-// Each event gets its own neon accent so the listings read as distinct.
-const ACCENT: Record<string, string> = {
-  "hardware-hackathon": "var(--ev-cyan)",
-  "sensors-fusion": "var(--ev-violet)",
-  kernelx: "var(--ev-amber)",
-  "gesture-ai": "var(--ev-lime)",
 };
 
 function Meta({ e }: { e: EventItem }) {

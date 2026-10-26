@@ -6,6 +6,7 @@ import { RegisterButton } from "@/components/Layout";
 import { EVENTS, isTba, type EventItem } from "@/lib/site";
 import { shareEvent } from "@/lib/share";
 import { EventPoster } from "@/components/EventPoster";
+import { EventCountdown } from "@/components/EventCountdown";
 
 export const Route = createFileRoute("/event/$slug")({
   head: ({ params }) => {
@@ -83,6 +84,8 @@ function EventPage() {
           <Fact icon={Users} label="Team" value={e.team} />
           {e.prize ? <Fact icon={Trophy} label="Prize" value={e.prize} /> : null}
         </ul>
+
+        <EventCountdown e={e} />
 
         {e.learn?.length ? (
           <div className="mt-6">
