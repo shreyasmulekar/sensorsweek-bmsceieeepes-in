@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { DEFAULT_REGISTER_URL, EMAIL, EVENTS, FAQS, HACKATHON_REGISTER_URL, REGISTER_URL, SCHEDULE } from "@/lib/site";
 
 describe("Confirmed venues and registration destinations", () => {
-  it("uses BMSCE for the previously unconfirmed SENSORS FUSION venue", () => {
-    expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.venue).toBe("BMSCE");
-    expect(SCHEDULE.flatMap((d) => d.items).find((e) => e.n.startsWith("SENSORS FUSION"))?.v).toBe("Venue: BMSCE");
+  it("shows the poster-confirmed AI-ML Seminar Hall venue for SENSORS FUSION", () => {
+    expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.venue).toBe("AI-ML Seminar Hall, BMSCE");
+    expect(SCHEDULE.flatMap((d) => d.items).find((e) => e.n.startsWith("SENSORS FUSION"))?.v).toBe("AI-ML Seminar Hall, BMSCE");
     expect(EVENTS.filter((e) => /tba/i.test(e.venue))).toHaveLength(0);
   });
 
@@ -27,7 +27,7 @@ describe("Confirmed venues and registration destinations", () => {
 describe("Event posters", () => {
   it("attaches each uploaded poster to its own event", () => {
     expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.poster).toContain("sensors-enclave.jpg");
-    expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.poster).toContain("sensors-fusion.jpg");
+    expect(EVENTS.find((e) => e.slug === "sensors-fusion")?.poster).toContain("sensors-fusion-v2.png");
     expect(EVENTS.find((e) => e.slug === "kernelx")?.poster).toContain("kernelx.jpg");
     expect(EVENTS.find((e) => e.slug === "gesture-ai")?.poster).toContain("gesture-ai.jpg");
   });
