@@ -47,12 +47,13 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
   const open = status === "REGISTRATIONS OPEN" || status === "CLOSING SOON";
   const canRegister = open && !!e.registerUrl;
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-      style={{ "--ev": EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)" } as MotionStyle}
-      className={`event-card glass group flex h-full flex-col rounded-2xl p-5 sm:p-6 ${e.flagship ? "neon-frame" : ""}`}
-    >
+    <div className="relative h-full rounded-2xl" style={{ "--ev": EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)" } as MotionStyle}>
+      <span aria-hidden className="ev-aura" />
+      <motion.article
+        initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
+        className={`event-card glass group flex h-full flex-col rounded-2xl p-5 sm:p-6 ${e.flagship ? "neon-frame" : ""}`}
+      >
       {e.poster ? (
         <div className="ev-drop sweep -mx-5 -mt-5 mb-5 shrink-0 sm:-mx-6 sm:-mt-6 sm:mb-6">
           <EventPoster src={e.poster} name={e.name} />
