@@ -210,7 +210,7 @@ function CalendarPage() {
                   {prettyDate(e.day)} · {e.time || "Time TBA"} · {e.venue || "Venue TBA"}{e.fee ? ` · ${e.fee}` : ""}
                 </span>
               </span>
-              {e.registerUrl ? (
+              {e.registerUrl && !isClosed(e) ? (
                 <a
                   href={e.registerUrl}
                   target="_blank"
@@ -219,6 +219,8 @@ function CalendarPage() {
                 >
                   Register
                 </a>
+              ) : e.registerUrl && isClosed(e) ? (
+                <span className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground">Closed</span>
               ) : null}
             </li>
           ))}
