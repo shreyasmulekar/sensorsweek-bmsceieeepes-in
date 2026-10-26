@@ -1,9 +1,10 @@
 # Sensors Week 2026 — task list
 
 - [x] Repair Sensei error handling and verify event questions, follow-ups, general queries and failure recovery.
-- [ ] Reproduce the recurring chatbot error in Anil’s preview and fix its specific cause.
+- [x] Re-check recurring chatbot error: published site and responding preview tab both answered the deadline question without errors; second preview viewer did not respond, so its screenshot’s cause remains unverified.
 - [x] Publish the verified chatbot updates (deployment scheduled).
-- [ ] Add Insights IAS and source official sponsor logos, then publish the sponsor update.
+- [x] Add Insights IAS with its verified official logo; publish the sponsor update.
+- [ ] Add Mystic Grace’s logo (needs its official website or logo from Anil to identify the correct business).
 
 - [x] Check poster QR codes and match each event's registration button to the decoded Google Form (FUSION and KERNELX match; ENCLAVE and GESTURE AI have no QR codes)
 - [x] Center all event posters and ensure the complete images fit on cards and event pages (checked at 1280, 758 and 390 pixels wide)
