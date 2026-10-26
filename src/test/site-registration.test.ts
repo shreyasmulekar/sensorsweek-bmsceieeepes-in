@@ -95,9 +95,9 @@ describe("Main contact address", () => {
 });
 
 describe("Week dates", () => {
-  it("shows the week running 30 Oct to 6 Nov 2026", () => {
-    expect(DATES_LABEL).toBe("30 Oct – 6 Nov 2026");
-    expect(DATES_LABEL).not.toContain("5 Nov 2026");
+  it("shows the week running 30 Oct to 5 Nov 2026", () => {
+    expect(DATES_LABEL).toBe("30 Oct – 5 Nov 2026");
+    expect(DATES_LABEL).not.toContain("6 Nov 2026");
   });
 });
 
