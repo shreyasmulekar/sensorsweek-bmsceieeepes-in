@@ -40,7 +40,7 @@ function Index() {
       <section className="relative flex min-h-[80vh] items-center overflow-hidden">
         <img src={heroBg} alt="" width={1920} height={1088} className="absolute inset-0 -z-10 h-full w-full animate-kenburns object-cover opacity-45" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-        <GridFloor className="opacity-30" />
+        <GridFloor className="opacity-45" />
         <div className="mx-auto w-full max-w-6xl px-4 py-16 text-center">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="neon-text text-[10px] uppercase tracking-[0.3em] sm:text-xs md:text-sm">
             BMSCE IEEE PES & Sensors Council presents

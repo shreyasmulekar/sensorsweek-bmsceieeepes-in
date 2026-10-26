@@ -3,7 +3,9 @@ import { useState } from "react";
 import { motion, type MotionStyle } from "motion/react";
 import { Calendar, Clock, MapPin, Users, Trophy, Ticket, Phone, Sparkles, Share2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { REGISTER_URL, isTba, type EventItem } from "@/lib/site";
+import { EVENT_ACCENT, REGISTER_URL, eventStatus, isTba, type EventItem } from "@/lib/site";
+import { useNow } from "@/lib/useNow";
+import { EventCountdown } from "./EventCountdown";
 import { shareEvent } from "@/lib/share";
 import { RegisterButton } from "./Layout";
 import { EventPoster } from "./EventPoster";
@@ -14,14 +16,6 @@ const STATUS: Record<EventItem["status"], string> = {
   "EVENT FULL": "bg-destructive/20 text-destructive",
   "REGISTRATIONS CLOSED": "bg-muted text-muted-foreground",
   "COMING SOON": "bg-secondary text-muted-foreground",
-};
-
-// Each event gets its own neon accent so the listings read as distinct.
-const ACCENT: Record<string, string> = {
-  "hardware-hackathon": "var(--ev-cyan)",
-  "sensors-fusion": "var(--ev-violet)",
-  kernelx: "var(--ev-amber)",
-  "gesture-ai": "var(--ev-lime)",
 };
 
 function Meta({ e }: { e: EventItem }) {
@@ -48,29 +42,32 @@ function Meta({ e }: { e: EventItem }) {
 
 export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number; wide?: boolean }) {
   const [more, setMore] = useState(false);
-  const open = e.status === "REGISTRATIONS OPEN" || e.status === "CLOSING SOON";
+  const now = useNow();
+  const status = eventStatus(e, now);
+  const open = status === "REGISTRATIONS OPEN" || status === "CLOSING SOON";
   const canRegister = open && !!e.registerUrl;
   return (
     <motion.article
       initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
       whileHover={{ y: -6 }}
-      style={{ "--ev": ACCENT[e.slug] ?? "var(--ev-cyan)" } as MotionStyle}
+      style={{ "--ev": EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)" } as MotionStyle}
       className={`event-card glass group flex h-full flex-col rounded-2xl p-5 sm:p-6 ${e.flagship ? "neon-frame" : ""}`}
     >
+      <div className={wide ? "md:flex md:items-center md:gap-8" : ""}>
       {e.poster ? (
-        <div className="ev-drop sweep -mx-5 -mt-5 mb-5 shrink-0 sm:-mx-6 sm:-mt-6 sm:mb-6">
-          <EventPoster src={e.poster} name={e.name} />
+        <div className={`ev-drop sweep -mx-5 -mt-5 mb-5 shrink-0 sm:-mx-6 sm:-mt-6 sm:mb-6 ${wide ? "md:mx-0 md:mb-0 md:w-[44%]" : ""}`}>
+          <EventPoster src={e.poster} name={e.name} frameClass={wide ? "aspect-[4/3] md:aspect-square" : "aspect-[4/3]"} />
         </div>
       ) : null}
-      <div className={`min-w-0 ${wide ? "md:flex md:items-start md:justify-between md:gap-10" : ""}`}>
+      <div className={`min-w-0 flex-1 ${wide ? "md:flex md:items-start md:justify-between md:gap-10" : ""}`}>
         <div className="min-w-0 md:flex-1">
           <div className="flex items-start justify-between gap-3">
             <span className={`transition-transform group-hover:scale-125 group-hover:rotate-12 ${wide ? "text-5xl" : "text-4xl"}`}>{e.icon}</span>
             <div className="flex shrink-0 flex-col items-end gap-2">
               {e.flagship && <span className="animate-flicker rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-semibold tracking-wider text-primary-foreground shadow-glow">FLAGSHIP</span>}
-              <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wider ${STATUS[e.status]}`}>
+              <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wider ${STATUS[status]}`}>
                 {open && <span aria-hidden className="animate-blink inline-block size-1.5 rounded-full bg-current" />}
-                {e.status}
+                {status}
               </span>
             </div>
           </div>
@@ -86,6 +83,9 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
           <Meta e={e} />
         </div>
       </div>
+      </div>
+
+      <EventCountdown e={e} />
 
       {more && (
         <ul id={`details-${e.slug}`} className="mt-4 space-y-2 text-sm">

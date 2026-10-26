@@ -95,7 +95,7 @@ function ChatWindow() {
         aria-expanded={open}
         aria-controls="sensei-chat"
         onClick={() => (open ? close() : setOpen(true))}
-        className="fixed bottom-5 right-5 z-50 size-14 rounded-full bg-gradient-primary text-primary-foreground shadow-glow"
+        className="fixed bottom-4 right-4 z-50 size-12 rounded-full bg-gradient-primary text-primary-foreground shadow-glow sm:bottom-5 sm:right-5 sm:size-14"
       >
         {open ? <X /> : <Bot />}
       </Button>

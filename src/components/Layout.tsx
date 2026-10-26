@@ -97,7 +97,7 @@ export function Header() {
           <SoundToggle />
           <RegisterButton className="px-4 py-2 text-xs sm:px-5 sm:py-2 sm:text-sm" />
         </nav>
-        <button className="grid size-10 place-items-center rounded-lg border border-border transition-colors hover:bg-secondary sm:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => { setOpen(!open); (!open ? sfx.open : sfx.close)(); }}>{open ? <X className="size-5" /> : <Menu className="size-5" />}</button>
+        <button className="grid size-10 place-items-center rounded-lg border border-primary/50 text-primary shadow-glow transition-colors hover:bg-secondary sm:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => { setOpen(!open); (!open ? sfx.open : sfx.close)(); }}>{open ? <X className="size-5" /> : <Menu className="size-5" />}</button>
       </div>
 
       <AnimatePresence>
@@ -106,20 +106,20 @@ export function Header() {
             <motion.button
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               aria-label="Close menu" onClick={() => setOpen(false)}
-              className="fixed inset-0 z-30 bg-background/85 backdrop-blur-sm sm:hidden"
+              className="fixed inset-0 z-30 bg-background/97 backdrop-blur-md sm:hidden"
             />
             <motion.nav
               initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.2 }}
               ref={panel}
               aria-label="Main"
-              className="glass-header absolute inset-x-0 top-full z-40 flex flex-col gap-1 border-b border-border px-4 pb-6 pt-3 sm:hidden"
+              className="absolute inset-x-0 top-full z-40 flex flex-col gap-1 border-b border-primary/30 bg-background/97 px-4 pb-6 pt-3 backdrop-blur-md sm:hidden"
             >
               {NAV.map((n) => (
                 <Link
                   key={n.to} to={n.to} activeOptions={{ exact: true }}
                   activeProps={{ className: "bg-primary/15 text-primary", "aria-current": "page" }}
-                  className="rounded-xl px-4 py-3 text-base font-medium transition-colors hover:bg-secondary"
+                  className="rounded-xl px-4 py-3 text-base font-medium transition-colors hover:bg-secondary hover:neon-text"
                   onClick={() => setOpen(false)}
                 >{n.label}</Link>
               ))}
@@ -157,7 +157,7 @@ export function Footer() {
       {SPONSORS.length > 0 && (
         <div className="mx-auto max-w-6xl px-4 pb-8">
           <div className="hud cyber-clip relative overflow-hidden px-4 py-6 sm:px-8">
-            <div className="grid-floor absolute inset-x-0 bottom-0 h-28 opacity-25" />
+            <div className="grid-floor absolute inset-x-0 bottom-0 h-32 opacity-50" />
             <div className="relative text-center">
               <p className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.3em] text-primary">
                 <span aria-hidden className="h-px w-8 bg-primary/50" />
@@ -173,7 +173,7 @@ export function Footer() {
             </div>
             <div className="relative mt-6 grid gap-4 sm:grid-cols-3">
               {SPONSORS.map((name) => (
-                <div key={name} className="sweep group border border-border/60 bg-background/60 transition-shadow hover:shadow-glow">
+                <div key={name} className="sweep group border border-primary/40 bg-background/60 shadow-glow transition-shadow">
                   <div className="ticks flex h-20 min-w-0 items-center justify-center px-4 py-3">
                     {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="max-h-12 w-full max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" />}
                     {!SPONSOR_LOGOS[name] && <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>}

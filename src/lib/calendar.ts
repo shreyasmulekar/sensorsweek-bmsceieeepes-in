@@ -1,5 +1,5 @@
 // Calendar helpers shared by the page and its tests. Browser-safe: no server code here.
-import { EVENTS, type EventItem } from "@/lib/site";
+import { EVENTS, eventEndMs, type EventItem } from "@/lib/site";
 
 export type CalEntry = {
   id: string;
@@ -10,6 +10,7 @@ export type CalEntry = {
   venue: string;
   fee: string;
   registerUrl?: string | undefined;
+  endMs?: number | null;
   custom: boolean;
 };
 
@@ -66,6 +67,7 @@ export function entriesFromEvents(events: EventItem[] = EVENTS): CalEntry[] {
         venue: e.venue,
         fee: e.fee,
         registerUrl: e.registerUrl,
+        endMs: eventEndMs(e),
         custom: false,
       });
     }
