@@ -370,6 +370,21 @@
   }
   &:hover::after { animation-duration: 2.6s; }
 }
+/* Pulsing neon halo behind an event card. It lives on its own layer and only
+   fades, so the glow stays alive without repainting the card every frame. */
+@keyframes aurafade {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@utility ev-aura {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 30px -6px color-mix(in oklab, var(--ev) 65%, transparent),
+    0 0 60px -20px color-mix(in oklab, var(--ev) 45%, transparent);
+  animation: aurafade 5.5s ease-in-out infinite;
+}
 @utility ev-drop {
   box-shadow: 0 14px 30px -18px color-mix(in oklab, var(--ev) 70%, transparent);
 }

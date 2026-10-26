@@ -142,6 +142,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
           <span className="text-xs text-muted-foreground">{e.registerUrl ? "Not open" : "Registrations opening soon"}</span>
         )}
       </div>
-    </motion.article>
+      </motion.article>
+    </div>
   );
 }
