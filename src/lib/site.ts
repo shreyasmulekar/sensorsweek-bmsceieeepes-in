@@ -211,9 +211,13 @@ export function eventStartMs(e: EventItem) {
   const day = e.day?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
   const time = e.time?.match(START_TIME);
   if (!day || !time) return null;
-  let hour = Number(time[1]) % 12;
-  if (time[3].toUpperCase() === "PM") hour += 12;
-  const minute = time[2] ? Number(time[2]) : 0;
+  const hourText = time[1] ?? "";
+  const minuteText = time[2] ?? "";
+  const meridiem = (time[3] ?? "").toUpperCase();
+  if (!hourText || !meridiem) return null;
+  let hour = Number(hourText) % 12;
+  if (meridiem === "PM") hour += 12;
+  const minute = minuteText ? Number(minuteText) : 0;
   // Bengaluru is UTC+5:30, so the countdown reads the same for every visitor.
   return Date.UTC(Number(day[1]), Number(day[2]) - 1, Number(day[3]), hour, minute) - (5 * 60 + 30) * 60000;
 }
