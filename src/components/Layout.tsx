@@ -88,9 +88,9 @@ export function Header() {
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-2.5 sm:flex sm:justify-between sm:py-3">
         <Link to="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3" onClick={() => setOpen(false)}>
           <Logo />
-          <span className="min-w-0 truncate font-display text-sm font-bold sm:text-lg"><span className="text-gradient">SENSORS</span> WEEK</span>
+          <span className="min-w-0 truncate font-display text-sm font-bold sm:text-base md:text-lg"><span className="text-gradient">SENSORS</span> WEEK</span>
         </Link>
-        <nav aria-label="Main" className="hidden items-center gap-5 sm:flex md:gap-6">
+        <nav aria-label="Main" className="hidden items-center gap-4 sm:flex lg:gap-6">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} activeOptions={{ exact: true }} activeProps={{ className: "neon-text", "aria-current": "page" }} className="text-sm text-muted-foreground transition-colors hover:text-primary hover:neon-text">{n.label}</Link>
           ))}

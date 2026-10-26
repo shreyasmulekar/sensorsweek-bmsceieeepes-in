@@ -49,7 +49,7 @@ function Index() {
             <motion.span initial={{ opacity: 0, scale: 0.5, rotate: -14 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ delay: 0.15, type: "spring" }} className="shrink-0">
               <Logo size="size-16 sm:size-20 md:size-28" rounded="rounded-2xl" className="neon-frame" />
             </motion.span>
-            <h1 className="mx-auto max-w-4xl text-[2.1rem] font-black leading-[1.05] sm:text-6xl md:text-8xl">
+            <h1 className="max-w-4xl text-[2.1rem] font-black leading-[1.05] sm:text-6xl md:text-8xl">
             {TITLE.split(" ").map((w, wi) => (
               <span key={w} className="block whitespace-nowrap">
                 {w.split("").map((ch, i) => (
