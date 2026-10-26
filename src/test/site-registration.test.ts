@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DATES_LABEL, DEFAULT_REGISTER_URL, EMAIL, EVENTS, FAQS, HACKATHON_REGISTER_URL, REGISTER_URL, SCHEDULE } from "@/lib/site";
+import { DATES_LABEL, DEFAULT_REGISTER_URL, EMAIL, EVENT_START, EVENTS, FAQS, HACKATHON_REGISTER_URL, NEXT_EVENT_LABEL, REGISTER_URL, SCHEDULE } from "@/lib/site";
 
 describe("Confirmed venues and registration destinations", () => {
   it("shows the poster-confirmed AI-ML Seminar Hall venue for SENSORS FUSION", () => {
@@ -98,5 +98,24 @@ describe("Week dates", () => {
   it("shows the week running 30 Oct to 6 Nov 2026", () => {
     expect(DATES_LABEL).toBe("30 Oct – 6 Nov 2026");
     expect(DATES_LABEL).not.toContain("5 Nov 2026");
+  });
+});
+
+describe("Hackathon Round 1 idea deadline", () => {
+  const ideaItem = SCHEDULE.flatMap((d) => d.items).find((e) => /Round 1 idea submission/i.test(e.n));
+
+  it("closes idea submissions at 1:00 PM on Tue 27 Oct 2026", () => {
+    expect(EVENT_START.getTime()).toBe(new Date("2026-10-27T13:00:00+05:30").getTime());
+    expect(NEXT_EVENT_LABEL).toBe("ROUND 1 DEADLINE · Tue 27 Oct, 1:00 PM");
+    expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.note).toContain("1:00 PM, 27 Oct 2026");
+    expect(ideaItem?.t).toBe("By 1:00 PM");
+    expect(SCHEDULE.find((d) => d.items === (ideaItem ? [ideaItem] : []))?.day).toBe("Tue, 27 Oct");
+  });
+
+  it("keeps no trace of the old 26 Oct 11:59 PM deadline", () => {
+    expect(/11:59|26 Oct|Mon, 26/i.test(NEXT_EVENT_LABEL)).toBe(false);
+    expect(EVENTS.some((e) => /11:59|26 Oct/i.test(e.note ?? ""))).toBe(false);
+    expect(FAQS.some((f) => /11:59|26 Oct/i.test(f.a))).toBe(false);
+    expect(SCHEDULE.some((d) => /11:59|Mon, 26 Oct/i.test(d.day + d.items.map((i) => i.t + i.n).join(" ")))).toBe(false);
   });
 });
