@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Instagram, Mail, MapPin, Volume2, VolumeX } from "lucide-react";
-import { DEFAULT_REGISTER_URL, INSTAGRAM, EMAIL, SPONSORS, SPONSOR_LOGOS } from "@/lib/site";
+import { DEFAULT_REGISTER_URL, INSTAGRAM, EMAIL, SPONSORS, SPONSOR_LOGOS, EVENTS, NEXT_EVENT_LABEL } from "@/lib/site";
 import logoAsset from "@/assets/logo.png.asset.json";
 import { isMuted, onMuteChange, setMuted, sfx } from "@/lib/sound";
 
@@ -15,6 +15,9 @@ const NAV = [
   { to: "/schedule", label: "Schedule" },
   { to: "/faq", label: "FAQ" },
 ] as const;
+
+// Scrolling footer ticker: every event with its date, plus the current deadline.
+const TICKER = [...EVENTS.map((e) => `${e.name} · ${e.date}`), NEXT_EVENT_LABEL];
 
 function Logo({ size = "size-9", rounded = "rounded-lg" }: { size?: string; rounded?: string }) {
   return (
@@ -30,7 +33,7 @@ export function RegisterButton({ className = "", children = "Register Now", href
       href={href} target="_blank" rel="noreferrer"
       onClick={() => sfx.launch()}
       whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.95 }}
-      className={`inline-flex items-center justify-center rounded-full bg-gradient-primary px-6 py-3 font-semibold text-primary-foreground shadow-glow ${className}`}
+      className={`sweep cyber-clip group inline-flex items-center justify-center bg-gradient-primary px-6 py-3 font-semibold text-primary-foreground shadow-glow transition-shadow hover:shadow-[0_0_28px_oklch(0.82_0.14_200/0.6)] ${className}`}
     >{children}</motion.a>
   );
 }
@@ -89,7 +92,7 @@ export function Header() {
         </Link>
         <nav aria-label="Main" className="hidden items-center gap-5 sm:flex md:gap-6">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} activeOptions={{ exact: true }} activeProps={{ className: "text-primary", "aria-current": "page" }} className="text-sm text-muted-foreground transition-colors hover:text-primary">{n.label}</Link>
+            <Link key={n.to} to={n.to} activeOptions={{ exact: true }} activeProps={{ className: "neon-text", "aria-current": "page" }} className="text-sm text-muted-foreground transition-colors hover:text-primary hover:neon-text">{n.label}</Link>
           ))}
           <SoundToggle />
           <RegisterButton className="px-4 py-2 text-xs sm:px-5 sm:py-2 sm:text-sm" />

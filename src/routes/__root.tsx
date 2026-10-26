@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { TechBackground } from "@/components/TechBackground";
+import { CyberFx } from "@/components/CyberFx";
 import { Header, Footer } from "@/components/Layout";
 import { ChatBot } from "@/components/ChatBot";
 import { Toaster } from "@/components/ui/sonner";
@@ -128,6 +129,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <TechBackground />
+      <CyberFx />
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:font-semibold focus:text-primary-foreground">Skip to content</a>
       <Header />
       <main id="main"><Outlet /></main>
