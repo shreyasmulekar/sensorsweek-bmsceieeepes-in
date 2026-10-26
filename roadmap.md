@@ -4,7 +4,7 @@
 - [x] Re-check recurring chatbot error: published site and responding preview tab both answered the deadline question without errors; second preview viewer did not respond, so its screenshot’s cause remains unverified.
 - [x] Publish the verified chatbot updates (deployment scheduled).
 - [x] Add Insights IAS with its verified official logo; publish the sponsor update.
-- [ ] Add Mystic Grace’s logo from Anil’s upload to the footer sponsor strip.
+- [x] Add Mystic Grace’s logo from Anil’s upload to the footer sponsor strip.
 - [x] Remove the repeated Insights IAS name beside its logo and publish (deployment requested).
 
 - [x] Check poster QR codes and match each event's registration button to the decoded Google Form (FUSION and KERNELX match; ENCLAVE and GESTURE AI have no QR codes)
@@ -35,7 +35,7 @@
 - [x] Confirm the Sensors Week dates — Anil confirmed 30 Oct – 5 Nov 2026; shown in the hero, footer and chatbot
 - [x] Extend the Sensors Week range to 30 Oct – 6 Nov 2026 (hero badge, browser-tab description, chatbot)
 - [x] Add Mystic Grace as a sponsor (shown in the footer credit strip)
-- [ ] Add any further sponsor names Anil sends
+- [x] Add any further sponsor names Anil sends
 - [x] Add KERNELX — Real-Time Systems & FreeRTOS workshop (3–4 Nov, 2:30–5:00 PM, ₹130/₹180, own form and contacts)
 - [x] Add GESTURE AI — TinyML workshop on ESP32 & MPU6050 (5 Nov, 2:00–5:00 PM, ₹90/₹130, own form and contacts)
 - [x] Attach the GESTURE AI poster to its event (card and detail page)
@@ -50,14 +50,14 @@
 - [x] Move the hackathon Round 1 idea deadline to 11:59 PM on Tue 27 Oct 2026 (hero badge, countdown, schedule, event page, chatbot)
 - [x] Change the week range shown in the hero badge from 6 Nov to 5 Nov 2026 (DATES_LABEL, meta, chatbot, tests)
 - [x] Publish again so the 5 Nov range and the 27 Oct deadline reach visitors on the published site
-- [ ] Publish the site with the Lush Knots and Mystic Grace logos.
-- [ ] Add cyberpunk visual effects across the design, including the sponsor strip (scanlines, neon glow, glitch headings, animated grid, HUD panels), then publish.
-- [ ] Put the site logo beside the big SENSORS WEEK headline on the home page.
-- [ ] Make every event card glow with colour, animations and effects so the events catch the eye.
-- [ ] Sponsor strip: thank-you note on top, "Sponsors Network" heading, all sponsors lined up in one even symmetric row.
-- [ ] Sponsor note reads exactly "Special thanks to our sponsors".
-- [ ] Add a live countdown for every event.
-- [ ] Make the effects just as eye-catching for phone users.
-- [ ] Show REGISTRATIONS CLOSED automatically once an event's date and time have passed.
-- [ ] Make posters fill their frame (no dead space) and look more eye-catching.
-- [ ] Show the whole poster (no cropping), poster on top and details below.
+- [x] Publish the site with the Lush Knots and Mystic Grace logos.
+- [x] Add cyberpunk visual effects across the design, including the sponsor strip (scanlines, neon glow, glitch headings, animated grid, HUD panels), then publish.
+- [x] Put the site logo beside the big SENSORS WEEK headline on the home page.
+- [x] Make every event card glow with colour, animations and effects so the events catch the eye.
+- [x] Sponsor strip: thank-you note on top, "Sponsors Network" heading, all sponsors lined up in one even symmetric row.
+- [x] Sponsor note reads exactly "Special thanks to our sponsors".
+- [x] Add a live countdown for every event.
+- [x] Make the effects just as eye-catching for phone users.
+- [x] Show REGISTRATIONS CLOSED automatically once an event's date and time have passed.
+- [x] Make posters fill their frame (no dead space) and look more eye-catching.
+- [x] Show the whole poster (no cropping), poster on top and details below.
