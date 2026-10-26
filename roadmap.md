@@ -51,3 +51,4 @@
 - [x] Change the week range shown in the hero badge from 6 Nov to 5 Nov 2026 (DATES_LABEL, meta, chatbot, tests)
 - [x] Publish again so the 5 Nov range and the 27 Oct deadline reach visitors on the published site
 - [ ] Publish the site with the Lush Knots and Mystic Grace logos.
+- [ ] Add cyberpunk visual effects across the design (scanlines, neon glow, glitch headings, animated grid), then publish.
