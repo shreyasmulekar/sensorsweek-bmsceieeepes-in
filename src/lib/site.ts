@@ -5,6 +5,7 @@ import kernelxPoster from "@/assets/kernelx.jpg.asset.json";
 import gestureAiPoster from "@/assets/gesture-ai.jpg.asset.json";
 import insightsLogo from "@/assets/insights-ias-logo.png.asset.json";
 import lushKnotsLogo from "@/assets/lush-knots-logo.png.asset.json";
+import mysticGraceLogo from "@/assets/mystic-grace-logo.png.asset.json";
 
 export const REGISTER_URL = "https://forms.gle/5bzWaxnJ652Bnoas7";
 export const HACKATHON_REGISTER_URL = "https://forms.gle/ZU6mkHBzoMkC7P3w8";
@@ -21,6 +22,7 @@ export const EMAIL = "ieee.pes@bmsce.ac.in";
 export const SPONSORS = ["Mystic Grace", "Insights IAS", "Lush Knots"];
 export const SPONSOR_LOGOS: Record<string, string> = {
   "Insights IAS": insightsLogo.url,
+  "Mystic Grace": mysticGraceLogo.url,
   "Lush Knots": lushKnotsLogo.url,
 };
 
