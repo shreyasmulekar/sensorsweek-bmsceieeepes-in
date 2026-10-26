@@ -47,7 +47,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
     <motion.article
       initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
       whileHover={{ y: -6 }}
-      style={{ "--ev": ACCENT[e.slug] ?? "var(--ev-cyan)" } as MotionStyle}
+      style={{ "--ev": EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)" } as MotionStyle}
       className={`event-card glass group flex h-full flex-col rounded-2xl p-5 sm:p-6 ${e.flagship ? "neon-frame" : ""}`}
     >
       {e.poster ? (
@@ -79,6 +79,8 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
           <Meta e={e} />
         </div>
       </div>
+
+      <EventCountdown e={e} />
 
       {more && (
         <ul id={`details-${e.slug}`} className="mt-4 space-y-2 text-sm">
