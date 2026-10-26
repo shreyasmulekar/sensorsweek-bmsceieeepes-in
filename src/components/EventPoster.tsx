@@ -1,4 +1,10 @@
-import type { EventPosterProps } from "./EventPoster.types";
+type EventPosterProps = {
+  src: string;
+  name: string;
+  eager?: boolean;
+  /** How tall the poster frame should be relative to its width. */
+  frameClass?: string;
+};
 
 /**
  * Event poster, cropped to its frame so no dead space shows.
