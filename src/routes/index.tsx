@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { Cpu, Radio, Zap, Wifi, Sparkles, CalendarDays } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-import { RegisterButton, SectionTitle } from "@/components/Layout";
+import { Logo, RegisterButton, SectionTitle } from "@/components/Layout";
 import { GridFloor } from "@/components/CyberFx";
 import { EventCard } from "@/components/EventCard";
 import { DATES_LABEL, DEFAULT_REGISTER_URL, EVENTS, EVENT_START, NEXT_EVENT_LABEL, type EventItem } from "@/lib/site";
@@ -45,7 +45,11 @@ function Index() {
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="neon-text text-[10px] uppercase tracking-[0.3em] sm:text-xs md:text-sm">
             BMSCE IEEE PES & Sensors Council presents
           </motion.p>
-          <h1 className="mx-auto mt-5 max-w-4xl text-[2.1rem] font-black leading-[1.05] sm:text-6xl md:text-8xl">
+          <div className="mt-5 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6 md:gap-10">
+            <motion.span initial={{ opacity: 0, scale: 0.5, rotate: -14 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ delay: 0.15, type: "spring" }} className="shrink-0">
+              <Logo size="size-16 sm:size-20 md:size-28" rounded="rounded-2xl" className="neon-frame" />
+            </motion.span>
+            <h1 className="mx-auto max-w-4xl text-[2.1rem] font-black leading-[1.05] sm:text-6xl md:text-8xl">
             {TITLE.split(" ").map((w, wi) => (
               <span key={w} className="block whitespace-nowrap">
                 {w.split("").map((ch, i) => (
@@ -56,7 +60,8 @@ function Index() {
               </span>
             ))}
             <motion.span initial={{ opacity: 0, scale: 2 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1.1 }} data-text="2026" className="glitch mt-2 block text-2xl sm:text-4xl md:text-5xl">2026</motion.span>
-          </h1>
+            </h1>
+          </div>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3 }} className="mx-auto mt-5 max-w-xl px-2 text-sm text-muted-foreground sm:text-base">
             A week of drones, robots and smart sensing, led by our flagship Hardware Hackathon. Build it, fly it, demo it.
           </motion.p>

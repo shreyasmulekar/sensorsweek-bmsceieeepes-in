@@ -19,9 +19,9 @@ const NAV = [
 // Scrolling footer ticker: every event with its date, plus the current deadline.
 const TICKER = [...EVENTS.map((e) => `${e.name} · ${e.date}`), NEXT_EVENT_LABEL];
 
-function Logo({ size = "size-9", rounded = "rounded-lg" }: { size?: string; rounded?: string }) {
+export function Logo({ size = "size-9 sm:size-10", rounded = "rounded-lg sm:rounded-xl", className = "" }: { size?: string; rounded?: string; className?: string }) {
   return (
-    <span className={`grid ${size} ${rounded} shrink-0 place-items-center overflow-hidden bg-white shadow-glow sm:size-10 sm:rounded-xl`}>
+    <span className={`grid ${size} ${rounded} ${className} shrink-0 place-items-center overflow-hidden bg-white shadow-glow`}>
       <img src={logo} alt="Sensors Week 2026 logo" width={40} height={40} className="h-full w-full object-contain" />
     </span>
   );
