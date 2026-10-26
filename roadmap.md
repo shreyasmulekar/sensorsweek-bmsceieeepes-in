@@ -53,3 +53,4 @@
 - [ ] Publish the site with the Lush Knots and Mystic Grace logos.
 - [ ] Add cyberpunk visual effects across the design, including the sponsor strip (scanlines, neon glow, glitch headings, animated grid, HUD panels), then publish.
 - [ ] Put the site logo beside the big SENSORS WEEK headline on the home page.
+- [ ] Make every event card glow with colour, animations and effects so the events catch the eye.
