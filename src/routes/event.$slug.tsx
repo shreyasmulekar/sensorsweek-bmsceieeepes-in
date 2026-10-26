@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowLeft, Calendar, Clock, MapPin, Phone, Share2, Sparkles, Ticket, Trophy, Users } from "lucide-react";
 import { RegisterButton } from "@/components/Layout";
-import { EVENTS, isTba, type EventItem } from "@/lib/site";
+import { EVENTS, eventEndMs, eventStatus, isTba, type EventItem } from "@/lib/site";
+import { useNow } from "@/lib/useNow";
 import { shareEvent } from "@/lib/share";
 import { EventPoster } from "@/components/EventPoster";
 import { EventCountdown } from "@/components/EventCountdown";
@@ -47,7 +48,11 @@ function EventPage() {
   const { slug } = Route.useParams();
   const e = EVENTS.find((x) => x.slug === slug);
   if (!e) throw notFound();
-  const open = e.status === "REGISTRATIONS OPEN" || e.status === "CLOSING SOON";
+  const now = useNow();
+  const status = eventStatus(e, now);
+  const open = status === "REGISTRATIONS OPEN" || status === "CLOSING SOON";
+  const end = eventEndMs(e);
+  const ended = now != null && end != null && now >= end;
   // Full link is only known in the browser, so fill it in after the page loads.
   const [url, setUrl] = useState("");
   useEffect(() => { setUrl(window.location.href); }, []);
@@ -111,7 +116,7 @@ function EventPage() {
           {open && e.registerUrl ? (
             <RegisterButton href={e.registerUrl} className="px-6 py-3 text-sm sm:text-base">Register Now</RegisterButton>
           ) : (
-            <span className="glass rounded-full px-4 py-3 text-sm text-muted-foreground">Registrations opening soon — we'll post updates on Instagram</span>
+            <span className="glass rounded-full px-4 py-3 text-sm text-muted-foreground">{ended ? "Registrations closed for this session — follow us on Instagram for the next one" : "Registrations opening soon — we'll post updates on Instagram"}</span>
           )}
           {e.brochure ? (
             <a href={e.brochure} target="_blank" rel="noreferrer" className="rounded-full border border-primary/50 px-5 py-3 text-sm font-semibold transition-colors hover:bg-primary/10">Brochure</a>

@@ -3,7 +3,8 @@ import { useState } from "react";
 import { motion, type MotionStyle } from "motion/react";
 import { Calendar, Clock, MapPin, Users, Trophy, Ticket, Phone, Sparkles, Share2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { EVENT_ACCENT, REGISTER_URL, isTba, type EventItem } from "@/lib/site";
+import { EVENT_ACCENT, REGISTER_URL, eventStatus, isTba, type EventItem } from "@/lib/site";
+import { useNow } from "@/lib/useNow";
 import { EventCountdown } from "./EventCountdown";
 import { shareEvent } from "@/lib/share";
 import { RegisterButton } from "./Layout";
@@ -41,7 +42,9 @@ function Meta({ e }: { e: EventItem }) {
 
 export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number; wide?: boolean }) {
   const [more, setMore] = useState(false);
-  const open = e.status === "REGISTRATIONS OPEN" || e.status === "CLOSING SOON";
+  const now = useNow();
+  const status = eventStatus(e, now);
+  const open = status === "REGISTRATIONS OPEN" || status === "CLOSING SOON";
   const canRegister = open && !!e.registerUrl;
   return (
     <motion.article
@@ -61,7 +64,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
             <span className={`transition-transform group-hover:scale-125 group-hover:rotate-12 ${wide ? "text-5xl" : "text-4xl"}`}>{e.icon}</span>
             <div className="flex shrink-0 flex-col items-end gap-2">
               {e.flagship && <span className="animate-flicker rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-semibold tracking-wider text-primary-foreground shadow-glow">FLAGSHIP</span>}
-              <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wider ${STATUS[e.status]}`}>
+              <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wider ${STATUS[status]}`}>
                 {open && <span aria-hidden className="animate-blink inline-block size-1.5 rounded-full bg-current" />}
                 {e.status}
               </span>
