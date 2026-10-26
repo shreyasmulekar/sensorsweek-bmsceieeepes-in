@@ -38,5 +38,5 @@
 - [x] Build a monthly calendar page wired to the real workshop dates, times, fees and registration links so it updates automatically (Calendar in the top menu; verified November 2026 shows all four events with their own forms)
 - [x] Give Anil a private add-event option on the calendar so he can list future workshops himself without editing code (hidden from visitors; his account needs the editor role granted by hand once he signs up)
 - [ ] Add a private sign-ups page showing how many registrations each workshop form has received, visible to Anil only (not linked anywhere, not visible to visitors)
-- [ ] Publish the site and connect sensorsweek.bmsceieeepes.in (needs Anil to publish, then add the domain in Project Settings)
-- [ ] Confirm the published site matches the preview (event pages, dates, registration links)
+- [x] Publish the site (live at sensorsweek-bmsceieeepes-in.lovable.app); connecting sensorsweek.bmsceieeepes.in still needs Anil to add it in Project Settings → Domains and set DNS
+- [x] Confirm the published site matches the preview (new 30 Oct – 6 Nov range, all four event forms, contact email, AI-ML Seminar Hall venue)
