@@ -204,22 +204,49 @@ export const EVENT_ACCENT: Record<string, string> = {
   "gesture-ai": "var(--ev-lime)",
 };
 
-const START_TIME = /\b(1[0-2]|[1-9])(?::([0-5]\d))?\s*(AM|PM)\b/i;
+const TIME_RE = /\b(1[0-2]|[1-9])(?::([0-5]\d))?\s*(AM|PM)\b/gi;
 
-/** Start instant of an event in Bengaluru time, or null when the details don't say. */
-export function eventStartMs(e: EventItem) {
-  const day = e.day?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  const time = e.time?.match(START_TIME);
-  if (!day || !time) return null;
-  const hourText = time[1] ?? "";
-  const minuteText = time[2] ?? "";
-  const meridiem = (time[3] ?? "").toUpperCase();
+/** First or last clock time mentioned in an event's time string, in 24-hour parts. */
+function timeParts(time: string, which: "first" | "last") {
+  const matches = [...time.matchAll(TIME_RE)];
+  const m = which === "first" ? matches[0] : matches[matches.length - 1];
+  if (!m) return null;
+  const hourText = m[1] ?? "";
+  const minuteText = m[2] ?? "";
+  const meridiem = (m[3] ?? "").toUpperCase();
   if (!hourText || !meridiem) return null;
   let hour = Number(hourText) % 12;
   if (meridiem === "PM") hour += 12;
-  const minute = minuteText ? Number(minuteText) : 0;
-  // Bengaluru is UTC+5:30, so the countdown reads the same for every visitor.
-  return Date.UTC(Number(day[1]), Number(day[2]) - 1, Number(day[3]), hour, minute) - (5 * 60 + 30) * 60000;
+  return { hour, minute: minuteText ? Number(minuteText) : 0 };
+}
+
+function instantMs(day: string | undefined, hour: number, minute: number) {
+  const d = day?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!d) return null;
+  // Bengaluru is UTC+5:30, so times read the same for every visitor.
+  return Date.UTC(Number(d[1]), Number(d[2]) - 1, Number(d[3]), hour, minute) - (5 * 60 + 30) * 60000;
+}
+
+/** Start instant of an event in Bengaluru time, or null when the details don't say. */
+export function eventStartMs(e: EventItem) {
+  const t = e.time ? timeParts(e.time, "first") : null;
+  return t ? instantMs(e.day, t.hour, t.minute) : null;
+}
+
+/** Moment an event finishes — the last listed time on its final day. */
+export function eventEndMs(e: EventItem) {
+  const t = e.time ? timeParts(e.time, "last") : null;
+  return t ? instantMs(e.endDay ?? e.day, t.hour, t.minute) : null;
+}
+
+/**
+ * Status shown on the site. Once an event's date and time have passed,
+ * registration closes itself — nobody has to remember to edit the page.
+ */
+export function eventStatus(e: EventItem, now: number | null): EventItem["status"] {
+  const end = eventEndMs(e);
+  if (now != null && end != null && now >= end) return "REGISTRATIONS CLOSED";
+  return e.status;
 }
 
 export const SCHEDULE = [
