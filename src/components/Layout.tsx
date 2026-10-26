@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Instagram, Mail, MapPin, Volume2, VolumeX } from "lucide-react";
-import { DEFAULT_REGISTER_URL, INSTAGRAM, EMAIL, SPONSORS, SPONSOR_LOGOS } from "@/lib/site";
+import { DEFAULT_REGISTER_URL, INSTAGRAM, EMAIL, SPONSORS, SPONSOR_LOGOS, EVENTS, NEXT_EVENT_LABEL } from "@/lib/site";
 import logoAsset from "@/assets/logo.png.asset.json";
 import { isMuted, onMuteChange, setMuted, sfx } from "@/lib/sound";
 
@@ -16,9 +16,12 @@ const NAV = [
   { to: "/faq", label: "FAQ" },
 ] as const;
 
-function Logo({ size = "size-9", rounded = "rounded-lg" }: { size?: string; rounded?: string }) {
+// Scrolling footer ticker: every event with its date, plus the current deadline.
+const TICKER = [...EVENTS.map((e) => `${e.name} · ${e.date}`), NEXT_EVENT_LABEL];
+
+export function Logo({ size = "size-9 sm:size-10", rounded = "rounded-lg sm:rounded-xl", className = "" }: { size?: string; rounded?: string; className?: string }) {
   return (
-    <span className={`grid ${size} ${rounded} shrink-0 place-items-center overflow-hidden bg-white shadow-glow sm:size-10 sm:rounded-xl`}>
+    <span className={`grid ${size} ${rounded} ${className} shrink-0 place-items-center overflow-hidden bg-white shadow-glow`}>
       <img src={logo} alt="Sensors Week 2026 logo" width={40} height={40} className="h-full w-full object-contain" />
     </span>
   );
@@ -30,7 +33,7 @@ export function RegisterButton({ className = "", children = "Register Now", href
       href={href} target="_blank" rel="noreferrer"
       onClick={() => sfx.launch()}
       whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.95 }}
-      className={`inline-flex items-center justify-center rounded-full bg-gradient-primary px-6 py-3 font-semibold text-primary-foreground shadow-glow ${className}`}
+      className={`sweep cyber-clip group inline-flex items-center justify-center bg-gradient-primary px-6 py-3 font-semibold text-primary-foreground shadow-glow transition-shadow hover:shadow-[0_0_28px_oklch(0.82_0.14_200/0.6)] ${className}`}
     >{children}</motion.a>
   );
 }
@@ -83,13 +86,13 @@ export function Header() {
   return (
     <header className="glass-header sticky top-0 z-40">
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-2.5 sm:flex sm:justify-between sm:py-3">
-        <Link to="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3" onClick={() => setOpen(false)}>
+        <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-3" onClick={() => setOpen(false)}>
           <Logo />
-          <span className="min-w-0 truncate font-display text-sm font-bold sm:text-lg"><span className="text-gradient">SENSORS</span> WEEK</span>
+          <span className="min-w-0 max-sm:truncate font-display text-sm font-bold sm:whitespace-nowrap sm:text-base md:text-lg"><span className="text-gradient">SENSORS</span> WEEK</span>
         </Link>
-        <nav aria-label="Main" className="hidden items-center gap-5 sm:flex md:gap-6">
+        <nav aria-label="Main" className="hidden items-center gap-4 sm:flex lg:gap-6">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} activeOptions={{ exact: true }} activeProps={{ className: "text-primary", "aria-current": "page" }} className="text-sm text-muted-foreground transition-colors hover:text-primary">{n.label}</Link>
+            <Link key={n.to} to={n.to} activeOptions={{ exact: true }} activeProps={{ className: "neon-text", "aria-current": "page" }} className="text-sm text-muted-foreground transition-colors hover:text-primary hover:neon-text">{n.label}</Link>
           ))}
           <SoundToggle />
           <RegisterButton className="px-4 py-2 text-xs sm:px-5 sm:py-2 sm:text-sm" />
@@ -152,13 +155,42 @@ export function Footer() {
         </div>
       </div>
       {SPONSORS.length > 0 && (
-        <div className="mx-auto max-w-6xl px-4 pb-6 text-center">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">With thanks to our sponsors</p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
-            {SPONSORS.map((name) => <div key={name} className="flex min-w-0 flex-wrap items-center justify-center gap-3">
-              {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="h-12 w-44 rounded-sm bg-brand-surface object-contain p-1" loading="lazy" />}
-              {!SPONSOR_LOGOS[name] && <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>}
-            </div>)}
+        <div className="mx-auto max-w-6xl px-4 pb-8">
+          <div className="hud cyber-clip relative overflow-hidden px-4 py-6 sm:px-8">
+            <div className="grid-floor absolute inset-x-0 bottom-0 h-28 opacity-25" />
+            <div className="relative text-center">
+              <p className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.3em] text-primary">
+                <span aria-hidden className="h-px w-8 bg-primary/50" />
+                <span className="flex items-center gap-2">
+                  <span aria-hidden className="animate-blink inline-block size-1.5 rounded-full bg-primary shadow-glow" />
+                  Sponsors Network
+                </span>
+                <span aria-hidden className="h-px w-8 bg-primary/50" />
+              </p>
+              <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
+                Thank you to our sponsors for backing Sensors Week 2026 and helping students build, fly and demo.
+              </p>
+            </div>
+            <div className="relative mt-6 grid gap-4 sm:grid-cols-3">
+              {SPONSORS.map((name) => (
+                <div key={name} className="sweep group border border-border/60 bg-background/60 transition-shadow hover:shadow-glow">
+                  <div className="ticks flex h-20 min-w-0 items-center justify-center px-4 py-3">
+                    {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="max-h-12 w-full max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" />}
+                    {!SPONSOR_LOGOS[name] && <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-4 overflow-hidden rounded-full border border-border/50 bg-background/50 py-1.5">
+            <div className="animate-ticker flex w-max items-center gap-10 whitespace-nowrap pl-10 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+              {[...TICKER, ...TICKER].map((t, i) => (
+                <span key={`${t}-${i}`} className="flex items-center gap-10">
+                  <span className={t === NEXT_EVENT_LABEL ? "text-neon" : "text-primary"}>{t}</span>
+                  <span aria-hidden className="text-primary/40">//</span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -170,8 +202,10 @@ export function Footer() {
 export function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
   return (
     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-8 text-center sm:mb-10">
-      <p className="text-[10px] uppercase tracking-[0.3em] text-primary sm:text-xs">{kicker}</p>
-      <h2 className="mt-2 text-2xl font-bold sm:text-3xl md:text-4xl">{title}</h2>
+      <p className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.3em] text-primary sm:text-xs">
+        <span aria-hidden className="inline-block h-px w-6 bg-primary/50" />{kicker}<span aria-hidden className="inline-block h-px w-6 bg-primary/50" />
+      </p>
+      <h2 data-text={title} className="glitch mt-2 text-2xl font-bold sm:text-3xl md:text-4xl">{title}</h2>
     </motion.div>
   );
 }
