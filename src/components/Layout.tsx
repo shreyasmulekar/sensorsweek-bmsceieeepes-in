@@ -155,13 +155,33 @@ export function Footer() {
         </div>
       </div>
       {SPONSORS.length > 0 && (
-        <div className="mx-auto max-w-6xl px-4 pb-6 text-center">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">With thanks to our sponsors</p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
-            {SPONSORS.map((name) => <div key={name} className="flex min-w-0 flex-wrap items-center justify-center gap-3">
-              {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="h-12 w-auto max-w-[180px] rounded-lg object-contain" loading="lazy" />}
-              {!SPONSOR_LOGOS[name] && <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>}
-            </div>)}
+        <div className="mx-auto max-w-6xl px-4 pb-8">
+          <div className="hud cyber-clip relative overflow-hidden px-4 py-5 sm:px-8">
+            <div className="grid-floor absolute inset-x-0 bottom-0 h-28 opacity-25" />
+            <div className="relative flex flex-wrap items-center justify-center gap-x-8 gap-y-6">
+              <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-primary">
+                <span className="animate-blink inline-block size-1.5 rounded-full bg-primary" />
+                Sponsor network
+              </p>
+              {SPONSORS.map((name) => (
+                <div key={name} className="sweep group border border-border/60 bg-background/60 transition-shadow hover:shadow-glow">
+                  <div className="ticks flex min-w-0 flex-wrap items-center justify-center px-4 py-3">
+                    {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="h-12 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" />}
+                    {!SPONSOR_LOGOS[name] && <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-4 overflow-hidden rounded-full border border-border/50 bg-background/50 py-1.5">
+            <div className="animate-ticker flex w-max items-center gap-10 whitespace-nowrap pl-10 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+              {[...TICKER, ...TICKER].map((t, i) => (
+                <span key={`${t}-${i}`} className="flex items-center gap-10">
+                  <span className={t === NEXT_EVENT_LABEL ? "text-neon" : "text-primary"}>{t}</span>
+                  <span aria-hidden className="text-primary/40">//</span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -173,8 +193,10 @@ export function Footer() {
 export function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
   return (
     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-8 text-center sm:mb-10">
-      <p className="text-[10px] uppercase tracking-[0.3em] text-primary sm:text-xs">{kicker}</p>
-      <h2 className="mt-2 text-2xl font-bold sm:text-3xl md:text-4xl">{title}</h2>
+      <p className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.3em] text-primary sm:text-xs">
+        <span aria-hidden className="inline-block h-px w-6 bg-primary/50" />{kicker}<span aria-hidden className="inline-block h-px w-6 bg-primary/50" />
+      </p>
+      <h2 data-text={title} className="glitch mt-2 text-2xl font-bold sm:text-3xl md:text-4xl">{title}</h2>
     </motion.div>
   );
 }

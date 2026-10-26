@@ -46,7 +46,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
     <motion.article
       initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
       whileHover={{ y: -6 }}
-      className={`glass group flex h-full flex-col rounded-2xl p-5 transition-shadow hover:shadow-glow sm:p-6 ${e.flagship ? "ring-1 ring-primary/50" : ""}`}
+      className={`glass ticks group relative flex h-full flex-col rounded-2xl p-5 transition-shadow hover:shadow-glow sm:p-6 ${e.flagship ? "neon-frame" : ""}`}
     >
       {e.poster ? (
         <div className="-mx-5 -mt-5 mb-5 shrink-0 sm:-mx-6 sm:-mt-6 sm:mb-6">
