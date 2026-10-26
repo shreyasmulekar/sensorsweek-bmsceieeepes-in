@@ -55,3 +55,4 @@
 - [ ] Put the site logo beside the big SENSORS WEEK headline on the home page.
 - [ ] Make every event card glow with colour, animations and effects so the events catch the eye.
 - [ ] Sponsor strip: thank-you note on top, "Sponsors Network" heading, all sponsors lined up in one even symmetric row.
+- [ ] Sponsor note reads exactly "Special thanks to our sponsors".
