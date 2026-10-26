@@ -1,6 +1,7 @@
 # Sensors Week 2026 — task list
 
 - [x] Repair Sensei error handling and verify event questions, follow-ups, general queries and failure recovery.
+- [ ] Reproduce the recurring chatbot error in Anil’s preview and fix its specific cause.
 - [x] Publish the verified chatbot updates (deployment scheduled).
 - [ ] Add Insights IAS and source official sponsor logos, then publish the sponsor update.
 
