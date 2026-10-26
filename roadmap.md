@@ -4,7 +4,7 @@
 - [x] Re-check recurring chatbot error: published site and responding preview tab both answered the deadline question without errors; second preview viewer did not respond, so its screenshot’s cause remains unverified.
 - [x] Publish the verified chatbot updates (deployment scheduled).
 - [x] Add Insights IAS with its verified official logo; publish the sponsor update.
-- [ ] Add Mystic Grace’s logo (needs its official website or logo from Anil to identify the correct business).
+- [ ] Add Mystic Grace’s logo from Anil’s upload to the footer sponsor strip.
 - [x] Remove the repeated Insights IAS name beside its logo and publish (deployment requested).
 
 - [x] Check poster QR codes and match each event's registration button to the decoded Google Form (FUSION and KERNELX match; ENCLAVE and GESTURE AI have no QR codes)
@@ -50,3 +50,4 @@
 - [x] Move the hackathon Round 1 idea deadline to 11:59 PM on Tue 27 Oct 2026 (hero badge, countdown, schedule, event page, chatbot)
 - [x] Change the week range shown in the hero badge from 6 Nov to 5 Nov 2026 (DATES_LABEL, meta, chatbot, tests)
 - [x] Publish again so the 5 Nov range and the 27 Oct deadline reach visitors on the published site
+- [ ] Publish the site with the Lush Knots and Mystic Grace logos.
