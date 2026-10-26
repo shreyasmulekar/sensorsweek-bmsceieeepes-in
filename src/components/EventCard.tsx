@@ -66,7 +66,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
               {e.flagship && <span className="animate-flicker rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-semibold tracking-wider text-primary-foreground shadow-glow">FLAGSHIP</span>}
               <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wider ${STATUS[status]}`}>
                 {open && <span aria-hidden className="animate-blink inline-block size-1.5 rounded-full bg-current" />}
-                {e.status}
+                {status}
               </span>
             </div>
           </div>
