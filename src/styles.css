@@ -392,3 +392,14 @@
 @media (prefers-reduced-motion: reduce) {
   .event-card, .event-card::before, .event-card::after { animation: none !important; }
 }
+
+/* ── Countdown tiles ─────────────────────────────────────────── */
+@utility ev-tile {
+  border: 1px solid color-mix(in oklab, var(--ev) 38%, transparent);
+  background: color-mix(in oklab, var(--ev) 9%, transparent);
+  box-shadow: inset 0 0 18px -8px color-mix(in oklab, var(--ev) 65%, transparent);
+}
+@utility ev-num {
+  color: var(--ev);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--ev) 65%, transparent);
+}
