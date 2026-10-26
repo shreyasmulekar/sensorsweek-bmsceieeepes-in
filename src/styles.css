@@ -397,7 +397,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .event-card, .event-card::before, .event-card::after { animation: none !important; }
+  .event-card, .event-card::before, .event-card::after, .ev-aura { animation: none !important; }
 }
 
 /* ── Countdown tiles ─────────────────────────────────────────── */
