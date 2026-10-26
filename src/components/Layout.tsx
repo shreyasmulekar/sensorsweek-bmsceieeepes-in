@@ -156,17 +156,26 @@ export function Footer() {
       </div>
       {SPONSORS.length > 0 && (
         <div className="mx-auto max-w-6xl px-4 pb-8">
-          <div className="hud cyber-clip relative overflow-hidden px-4 py-5 sm:px-8">
+          <div className="hud cyber-clip relative overflow-hidden px-4 py-6 sm:px-8">
             <div className="grid-floor absolute inset-x-0 bottom-0 h-28 opacity-25" />
-            <div className="relative flex flex-wrap items-center justify-center gap-x-8 gap-y-6">
-              <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-primary">
-                <span className="animate-blink inline-block size-1.5 rounded-full bg-primary" />
-                Sponsor network
+            <div className="relative text-center">
+              <p className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.3em] text-primary">
+                <span aria-hidden className="h-px w-8 bg-primary/50" />
+                <span className="flex items-center gap-2">
+                  <span aria-hidden className="animate-blink inline-block size-1.5 rounded-full bg-primary shadow-glow" />
+                  Sponsors Network
+                </span>
+                <span aria-hidden className="h-px w-8 bg-primary/50" />
               </p>
+              <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
+                Thank you to our sponsors for backing Sensors Week 2026 and helping students build, fly and demo.
+              </p>
+            </div>
+            <div className="relative mt-6 grid gap-4 sm:grid-cols-3">
               {SPONSORS.map((name) => (
                 <div key={name} className="sweep group border border-border/60 bg-background/60 transition-shadow hover:shadow-glow">
-                  <div className="ticks flex min-w-0 flex-wrap items-center justify-center px-4 py-3">
-                    {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="h-12 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" />}
+                  <div className="ticks flex h-20 min-w-0 items-center justify-center px-4 py-3">
+                    {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="max-h-12 w-full max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" />}
                     {!SPONSOR_LOGOS[name] && <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>}
                   </div>
                 </div>
