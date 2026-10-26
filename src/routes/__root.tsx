@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
+  useLocation,
   Link,
   createRootRouteWithContext,
   useRouter,
@@ -9,6 +10,7 @@ import {
   type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { motion } from "motion/react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -120,6 +122,21 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+/** Fades and lifts each page in when the route changes, so navigation never pops. */
+function PageTransition({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation();
+  return (
+    <motion.div
+      key={pathname}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
@@ -132,7 +149,7 @@ function RootComponent() {
       <CyberFx />
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:font-semibold focus:text-primary-foreground">Skip to content</a>
       <Header />
-      <main id="main" className="pb-16 sm:pb-10"><Outlet /></main>
+      <main id="main" className="pb-16 sm:pb-10"><PageTransition><Outlet /></PageTransition></main>
       <Footer />
       <ChatBot />
       <Toaster position="bottom-center" />
