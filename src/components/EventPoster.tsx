@@ -14,7 +14,7 @@ export function EventPoster({ src, name, eager = false }: EventPosterProps) {
         height={768}
         loading={eager ? "eager" : "lazy"}
         decoding="async"
-        className="mx-auto block aspect-square h-auto w-full max-w-xl object-contain object-center"
+        className="block h-auto w-full object-cover"
       />
     </div>
   );
