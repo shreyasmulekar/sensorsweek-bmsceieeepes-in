@@ -52,3 +52,4 @@
 - [x] Publish again so the 5 Nov range and the 27 Oct deadline reach visitors on the published site
 - [ ] Publish the site with the Lush Knots and Mystic Grace logos.
 - [ ] Add cyberpunk visual effects across the design, including the sponsor strip (scanlines, neon glow, glitch headings, animated grid, HUD panels), then publish.
+- [ ] Put the site logo beside the big SENSORS WEEK headline on the home page.
