@@ -176,10 +176,8 @@
 
 @utility glass { background: var(--card); backdrop-filter: blur(14px); border: 1px solid var(--border); }
 @utility glass-header { background: color-mix(in oklab, var(--card) 40%, var(--background)); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
-@keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(100vh); } }
 @keyframes floaty { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-14px) } }
 @keyframes kenburns { 0% { transform: scale(1.05) } 100% { transform: scale(1.18) translate(-2%, -1%) } }
-@utility animate-scan { animation: scan 7s linear infinite; }
 @utility animate-floaty { animation: floaty 5s ease-in-out infinite; }
 @utility animate-kenburns { animation: kenburns 30s ease-in-out infinite alternate; }
 @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }

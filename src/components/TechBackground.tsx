@@ -65,7 +65,6 @@ export function TechBackground() {
       <div className="absolute inset-0 bg-background" />
       <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(var(--primary)_1px,transparent_1px),linear-gradient(90deg,var(--primary)_1px,transparent_1px)] [background-size:48px_48px]" />
       <canvas ref={ref} className="absolute inset-0" />
-      <div className="absolute inset-x-0 top-0 h-32 animate-scan bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
     </div>
   );
 }
