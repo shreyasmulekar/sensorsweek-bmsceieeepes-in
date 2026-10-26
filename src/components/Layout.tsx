@@ -119,7 +119,7 @@ export function Header() {
                 <Link
                   key={n.to} to={n.to} activeOptions={{ exact: true }}
                   activeProps={{ className: "bg-primary/15 text-primary", "aria-current": "page" }}
-                  className="rounded-xl px-4 py-3 text-base font-medium transition-colors hover:bg-secondary"
+                  className="rounded-xl px-4 py-3 text-base font-medium transition-colors hover:bg-secondary hover:neon-text"
                   onClick={() => setOpen(false)}
                 >{n.label}</Link>
               ))}
