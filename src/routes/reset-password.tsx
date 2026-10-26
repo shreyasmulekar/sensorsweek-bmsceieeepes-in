@@ -12,6 +12,7 @@ export const Route = createFileRoute("/reset-password")({
       { property: "og:title", content: "Set a new password | Sensors Week 2026" },
       { property: "og:description", content: "Set a new password for your Sensors Week 2026 account." },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },
     ],
   }),
