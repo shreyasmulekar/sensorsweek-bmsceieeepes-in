@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type CSSProperties } from "react";
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, type MotionStyle } from "motion/react";
 import { Calendar, Clock, MapPin, Users, Trophy, Ticket, Phone, Sparkles, Share2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { REGISTER_URL, isTba, type EventItem } from "@/lib/site";
@@ -54,7 +54,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
     <motion.article
       initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
       whileHover={{ y: -6 }}
-      style={{ "--ev": ACCENT[e.slug] ?? "var(--ev-cyan)" } as CSSProperties}
+      style={{ "--ev": ACCENT[e.slug] ?? "var(--ev-cyan)" } as MotionStyle}
       className={`event-card glass group flex h-full flex-col rounded-2xl p-5 sm:p-6 ${e.flagship ? "neon-frame" : ""}`}
     >
       {e.poster ? (
