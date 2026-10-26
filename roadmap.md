@@ -60,3 +60,4 @@
 - [ ] Make the effects just as eye-catching for phone users.
 - [ ] Show REGISTRATIONS CLOSED automatically once an event's date and time have passed.
 - [ ] Make posters fill their frame (no dead space) and look more eye-catching.
+- [ ] Show the whole poster (no cropping), poster on top and details below.

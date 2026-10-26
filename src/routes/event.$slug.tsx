@@ -66,7 +66,7 @@ function EventPage() {
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="glass mt-6 overflow-hidden rounded-2xl p-5 sm:p-8">
         {e.poster ? (
           <div className="-mx-5 -mt-5 mb-6 sm:-mx-8 sm:-mt-8 sm:mb-8">
-            <EventPoster src={e.poster} name={e.name} eager frameClass="aspect-[4/3] sm:aspect-[5/4]" />
+            <EventPoster src={e.poster} name={e.name} eager />
           </div>
         ) : null}
         <div className="flex flex-wrap items-center gap-3">
