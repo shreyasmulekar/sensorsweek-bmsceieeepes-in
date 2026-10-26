@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Instagram, Mail, MapPin, Volume2, VolumeX } from "lucide-react";
-import { DEFAULT_REGISTER_URL, INSTAGRAM, EMAIL, SPONSORS } from "@/lib/site";
+import { DEFAULT_REGISTER_URL, INSTAGRAM, EMAIL, SPONSORS, SPONSOR_LOGOS } from "@/lib/site";
 import logoAsset from "@/assets/logo.png.asset.json";
 import { isMuted, onMuteChange, setMuted, sfx } from "@/lib/sound";
 
@@ -153,8 +153,13 @@ export function Footer() {
       </div>
       {SPONSORS.length > 0 && (
         <div className="mx-auto max-w-6xl px-4 pb-6 text-center">
-          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">With thanks to our sponsor</p>
-          <p className="mt-2 font-display text-lg font-bold text-primary sm:text-xl">{SPONSORS.join("  ·  ")}</p>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">With thanks to our sponsors</p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+            {SPONSORS.map((name) => <div key={name} className="flex min-w-0 flex-wrap items-center justify-center gap-3">
+              {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="h-12 w-44 rounded-sm bg-brand-surface object-contain p-1" loading="lazy" />}
+              <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>
+            </div>)}
+          </div>
         </div>
       )}
       <p className="px-4 pb-6 text-center text-[11px] text-muted-foreground">© 2026 BMSCE IEEE PES & Sensors Council</p>
