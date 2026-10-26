@@ -11,3 +11,6 @@
 
 - Keep venue facts and registration destinations in the shared site data; the homepage passes its registration destination explicitly, while event buttons use their own event links, so changing one cannot redirect another event.
 - Use the shared EventPoster renderer on event cards and detail pages to keep image sizing, centering and full-image visibility consistent.
+- Keep Sensei facts derived from shared site data and preserve complete session history; this prevents conflicting event answers and lost follow-up context.
+- Isolate Sensei with a local error boundary and return explicit request outcomes; chat failures must not replace event pages or enter conversation history as answers.
+- Use AI Elements for Sensei messages, conversation and composer; maintain compatibility sizes in the shared Button component.

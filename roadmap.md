@@ -1,5 +1,8 @@
 # Sensors Week 2026 — task list
 
+- [x] Repair Sensei error handling and verify event questions, follow-ups, general queries and failure recovery.
+- [ ] Publish the verified chatbot updates.
+
 - [x] Check poster QR codes and match each event's registration button to the decoded Google Form (FUSION and KERNELX match; ENCLAVE and GESTURE AI have no QR codes)
 - [x] Center all event posters and ensure the complete images fit on cards and event pages (checked at 1280, 758 and 390 pixels wide)
 
