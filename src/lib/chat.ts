@@ -1,18 +1,35 @@
 import { z } from "zod";
-import { DATES_LABEL, DEFAULT_REGISTER_URL, EMAIL, EVENTS, FAQS, INSTAGRAM, SCHEDULE } from "./site";
+import {
+  DATES_LABEL,
+  DEFAULT_REGISTER_URL,
+  EMAIL,
+  EVENTS,
+  FAQS,
+  INSTAGRAM,
+  SCHEDULE,
+} from "./site";
 
 export const chatInputSchema = z.object({
-  messages: z.array(z.object({
-    role: z.enum(["user", "assistant"]),
-    content: z.string().trim().min(1),
-  })).min(1).refine((messages) => messages.reduce((sum, m) => sum + m.content.length, 0) <= 100000, "Conversation is too long; start a new chat."),
+  messages: z
+    .array(
+      z.object({
+        role: z.enum(["user", "assistant"]),
+        content: z.string().trim().min(1),
+      }),
+    )
+    .min(1)
+    .refine(
+      (messages) => messages.reduce((sum, m) => sum + m.content.length, 0) <= 100000,
+      "Conversation is too long; start a new chat.",
+    ),
 });
 export type ChatMessage = z.infer<typeof chatInputSchema>["messages"][number];
 export type ChatResult = { ok: true; reply: string } | { ok: false; error: string };
 
 export function botInstructions() {
   const events = EVENTS.map(({ poster, contacts, ...event }) => {
-    void poster; void contacts;
+    void poster;
+    void contacts;
     return event;
   });
   return `You are Sensei, the friendly student helper for Sensors Week 2026 by BMSCE IEEE PES and Sensors Council at BMS College of Engineering, Bengaluru, ${DATES_LABEL}.
@@ -27,6 +44,7 @@ FAQ: ${JSON.stringify(FAQS)}`;
 }
 
 export function botErrorMessage(code?: string) {
-  if (code === "rate_limit") return "Sensei is busy right now. Please wait a little before asking again.";
+  if (code === "rate_limit")
+    return "Sensei is busy right now. Please wait a little before asking again.";
   return `Sensei couldn’t answer right now. Your conversation is still here; you can try again later or email ${EMAIL}.`;
 }
