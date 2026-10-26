@@ -57,3 +57,4 @@
 - [ ] Sponsor strip: thank-you note on top, "Sponsors Network" heading, all sponsors lined up in one even symmetric row.
 - [ ] Sponsor note reads exactly "Special thanks to our sponsors".
 - [ ] Add a live countdown for every event.
+- [ ] Make the effects just as eye-catching for phone users.

@@ -1,5 +1,5 @@
-import { useEffect, useState, type CSSProperties } from "react";
-import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { motion, type MotionStyle } from "motion/react";
 import { EVENT_ACCENT, eventStartMs, type EventItem } from "@/lib/site";
 
 const UNITS = ["Days", "Hours", "Mins", "Secs"] as const;
@@ -35,7 +35,7 @@ export function EventCountdown({ e }: { e: EventItem }) {
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      style={{ "--ev": accent } as CSSProperties}
+      style={{ "--ev": accent } as MotionStyle}
       className="mt-5 flex flex-wrap items-center gap-2"
       aria-label={started ? `${e.name} has started` : `Time remaining until ${e.name}`}
     >
