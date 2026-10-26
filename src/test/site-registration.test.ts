@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_REGISTER_URL, EMAIL, EVENTS, FAQS, HACKATHON_REGISTER_URL, REGISTER_URL, SCHEDULE } from "@/lib/site";
+import { DATES_LABEL, DEFAULT_REGISTER_URL, EMAIL, EVENTS, FAQS, HACKATHON_REGISTER_URL, REGISTER_URL, SCHEDULE } from "@/lib/site";
 
 describe("Confirmed venues and registration destinations", () => {
   it("shows the poster-confirmed AI-ML Seminar Hall venue for SENSORS FUSION", () => {
@@ -91,5 +91,12 @@ describe("Main contact address", () => {
   it("uses ieee.pes@bmsce.ac.in as the site-wide contact email", () => {
     expect(EMAIL).toBe("ieee.pes@bmsce.ac.in");
     expect(EMAIL).not.toBe("ieeepes@bmsce.ac.in");
+  });
+});
+
+describe("Week dates", () => {
+  it("shows the week running 30 Oct to 6 Nov 2026", () => {
+    expect(DATES_LABEL).toBe("30 Oct – 6 Nov 2026");
+    expect(DATES_LABEL).not.toContain("5 Nov 2026");
   });
 });

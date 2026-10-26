@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Sensors Week 2026 | BMSCE IEEE PES" },
-      { name: "description", content: "Sensors Week 2026 by BMSCE IEEE PES & Sensors Council, 30 Oct – 5 Nov." },
+      { name: "description", content: "Sensors Week 2026 by BMSCE IEEE PES & Sensors Council, 30 Oct – 6 Nov." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
