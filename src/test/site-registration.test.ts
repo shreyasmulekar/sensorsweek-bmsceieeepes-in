@@ -109,7 +109,7 @@ describe("Hackathon Round 1 idea deadline", () => {
     expect(NEXT_EVENT_LABEL).toBe("ROUND 1 DEADLINE · Tue 27 Oct, 1:00 PM");
     expect(EVENTS.find((e) => e.slug === "hardware-hackathon")?.note).toContain("1:00 PM, 27 Oct 2026");
     expect(ideaItem?.t).toBe("By 1:00 PM");
-    expect(SCHEDULE.find((d) => d.items === (ideaItem ? [ideaItem] : []))?.day).toBe("Tue, 27 Oct");
+    expect(SCHEDULE.find((d) => d.items.includes(ideaItem!))?.day).toBe("Tue, 27 Oct");
   });
 
   it("keeps no trace of the old 26 Oct 11:59 PM deadline", () => {
