@@ -48,8 +48,8 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
   const canRegister = open && !!e.registerUrl;
   return (
     <motion.article
-      initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-      whileHover={{ y: -6 }}
+      initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -6 }} transitionMotion={{ type: "spring", stiffness: 260, damping: 26 }}
       style={{ "--ev": EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)" } as MotionStyle}
       className={`event-card glass group flex h-full flex-col rounded-2xl p-5 sm:p-6 ${e.flagship ? "neon-frame" : ""}`}
     >
@@ -61,7 +61,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
       <div className={`min-w-0 ${wide ? "md:flex md:items-start md:justify-between md:gap-10" : ""}`}>
         <div className="min-w-0 md:flex-1">
           <div className="flex items-start justify-between gap-3">
-            <span className={`transition-transform group-hover:scale-125 group-hover:rotate-12 ${wide ? "text-5xl" : "text-4xl"}`}>{e.icon}</span>
+            <span className="transition-transform duration-300 group-hover:scale-110 {wide ? "text-5xl" : "text-4xl"}">{e.icon}</span>
             <div className="flex shrink-0 flex-col items-end gap-2">
               {e.flagship && <span className="animate-flicker rounded-full bg-gradient-primary px-3 py-1 text-[10px] font-semibold tracking-wider text-primary-foreground shadow-glow">FLAGSHIP</span>}
               <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wider ${STATUS[status]}`}>

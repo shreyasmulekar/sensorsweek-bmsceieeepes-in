@@ -38,7 +38,7 @@ function Index() {
   return (
     <>
       <section className="relative flex min-h-[80vh] items-center overflow-hidden">
-        <img src={heroBg} alt="" width={1920} height={1088} className="absolute inset-0 -z-10 h-full w-full animate-kenburns object-cover opacity-45" />
+        <img src={heroBg} alt="" width={1920} height={1088} style={{ willChange: "transform" }} className="absolute inset-0 -z-10 h-full w-full animate-kenburns object-cover opacity-45" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/60 to-background" />
         <GridFloor className="opacity-45" />
         <div className="mx-auto w-full max-w-6xl px-4 py-16 text-center">
@@ -46,36 +46,36 @@ function Index() {
             BMSCE IEEE PES & Sensors Council presents
           </motion.p>
           <div className="mt-5 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6 md:gap-10">
-            <motion.span initial={{ opacity: 0, scale: 0.5, rotate: -14 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ delay: 0.15, type: "spring" }} className="shrink-0">
+            <motion.span initial={{ opacity: 0, scale: 0.85, rotate: -6 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ delay: 0.1, type: "spring", stiffness: 190, damping: 22 }} className="shrink-0">
               <Logo size="size-16 sm:size-20 md:size-28" rounded="rounded-2xl" className="neon-frame" />
             </motion.span>
             <h1 className="max-w-4xl text-[2.1rem] font-black leading-[1.05] sm:text-6xl md:text-8xl">
             {TITLE.split(" ").map((w, wi) => (
               <span key={w} className="block whitespace-nowrap">
                 {w.split("").map((ch, i) => (
-                  <motion.span key={i} initial={{ opacity: 0, y: 60, rotateX: 90 }} animate={{ opacity: 1, y: 0, rotateX: 0 }} transition={{ delay: 0.3 + (wi * 7 + i) * 0.05, type: "spring" }} className={wi === 0 ? "inline-block text-gradient" : "inline-block"}>
+                  <motion.span key={i} initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 + (wi * 7 + i) * 0.03, duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className={wi === 0 ? "inline-block text-gradient" : "inline-block"}>
                     {ch}
                   </motion.span>
                 ))}
               </span>
             ))}
-            <motion.span initial={{ opacity: 0, scale: 2 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1.1 }} data-text="2026" className="glitch mt-2 block text-2xl sm:text-4xl md:text-5xl">2026</motion.span>
+            <motion.span initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55, duration: 0.5, ease: [0.22, 1, 0.36, 1] }} data-text="2026" className="glitch mt-2 block text-2xl sm:text-4xl md:text-5xl">2026</motion.span>
             </h1>
           </div>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3 }} className="mx-auto mt-5 max-w-xl px-2 text-sm text-muted-foreground sm:text-base">
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="mx-auto mt-5 max-w-xl px-2 text-sm text-muted-foreground sm:text-base">
             A week of drones, robots and smart sensing, led by our flagship Hardware Hackathon. Build it, fly it, demo it.
           </motion.p>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.45 }} className="mt-4 flex justify-center px-2">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="mt-4 flex justify-center px-2">
             <span className="hud cyber-clip neon-text inline-flex items-center gap-2 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] sm:text-sm">
               <CalendarDays className="size-3.5" />
               {DATES_LABEL}
             </span>
           </motion.div>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }} className="mt-7 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 0.45 }} className="mt-7 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <RegisterButton href={DEFAULT_REGISTER_URL} className="px-5 py-3 text-sm sm:px-6" />
             <Link to="/events" className="sweep cyber-clip border border-primary/50 bg-primary/5 px-5 py-3 text-sm font-semibold transition hover:bg-primary/10 sm:px-6 sm:text-base">Explore Events</Link>
           </motion.div>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.7 }} className="mx-auto mt-10 w-full max-w-md">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="mx-auto mt-10 w-full max-w-md">
             <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-muted-foreground sm:text-[11px]">{NEXT_EVENT_LABEL}</p>
             <div className="grid grid-cols-4 gap-2 sm:gap-3">
               {cd.map(([l, v]) => (
@@ -109,7 +109,7 @@ function Index() {
           {[[Radio, "Sensors"], [Cpu, "Embedded"], [Wifi, "IoT"], [Zap, "Energy"]].map(([Icon, l], i) => {
             const I = Icon as typeof Cpu;
             return (
-              <motion.div key={l as string} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ rotate: -3, scale: 1.05 }} className="sweep glass rounded-2xl p-5 text-center sm:p-6">
+              <motion.div key={l as string} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }} whileHover={{ y: -4, scale: 1.02 }} className="sweep glass rounded-2xl p-5 text-center sm:p-6">
                 <I className="mx-auto size-7 animate-floaty text-primary sm:size-8" style={{ animationDelay: `${i * 0.4}s` }} />
                 <p className="mt-3 font-display text-xs sm:text-sm">{l as string}</p>
               </motion.div>
