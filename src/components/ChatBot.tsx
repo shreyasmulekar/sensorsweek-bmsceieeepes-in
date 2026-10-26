@@ -1,74 +1,107 @@
-import { useRef, useState, useEffect } from "react";
+import { Component, useRef, useState, useEffect, type ErrorInfo, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import ReactMarkdown from "react-markdown";
 import { useServerFn } from "@tanstack/react-start";
-import { Bot, Send, X } from "lucide-react";
+import type { UIMessage } from "ai";
+import { Bot, RotateCcw, Send, X } from "lucide-react";
 import { askBot } from "@/lib/chat.functions";
-import { sfx } from "@/lib/sound";
+import { botErrorMessage, type ChatMessage } from "@/lib/chat";
+import { Button } from "@/components/ui/button";
+import { Conversation, ConversationContent, ConversationScrollButton } from "@/components/ai-elements/conversation";
+import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
+import { PromptInput, PromptInputTextarea, PromptInputFooter, PromptInputSubmit } from "@/components/ai-elements/prompt-input";
+import { Shimmer } from "@/components/ai-elements/shimmer";
 
-type Msg = { role: "user" | "assistant"; content: string };
 const SUGGEST = ["Which events are there?", "How do I register?", "Is there a fee?"];
+const greeting: UIMessage = { id: "greeting", role: "assistant", parts: [{ type: "text", text: "Hey! 👋 I'm **Sensei**, your Sensors Week buddy. What would you like to know?" }] };
+function makeMessage(role: "user" | "assistant", text: string): UIMessage {
+  return { id: crypto.randomUUID(), role, parts: [{ type: "text", text }] };
+}
+function history(messages: UIMessage[]): ChatMessage[] {
+  return messages.filter((m) => m.id !== "greeting" && m.role !== "system").map((m) => ({
+    role: m.role === "assistant" ? "assistant" : "user",
+    content: m.parts.flatMap((p) => p.type === "text" ? [p.text] : []).join(""),
+  }));
+}
 
-export function ChatBot() {
+function ChatWindow() {
   const [open, setOpen] = useState(false);
-  const [msgs, setMsgs] = useState<Msg[]>([{ role: "assistant", content: "Hey! 👋 I'm **Sensei**, your Sensors Week buddy. Ask me anything about events, dates or registration." }]);
+  const [messages, setMessages] = useState<UIMessage[]>([greeting]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const lock = useRef(false);
+  const field = useRef<HTMLTextAreaElement>(null);
+  const launcher = useRef<HTMLButtonElement>(null);
   const ask = useServerFn(askBot);
-  const end = useRef<HTMLDivElement>(null);
-  useEffect(() => end.current?.scrollIntoView({ behavior: "smooth" }), [msgs, busy]);
 
-  const send = async (text: string) => {
-    if (!text.trim() || busy) return;
-    const next = [...msgs, { role: "user" as const, content: text.trim() }];
-    setMsgs(next); setInput(""); setBusy(true); sfx.sent();
+  useEffect(() => {
+    if (open && !busy) field.current?.focus();
+  }, [open, busy]);
+
+  const request = async (next: UIMessage[]) => {
+    if (lock.current) return;
+    lock.current = true;
+    setBusy(true); setError(null);
     try {
-      const { reply } = await ask({ data: { messages: next.slice(1) } });
-      setMsgs([...next, { role: "assistant", content: reply }]); sfx.reply();
+      const result = await ask({ data: { messages: history(next) } });
+      if (result.ok) setMessages([...next, makeMessage("assistant", result.reply)]);
+      else setError(result.error);
     } catch {
-      setMsgs([...next, { role: "assistant", content: "Oops, connection hiccup. Try again?" }]); sfx.close();
-    } finally { setBusy(false); }
+      setError(botErrorMessage());
+    } finally {
+      lock.current = false;
+      setBusy(false);
+    }
   };
+  const send = async (text: string) => {
+    if (!text.trim() || lock.current) return;
+    const next = [...messages, makeMessage("user", text.trim())];
+    setMessages(next); setInput("");
+    field.current?.focus();
+    await request(next);
+  };
+  const close = () => { setOpen(false); launcher.current?.focus(); };
 
-  return (
-    <>
-      <motion.button
-        aria-label={open ? "Close chat" : "Open chat"}
-        onClick={() => { setOpen(!open); (!open ? sfx.open : sfx.close)(); }}
-        whileHover={{ scale: 1.1, rotate: 8 }} whileTap={{ scale: 0.9 }}
-        className="fixed bottom-5 right-5 z-50 grid size-14 place-items-center rounded-full bg-gradient-primary text-primary-foreground shadow-glow"
-      >
-        {open ? <X /> : <Bot className="animate-floaty" />}
-      </motion.button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 30, scale: 0.9 }}
-            className="glass fixed bottom-24 right-5 z-50 flex h-[480px] w-[min(92vw,370px)] flex-col overflow-hidden rounded-2xl shadow-glow"
-          >
-            <div className="flex items-center gap-2 border-b border-border bg-secondary/60 px-4 py-3">
-              <Bot className="size-5 text-primary" />
-              <div><p className="font-display text-sm">Sensei Bot</p><p className="text-xs text-muted-foreground">Ask about Sensors Week</p></div>
-            </div>
-            <div className="flex-1 space-y-3 overflow-y-auto p-4 text-sm">
-              {msgs.map((m, i) => (
-                <div key={i} className={m.role === "user" ? "ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-primary px-3 py-2 text-primary-foreground" : "max-w-[90%] rounded-2xl rounded-bl-sm bg-secondary px-3 py-2"}>
-                  <div className="prose-sm [&_ul]:list-disc [&_ul]:pl-4 [&_strong]:text-primary"><ReactMarkdown>{m.content}</ReactMarkdown></div>
-                </div>
-              ))}
-              {busy && <div className="flex gap-1 px-3">{[0, 1, 2].map((i) => <motion.span key={i} className="size-2 rounded-full bg-primary" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 0.8, delay: i * 0.15 }} />)}</div>}
-              {msgs.length === 1 && (
-                <div className="flex flex-wrap gap-2">{SUGGEST.map((s) => <button key={s} onClick={() => send(s)} className="rounded-full border border-border px-3 py-1 text-xs hover:bg-secondary">{s}</button>)}</div>
-              )}
-              <div ref={end} />
-            </div>
-            <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex gap-2 border-t border-border p-3">
-              <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Type your question…" className="flex-1 rounded-full border border-input bg-background/60 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-ring" />
-              <button aria-label="Send" disabled={busy} className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground disabled:opacity-50"><Send className="size-4" /></button>
-            </form>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
+  return <>
+    <Button ref={launcher} aria-label={open ? "Close chat" : "Open chat"} aria-expanded={open} aria-controls="sensei-chat" onClick={() => open ? close() : setOpen(true)} className="fixed bottom-5 right-5 z-50 size-14 rounded-full bg-gradient-primary text-primary-foreground shadow-glow">
+      {open ? <X /> : <Bot />}
+    </Button>
+    <AnimatePresence>{open && <motion.section id="sensei-chat" aria-label="Sensei chat" onKeyDown={(e) => { if (e.key === "Escape") close(); }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-24 right-3 z-50 flex h-[min(560px,calc(100dvh-110px))] w-[min(calc(100vw-24px),400px)] flex-col overflow-hidden rounded-lg border border-border bg-background shadow-glow sm:right-5">
+      <header className="flex shrink-0 items-center gap-2 border-b border-border bg-secondary/60 px-4 py-3">
+        <Bot className="size-5 text-primary" />
+        <div className="min-w-0 flex-1"><p className="font-display text-sm">Sensei Bot</p><p className="text-xs text-muted-foreground">Sensors Week student helper</p></div>
+        <Button variant="ghost" size="icon" title="New chat" aria-label="New chat" disabled={busy} onClick={() => { setMessages([greeting]); setError(null); setInput(""); field.current?.focus(); }}><RotateCcw /></Button>
+        <Button variant="ghost" size="icon" aria-label="Close Sensei" onClick={close}><X /></Button>
+      </header>
+      <Conversation className="min-h-0" aria-label="Chat messages">
+        <ConversationContent className="gap-4 text-sm">
+          {messages.map((m) => <Message key={m.id} from={m.role}>
+            <MessageContent className={m.role === "user" ? "group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground" : ""}>
+              {m.parts.map((part, i) => part.type === "text" ? <MessageResponse key={i} className="break-words [overflow-wrap:anywhere] [&_a]:underline">{part.text}</MessageResponse> : null)}
+            </MessageContent>
+          </Message>)}
+          {busy && <div role="status"><Shimmer>Thinking…</Shimmer></div>}
+          {messages.length === 1 && <div className="flex flex-wrap gap-2">{SUGGEST.map((s) => <Button variant="outline" size="sm" key={s} onClick={() => void send(s)} className="h-auto whitespace-normal text-left">{s}</Button>)}</div>}
+        </ConversationContent>
+        <ConversationScrollButton aria-label="Latest message" />
+      </Conversation>
+      {error && <div role="alert" className="shrink-0 border-t border-border px-4 py-3 text-sm"><p>{error}</p><Button variant="outline" size="sm" className="mt-2" disabled={busy} onClick={() => void request(messages)}><RotateCcw />Try again</Button></div>}
+      <div className="shrink-0 border-t border-border p-3">
+        <PromptInput onSubmit={({ text }) => send(text)}>
+          <PromptInputTextarea ref={field} aria-label="Your question" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Type your question…" className="min-h-16 max-h-32" />
+          <PromptInputFooter className="justify-end"><PromptInputSubmit aria-label="Send" status={busy ? "submitted" : "ready"} disabled={busy || !input.trim()} className="size-9">{busy ? undefined : <Send className="size-4" />}</PromptInputSubmit></PromptInputFooter>
+        </PromptInput>
+      </div>
+    </motion.section>}</AnimatePresence>
+  </>;
+}
+
+export class ChatBot extends Component<Record<string, never>, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  componentDidCatch(_error: Error, _info: ErrorInfo) { console.error("Sensei panel failed to render"); }
+  render(): ReactNode {
+    if (this.state.failed) return <Button aria-label="Restart Sensei chat" onClick={() => this.setState({ failed: false })} className="fixed bottom-5 right-5 z-50 shadow-glow"><RotateCcw />Restart Sensei</Button>;
+    return <ChatWindow />;
+  }
 }
