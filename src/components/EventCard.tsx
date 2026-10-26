@@ -53,13 +53,12 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
       style={{ "--ev": EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)" } as MotionStyle}
       className={`event-card glass group flex h-full flex-col rounded-2xl p-5 sm:p-6 ${e.flagship ? "neon-frame" : ""}`}
     >
-      <div className={wide ? "md:flex md:items-center md:gap-8" : ""}>
       {e.poster ? (
-        <div className={`ev-drop sweep -mx-5 -mt-5 mb-5 shrink-0 sm:-mx-6 sm:-mt-6 sm:mb-6 ${wide ? "md:mx-0 md:mb-0 md:w-[44%]" : ""}`}>
-          <EventPoster src={e.poster} name={e.name} frameClass={wide ? "aspect-[4/3] md:aspect-square" : "aspect-[4/3]"} />
+        <div className="ev-drop sweep -mx-5 -mt-5 mb-5 shrink-0 sm:-mx-6 sm:-mt-6 sm:mb-6">
+          <EventPoster src={e.poster} name={e.name} />
         </div>
       ) : null}
-      <div className={`min-w-0 flex-1 ${wide ? "md:flex md:items-start md:justify-between md:gap-10" : ""}`}>
+      <div className={`min-w-0 ${wide ? "md:flex md:items-start md:justify-between md:gap-10" : ""}`}>
         <div className="min-w-0 md:flex-1">
           <div className="flex items-start justify-between gap-3">
             <span className={`transition-transform group-hover:scale-125 group-hover:rotate-12 ${wide ? "text-5xl" : "text-4xl"}`}>{e.icon}</span>
@@ -82,7 +81,6 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
         <div className={`min-w-0 ${wide ? "md:w-72 md:shrink-0" : ""}`}>
           <Meta e={e} />
         </div>
-      </div>
       </div>
 
       <EventCountdown e={e} />
