@@ -27,6 +27,7 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
   --color-background: var(--background);
+  --color-brand-surface: var(--brand-surface);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -66,6 +67,7 @@
 }
 
 :root {
+  --brand-surface: oklch(1 0 0);
   --radius: 1rem;
   --background: oklch(0.16 0.04 255);
   --foreground: oklch(0.96 0.01 230);

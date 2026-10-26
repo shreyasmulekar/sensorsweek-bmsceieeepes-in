@@ -3,6 +3,7 @@ import enclavePoster from "@/assets/sensors-enclave.jpg.asset.json";
 import fusionPoster from "@/assets/sensors-fusion-v2.png.asset.json";
 import kernelxPoster from "@/assets/kernelx.jpg.asset.json";
 import gestureAiPoster from "@/assets/gesture-ai.jpg.asset.json";
+import insightsLogo from "@/assets/insights-ias-logo.png.asset.json";
 
 export const REGISTER_URL = "https://forms.gle/5bzWaxnJ652Bnoas7";
 export const HACKATHON_REGISTER_URL = "https://forms.gle/ZU6mkHBzoMkC7P3w8";
@@ -16,7 +17,8 @@ export const DATES_LABEL = "30 Oct – 5 Nov 2026";
 export const NEXT_EVENT_LABEL = "ROUND 1 DEADLINE · Tue 27 Oct, 11:59 PM";
 export const INSTAGRAM = "https://instagram.com/bmsce_ieeepes";
 export const EMAIL = "ieee.pes@bmsce.ac.in";
-export const SPONSORS = ["Mystic Grace"];
+export const SPONSORS = ["Mystic Grace", "Insights IAS"];
+export const SPONSOR_LOGOS: Record<string, string> = { "Insights IAS": insightsLogo.url };
 
 export type Contact = { name: string; phone: string };
 
