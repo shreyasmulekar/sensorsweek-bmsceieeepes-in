@@ -54,3 +54,4 @@
 - [ ] Add cyberpunk visual effects across the design, including the sponsor strip (scanlines, neon glow, glitch headings, animated grid, HUD panels), then publish.
 - [ ] Put the site logo beside the big SENSORS WEEK headline on the home page.
 - [ ] Make every event card glow with colour, animations and effects so the events catch the eye.
+- [ ] Sponsor strip: thank-you note on top, "Sponsors Network" heading, all sponsors lined up in one even symmetric row.
