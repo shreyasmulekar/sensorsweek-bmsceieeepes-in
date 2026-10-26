@@ -63,3 +63,4 @@
 - [x] Show the whole poster (no cropping), poster on top and details below.
 - [ ] Remove the sweeping scan line that looked like it was scanning the page, then publish.
 - [ ] Make the site feel smooth: find and fix the glitchy/janky animations and transitions (flicker, glitch, blend layers, blur, hover/scroll motion), then verify and publish.
+- [ ] Sweep the site for any remaining glitch (visual jitter, stuck states, layout jumps) and publish the final version.

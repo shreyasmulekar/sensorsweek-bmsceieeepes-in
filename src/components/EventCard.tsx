@@ -47,7 +47,7 @@ export function EventCard({ e, i = 0, wide = false }: { e: EventItem; i?: number
   const open = status === "REGISTRATIONS OPEN" || status === "CLOSING SOON";
   const canRegister = open && !!e.registerUrl;
   return (
-    <div className="relative h-full rounded-2xl" style={{ "--ev": EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)" } as MotionStyle}>
+    <div className="relative h-full rounded-2xl" style={{ "--ev": EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)" } as React.CSSProperties}>
       <span aria-hidden className="ev-aura" />
       <motion.article
         initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
