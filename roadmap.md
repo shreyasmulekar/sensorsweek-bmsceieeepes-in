@@ -58,3 +58,4 @@
 - [ ] Sponsor note reads exactly "Special thanks to our sponsors".
 - [ ] Add a live countdown for every event.
 - [ ] Make the effects just as eye-catching for phone users.
+- [ ] Show REGISTRATIONS CLOSED automatically once an event's date and time have passed.
