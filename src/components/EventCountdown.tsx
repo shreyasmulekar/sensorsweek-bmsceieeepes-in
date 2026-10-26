@@ -29,6 +29,7 @@ export function EventCountdown({ e }: { e: EventItem }) {
   const diff = Math.max(0, target - (now ?? target));
   const started = now != null && diff === 0;
   const accent = EVENT_ACCENT[e.slug] ?? "var(--ev-cyan)";
+  const v = values(diff);
 
   return (
     <motion.div
@@ -36,22 +37,24 @@ export function EventCountdown({ e }: { e: EventItem }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       style={{ "--ev": accent } as MotionStyle}
-      className="mt-5 flex flex-wrap items-center gap-2"
+      className="mt-5"
       aria-label={started ? `${e.name} has started` : `Time remaining until ${e.name}`}
     >
-      <span className="mr-1 flex items-center gap-1.5 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+      <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
         <span aria-hidden className="animate-blink inline-block size-1.5 rounded-full bg-current" />
         {started ? "Happening now" : "Starts in"}
       </span>
       {started ? null : (
-        UNITS.map((label, i) => (
-          <span key={label} className="ev-tile rounded-lg px-2.5 py-1 text-center">
-            <span className="ev-num block font-display text-base font-bold tabular-nums sm:text-lg">
-              {String(values(diff)[i]).padStart(2, "0")}
+        <div className="mt-2 grid grid-cols-4 gap-1.5 sm:gap-2">
+          {UNITS.map((label, i) => (
+            <span key={label} className="ev-tile rounded-lg px-1 py-1.5 text-center">
+              <span className="ev-num block font-display text-lg font-bold tabular-nums sm:text-xl">
+                {String(v[i]).padStart(2, "0")}
+              </span>
+              <span className="block text-[9px] uppercase tracking-wider text-muted-foreground">{label}</span>
             </span>
-            <span className="block text-[9px] uppercase tracking-wider text-muted-foreground">{label}</span>
-          </span>
-        ))
+          ))}
+        </div>
       )}
     </motion.div>
   );
