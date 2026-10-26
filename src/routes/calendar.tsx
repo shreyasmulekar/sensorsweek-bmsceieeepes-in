@@ -18,6 +18,7 @@ import {
   type CalEntry,
 } from "@/lib/calendar";
 import { supabase } from "@/integrations/supabase/client";
+import { useNow } from "@/lib/useNow";
 
 export const Route = createFileRoute("/calendar")({
   head: () => ({
@@ -54,6 +55,9 @@ const EMPTY_FORM = {
 
 function CalendarPage() {
   const { data } = useSuspenseQuery(customEventsQueryOptions);
+  const now = useNow();
+  // An event whose date and time have passed can no longer be registered for.
+  const isClosed = (e: CalEntry) => e.endMs != null && now != null && now >= e.endMs;
   const queryClient = useQueryClient();
 
   const entries = useMemo(
@@ -171,10 +175,12 @@ function CalendarPage() {
                       <span className="block truncate font-semibold text-primary" title={e.name}>{e.name}</span>
                       {e.time ? <span className="block truncate text-muted-foreground" title={e.time}>{e.time}</span> : null}
                       {e.fee ? <span className="hidden truncate text-muted-foreground sm:block" title={e.fee}>{e.fee}</span> : null}
-                      {e.registerUrl ? (
+                      {e.registerUrl && !isClosed(e) ? (
                         <a href={e.registerUrl} target="_blank" rel="noreferrer" className="block truncate font-semibold text-primary hover:underline">
                           Register
                         </a>
+                      ) : e.registerUrl && isClosed(e) ? (
+                        <span className="block truncate font-semibold text-muted-foreground">Closed</span>
                       ) : null}
                       {isAdmin && e.custom ? (
                         <button onClick={() => removeEntry(e.id)} className="mt-0.5 inline-flex items-center gap-1 text-[9px] text-warn hover:underline">
