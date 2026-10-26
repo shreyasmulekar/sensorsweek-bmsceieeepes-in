@@ -40,3 +40,6 @@
 - [ ] Add a private sign-ups page showing how many registrations each workshop form has received, visible to Anil only (not linked anywhere, not visible to visitors)
 - [x] Publish the site (live at sensorsweek-bmsceieeepes-in.lovable.app); connecting sensorsweek.bmsceieeepes.in still needs Anil to add it in Project Settings → Domains and set DNS
 - [x] Confirm the published site matches the preview (new 30 Oct – 6 Nov range, all four event forms, contact email, AI-ML Seminar Hall venue)
+- [x] Move the hackathon Round 1 idea deadline to 11:59 PM on Tue 27 Oct 2026 (hero badge, countdown, schedule, event page, chatbot)
+- [ ] Change the week range shown in the hero badge from 6 Nov to 5 Nov 2026 (DATES_LABEL, meta, chatbot, tests)
+- [ ] Publish again so the 5 Nov range and the 27 Oct deadline reach visitors on the published site
