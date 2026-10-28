@@ -64,3 +64,4 @@
 - [x] Remove the sweeping scan line that looked like it was scanning the page, then publish.
 - [x] Make the site feel smooth: find and fix the glitchy/janky animations and transitions (flicker, glitch, blend layers, blur, hover/scroll motion), then verify and publish.
 - [x] Sweep the site for any remaining glitch (visual jitter, stuck states, layout jumps) and publish the final version.
+- [x] Move the Sponsors Network panel to the top of the site, just under the header, on every page (footer keeps the event ticker).

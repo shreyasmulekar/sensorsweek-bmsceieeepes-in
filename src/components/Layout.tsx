@@ -136,6 +136,44 @@ export function Header() {
   );
 }
 
+/**
+ * Sponsors Network panel: thank-you note on top, every sponsor logo lined up in
+ * one even row. Rendered at the top of the site, straight under the header.
+ */
+export function SponsorNetwork() {
+  if (SPONSORS.length === 0) return null;
+  return (
+    <section aria-label="Sponsors" className="mx-auto w-full max-w-6xl px-4 pt-3 sm:pt-5">
+      <div className="hud cyber-clip relative overflow-hidden px-4 py-5 sm:px-8 sm:py-6">
+        <div className="grid-floor absolute inset-x-0 bottom-0 h-28 opacity-50" />
+        <div className="relative text-center">
+          <p className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.3em] text-primary">
+            <span aria-hidden className="h-px w-8 bg-primary/50" />
+            <span className="flex items-center gap-2">
+              <span aria-hidden className="animate-blink inline-block size-1.5 rounded-full bg-primary shadow-glow" />
+              Sponsors Network
+            </span>
+            <span aria-hidden className="h-px w-8 bg-primary/50" />
+          </p>
+          <p className="mx-auto mt-2.5 max-w-xl text-xs text-muted-foreground sm:mt-3 sm:text-sm">
+            Special thanks to our sponsors.
+          </p>
+        </div>
+        <div className="relative mt-4 grid gap-3 sm:mt-6 sm:grid-cols-3 sm:gap-4">
+          {SPONSORS.map((name) => (
+            <div key={name} className="sweep group border border-primary/40 bg-background/60 shadow-glow transition-shadow">
+              <div className="ticks flex h-16 min-w-0 items-center justify-center px-3 py-2.5 sm:h-20 sm:px-4 sm:py-3">
+                {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="max-h-10 w-full max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-105 sm:max-h-12" loading="lazy" />}
+                {!SPONSOR_LOGOS[name] && <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function Footer() {
   return (
     <footer className="mt-20 border-t border-border bg-background/70 backdrop-blur sm:mt-24">
@@ -154,46 +192,18 @@ export function Footer() {
           <span className="flex min-w-0 items-center gap-2"><MapPin className="size-4 shrink-0" /><span className="min-w-0">BMS College of Engineering, Bengaluru</span></span>
         </div>
       </div>
-      {SPONSORS.length > 0 && (
-        <div className="mx-auto max-w-6xl px-4 pb-8">
-          <div className="hud cyber-clip relative overflow-hidden px-4 py-6 sm:px-8">
-            <div className="grid-floor absolute inset-x-0 bottom-0 h-32 opacity-50" />
-            <div className="relative text-center">
-              <p className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.3em] text-primary">
-                <span aria-hidden className="h-px w-8 bg-primary/50" />
-                <span className="flex items-center gap-2">
-                  <span aria-hidden className="animate-blink inline-block size-1.5 rounded-full bg-primary shadow-glow" />
-                  Sponsors Network
-                </span>
-                <span aria-hidden className="h-px w-8 bg-primary/50" />
-              </p>
-              <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
-                Special thanks to our sponsors.
-              </p>
-            </div>
-            <div className="relative mt-6 grid gap-4 sm:grid-cols-3">
-              {SPONSORS.map((name) => (
-                <div key={name} className="sweep group border border-primary/40 bg-background/60 shadow-glow transition-shadow">
-                  <div className="ticks flex h-20 min-w-0 items-center justify-center px-4 py-3">
-                    {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="max-h-12 w-full max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" />}
-                    {!SPONSOR_LOGOS[name] && <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="mt-4 overflow-hidden rounded-full border border-border/50 bg-background/50 py-1.5">
-            <div className="animate-ticker flex w-max items-center gap-10 whitespace-nowrap pl-10 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-              {[...TICKER, ...TICKER].map((t, i) => (
-                <span key={`${t}-${i}`} className="flex items-center gap-10">
-                  <span className={t === NEXT_EVENT_LABEL ? "text-neon" : "text-primary"}>{t}</span>
-                  <span aria-hidden className="text-primary/40">//</span>
-                </span>
-              ))}
-            </div>
+      <div className="mx-auto max-w-6xl px-4 pb-8">
+        <div className="overflow-hidden rounded-full border border-border/50 bg-background/50 py-1.5">
+          <div className="animate-ticker flex w-max items-center gap-10 whitespace-nowrap pl-10 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+            {[...TICKER, ...TICKER].map((t, i) => (
+              <span key={`${t}-${i}`} className="flex items-center gap-10">
+                <span className={t === NEXT_EVENT_LABEL ? "text-neon" : "text-primary"}>{t}</span>
+                <span aria-hidden className="text-primary/40">//</span>
+              </span>
+            ))}
           </div>
         </div>
-      )}
+      </div>
       <p className="px-4 pb-6 text-center text-[11px] text-muted-foreground">© 2026 BMSCE IEEE PES & Sensors Council</p>
     </footer>
   );
