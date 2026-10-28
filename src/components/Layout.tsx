@@ -159,11 +159,11 @@ export function SponsorNetwork() {
             Special thanks to our sponsors.
           </p>
         </div>
-        <div className="relative mt-4 grid gap-3 sm:mt-6 sm:grid-cols-3 sm:gap-4">
+        <div className="relative mt-3 grid gap-2.5 sm:mt-6 sm:grid-cols-3 sm:gap-4">
           {SPONSORS.map((name) => (
             <div key={name} className="sweep group border border-primary/40 bg-background/60 shadow-glow transition-shadow">
-              <div className="ticks flex h-16 min-w-0 items-center justify-center px-3 py-2.5 sm:h-20 sm:px-4 sm:py-3">
-                {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="max-h-10 w-full max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-105 sm:max-h-12" loading="lazy" />}
+              <div className="ticks flex h-12 min-w-0 items-center justify-center px-3 py-2 sm:h-20 sm:px-4 sm:py-3">
+                {SPONSOR_LOGOS[name] && <img src={SPONSOR_LOGOS[name]} alt={`${name} logo`} width={176} height={48} className="max-h-7 w-full max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-105 sm:max-h-12" loading="lazy" />}
                 {!SPONSOR_LOGOS[name] && <span className="font-display text-base font-bold text-primary sm:text-lg">{name}</span>}
               </div>
             </div>
